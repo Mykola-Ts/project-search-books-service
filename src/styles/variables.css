@@ -1,0 +1,17 @@
+/* ---------------- VARIABLES ---------------- */
+:root {
+  --font-family: "DM Sans", sans-serif;
+
+  --text-black-color: #111;
+  --text-gray-color: rgba(17, 17, 17, 0.6);
+  --text-sub-color: #b4afaf;
+  --dark-theme-color: #202024;
+  --primary-color: #4f2ee8;
+  --yellow-color: #eac645;
+  --white-color: #fff;
+  --light-theme-color: #f6f6f6;
+  --modal-backdrop-color: rgba(17, 17, 17, 0.40);
+
+  --transition-duration: 250ms;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

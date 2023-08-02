@@ -2,23 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <title>Bookshelf</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <script type="module" src="./js/index.js"></script>
   </head>
-  <body>
-    <load ="partials/header.html" />
+  <body class="light-theme">
+    <!-- HEADER -->
+    <load src="./partials/header.html"></load>
 
-    <section>
-      <h1>Lorem ipsum dolor sit amet.</h1>
-      <!-- Path to images as from index.html file -->
-      <img src="./img/javascript.svg" alt="" />
-    </section>
+    <!-- MOBILE MENU -->
+    <load src="./partials/mobile-menu.html"></load>
 
-    <!-- Loads the specified .html file -->
-    <load ="partials/vite-promo.html" />
+    <main>
+      <!-- HOME -->
+      <section>
+        <div>
+          <!-- All categories -->
+          <load src="./partials/all-categories.html"></load>
 
-    <script type="module" src="/main.js"></script>
+          <!-- Support Ukraine -->
+          <load src="./partials/support-ukraine.html"></load>
+        </div>
+
+        <!-- List of books -->
+        <load src="./partials/list-of-books.html"></load>
+      </section>
+    </main>
+
+    <!-- AUTHORIZATION WINDOW -->
+    <load src="./partials/authorization-window.html"></load>
+
+    <!-- MODAL WINDOW -->
+    <load src="./partials/modal-window.html"></load>
+
+    <!-- LOADER -->
+    <load src="./partials/loader.html"></load>
+
+    <!-- SCROLL UP -->
+    <load src="./partials/scroll-up.html"></load>
   </body>
 </html>
