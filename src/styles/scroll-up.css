@@ -1,1 +1,25 @@
 /* ---------------- SCROLL UP ---------------- */
+.scroll-up-btn {
+  display: block;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1;
+  background: transparent;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+
+.is-hidden {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+}
+
+.scroll-up-img {
+  width: 64px;
+  height: 64px;
+}
