@@ -5,6 +5,9 @@ body {
   font-weight: 400;
   line-height: 1.13;
   letter-spacing: -0.32px;
+
+  color: var(--text-black-color);
+  background-color: var(--light-theme-color);
 }
 
 .container {
@@ -24,11 +27,6 @@ body {
     padding-left: 24px;
     padding-right: 24px;
   }
-}
-
-.light-theme {
-  color: var(--text-black-color);
-  background-color: var(--light-theme-color);
 }
 
 .dark-theme {
