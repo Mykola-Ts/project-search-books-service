@@ -1,6 +1,6 @@
 // SHOPPING LIST
 const shoppinglist = document.querySelector(`.shopping-list`);
-const bbtnFromHeader = document.querySelector(`.btn-to-list`);
+const btnFromHeader = document.querySelector(`.btn-to-list`);
 const blockSupportUkraine = document.querySelector(`.shopping-list-support-ukraine`);
 const shoppinglistContainer = document.querySelector(`.shopping-list-container`);
 
@@ -41,18 +41,29 @@ function local(key, value) {
 
 // Рабочий код
 
+btnFromHeader.addEventListener(`click`, createPageShoppingList);
+
+function createPageShoppingList(e) {
+    e.preventDefault();
+    let data = getData();
+    createMarkup(data);
+}
+
+
 function getData() {
     const savedData = localStorage.getItem(`project`);
     let parsedData = [];
     return parsedData = JSON.parse(savedData);
     console.log(parsedData[2]);
 };
-function doMarkup() {
+
+
+function createMarkup(data) {
     blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
-    shoppinglistContainer.innerHTML += `
+    shoppinglistContainer.innerHTML = `
     <h2 class="shopping-list-title-part1">Shopping <span class="shopping-list-title-part2">List</span></h2>
     `
-    let data = getData();
+    // let data = getData();
     // console.log(data);
 
     if (data.length != 0) {
@@ -116,11 +127,16 @@ function doMarkup() {
     }
     
 
-doMarkup();
+// doMarkup();
 
 const btnDeletebook = document.querySelector(`.shopping-list`);
-        btnDeletebook.addEventListener(`click`, onDeleteBook);
+btnDeletebook.addEventListener(`click`, onDeleteBook);
+
+
+
+
 function onDeleteBook(e) {
+    e.preventDefault();
     console.log(e.target);
     
     if (!e.target.classList.contains(`icon-delete-button`)) {
@@ -147,6 +163,8 @@ function onDeleteBook(e) {
 
     local(`project`, data);
 
-    doMarkup();
+    createMarkup(data);
 
 }  
+
+
