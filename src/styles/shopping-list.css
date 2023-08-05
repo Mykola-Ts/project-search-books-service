@@ -1,1 +1,244 @@
 /* ---------------- SHOPPING LIST ---------------- */
+body {
+    background-color: #F6F6F6;
+    margin: 0;
+}
+
+.shopping-list {
+    /* width: 100%; */
+    max-width: 375px;
+    background: #F6F6F6;
+    margin: 0 auto;
+    padding: 0;
+
+}
+
+.shopping-list-title-part1 {
+    color: #111;
+    font-family: DM Sans;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.19;
+    /* 118.75% */
+    letter-spacing: -1.28px;
+
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.shopping-list-title-part2 {
+    color: #4F2EE8;
+    font-family: DM Sans;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 38px;
+    letter-spacing: -1.28px;
+}
+
+
+.shopping-list-card {
+    display: flex;
+    /* width: 335 px; */
+    height: 142px;
+    border-radius: 16px;
+    align-items: flex-start;
+    border: 2px solid rgba(79, 46, 232, 0.40);
+    padding: 14px;
+    position: relative;
+    /* margin-top: 40px; */
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.shopping-list-card-img {
+    display: block;
+    width: 100px;
+    height: 142px;
+    /* margin: 14px; */
+    border-radius: 8px;
+    margin-right: 14px;
+
+}
+
+.shopping-list-card-data {
+    display: block;
+    /* width: 193px; */
+
+}
+
+.shopping-list-card-title {
+    color: #111;
+    font-family: DM Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.13;
+    /* 112.5% */
+    letter-spacing: -0.64px;
+    text-transform: uppercase;
+    /* margin-bottom: 4px; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 144px;
+    display: block;
+    margin: 0;
+}
+
+.shopping-list-card-category {
+    color: #B4AFAF;
+    font-family: DM Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.17;
+    /* 116.667% */
+    letter-spacing: 0.36px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+
+.shopping-list-card-description {
+    /* width: 193px; */
+    height: 68px;
+    overflow: hidden;
+    color: #111;
+    text-overflow: ellipsis;
+    /* whitespace: nowrap; */
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.29;
+    /* 128.571% */
+    letter-spacing: -0.56px;
+    /* margin-top: 4px;
+margin-bottom: 0; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    margin: 0;
+}
+
+
+.shopping-list-card-wrap {
+    display: flex;
+    justify-content: start;
+    /* margin: 0; */
+    align-items: flex-end;
+    width: 193px;
+    margin-top: 16px;
+    /* height: 16px; */
+
+
+}
+
+.shopping-list-card-author {
+    color: #B4AFAF;
+    font-family: DM Sans;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.17;
+    /* 116.667% */
+    letter-spacing: -0.48px;
+    /* padding: 0; */
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+
+
+.shopping-list-card-linkshop {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+    /* padding: 0; */
+    margin: 0;
+    /* margin-left: auto; */
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 80px;
+
+}
+
+
+.shop-icon {
+    fill: #4F2EE8;
+}
+
+
+.shop-icon:hover {
+    fill: #be2884;
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.15);
+}
+
+.button-delete {
+    display: flex;
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #4F2EE8;
+
+}
+
+.icon-delete-button {
+    width: 16px;
+    height: 16px;
+    align-content: center;
+    display: flex;
+}
+
+/* .shopping-list-title-empty {
+    color: #111;
+    font-family: DM Sans;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.19;
+        /* 118.75% */
+/* letter-spacing: -1.28px;
+    
+        margin-top: 40px;
+        margin-bottom: 120px;
+} */
+*/ .empty-shopping-list {
+    /* display: inline-flex;
+    flex-direction: column; */
+    align-items: center;
+    gap: 14px;
+    margin-top: 120px;
+    /* margin-left: 55px;
+    margin-right: 55px;
+    margin-top: 120px; */
+}
+
+.shopping-list-text-empty {
+    width: 244px;
+    color: rgba(0, 0, 0, 0.60);
+    text-align: center;
+    font-family: DM Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.29;
+    /* 128.571% */
+    letter-spacing: -0.28px;
+}
