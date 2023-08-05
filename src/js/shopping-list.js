@@ -1,8 +1,11 @@
 // SHOPPING LIST
 const shoppinglist = document.querySelector(`.shopping-list`);
-const bnttolist = document.querySelector(`.btn-to-list`);
+const bbtnFromHeader = document.querySelector(`.btn-to-list`);
+const blockSupportUkraine = document.querySelector(`.shopping-list-support-ukraine`);
+const shoppinglistContainer = document.querySelector(`.shopping-list-container`);
 
-
+// Для тестирования - получение и загрузка данных в localStorage.
+// После загрузки данных , нужно закоментировать.
 function getBooks() {
     return fetch(`https://books-backend.p.goit.global/books/category?category=Series Books`)
         .then((response) => {
@@ -13,20 +16,13 @@ function getBooks() {
         return dataBook;
         })
 };
-
 getBooks();
-
 function addToLocalstorage() {
     getBooks().then(dataBook => {
         let book = dataBook;
         local(`project`, book);
-        // const addBook = JSON.stringify(book);
-        // localStorage.setItem(`project`, book);
-
-        
     })
 }
-
 addToLocalstorage();
 
 function local(key, value) {
@@ -38,22 +34,30 @@ function local(key, value) {
     }
 };
 
+
 // localStorage.clear();
+
+// -----------------
+
+// Рабочий код
+
 function getData() {
     const savedData = localStorage.getItem(`project`);
     let parsedData = [];
     return parsedData = JSON.parse(savedData);
     console.log(parsedData[2]);
 };
-// const markup = `<h3 class="shopping-list-card-title">${el.title}</h3>`;
 function doMarkup() {
-    shoppinglist.innerHTML =`<h2 class="shopping-list-title-part1">Shopping <span class="shopping-list-title-part2">List</span></h2>`
-    // let data = [];
+    blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
+    shoppinglistContainer.innerHTML += `
+    <h2 class="shopping-list-title-part1">Shopping <span class="shopping-list-title-part2">List</span></h2>
+    `
     let data = getData();
-    console.log(data);
+    // console.log(data);
 
     if (data.length != 0) {
-        shoppinglist.innerHTML += data.map(el => `
+        shoppinglistContainer.innerHTML += data.map(el => `
+    
     <div class="shopping-list-card" data-title="${el.title}">
     
     <img class="shopping-list-card-img" src="${el.book_image}" alt="book image" />
@@ -69,21 +73,24 @@ function doMarkup() {
         <li class="shop-item" >
             <a class="shop-link" href="${el.buy_links[0].url}">
                 <svg class="shop-icon" width="32" height="11">
-                    <use href="./symbol-defs-shop-icons.svg#icon-amazon"></use>
+                <rect x="5" y="5" width="32" height="11"/>
+                    <use href=""></use>
                 </svg>
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${el.buy_links[1].url}">
                 <svg class="shop-icon" width="16" height="16">
-                    <use href="./symbol-defs-shop-icons.svg#icon-applebooks"></use>
+                <rect x="5" y="5" width="16" height="16"/>
+                    <use href=""></use>
                 </svg>
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${el.buy_links[4].url}">
                 <svg class="shop-icon"   width="16" height="16">
-                    <use href="./symbol-defs-shop-icons.svg#icon-bookshop"></use>
+                <rect x="5" y="5" width="16" height="16"/>
+                    <use href=""></use>
                 </svg>
             </a>
         </li>
@@ -92,34 +99,24 @@ function doMarkup() {
     </div>
     <button type="button" class="button-delete">
         <svg class="icon-delete-button" width="16" height="16">
-            <use href="./trash-03.svg"></use>
+            <use href=""></use>
         </svg>
     </button>
     </div>
     `).join(``)
-        
- 
-        
-        
-        
     }
-    
     else {
         shoppinglist.innerHTML += `
         <div class="empty-shopping-list">
         <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
         <img class="shopping-list-empty-img" src="./empty-shoppinglist.jpg" alt="empty list " width="265"
-            height="198" />
-    </div>
+            height="198" /></div>
         `
     }
-
-
     }
     
 
 doMarkup();
-
 
 const btnDeletebook = document.querySelector(`.shopping-list`);
         btnDeletebook.addEventListener(`click`, onDeleteBook);

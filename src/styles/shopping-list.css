@@ -1,16 +1,10 @@
 /* ---------------- SHOPPING LIST ---------------- */
 body {
-    background-color: #F6F6F6;
     margin: 0;
 }
-
 .shopping-list {
-    /* width: 100%; */
-    max-width: 375px;
-    background: #F6F6F6;
-    margin: 0 auto;
-    padding: 0;
-
+    display: flex;
+    margin: 0;
 }
 
 .shopping-list-title-part1 {
@@ -22,7 +16,8 @@ body {
     line-height: 1.19;
     /* 118.75% */
     letter-spacing: -1.28px;
-
+    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 40px;
     margin-bottom: 40px;
 }
@@ -40,10 +35,10 @@ body {
 
 .shopping-list-card {
     display: flex;
-    /* width: 335 px; */
+    width: 335 px;
     height: 170px;
     border-radius: 16px;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     border: 2px solid rgba(79, 46, 232, 0.40);
     padding: 14px;
     position: relative;
@@ -106,7 +101,7 @@ body {
 }
 
 .shopping-list-card-description {
-    /* width: 193px; */
+    width: 193px;
     height: 68px;
     overflow: hidden;
     color: #111;
@@ -178,7 +173,7 @@ margin-bottom: 0; */
 }
 
 
-.shop-icon:hover {
+.shop-icon:hover  {
     fill: #be2884;
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.15);
 }
@@ -241,4 +236,116 @@ margin-bottom: 0; */
     line-height: 1.29;
     /* 128.571% */
     letter-spacing: -0.28px;
+}
+
+.shopping-list-support-ukraine {
+    width: 356px;
+    height: 474px;
+    background-color: aquamarine;
+    display: none;
+}
+
+@media screen and (min-width:375px) {
+    .shopping-list {
+        width: 375px;
+        margin: 0 auto;
+        padding: 0;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .shopping-list {
+        width: 768px;
+    }
+
+        .shopping-list-title-part1 {
+
+            font-size: 48px;
+            line-height: 1.08;/* 108.333% */
+            letter-spacing: -1.92px;
+            margin-left: 32px;
+            margin-right: 32px;
+        }
+    
+        .shopping-list-title-part2 {
+            font-size: 48px;
+            line-height: 1.08;
+            letter-spacing: -1.92px;
+        }
+
+        .shopping-list-card {
+             /* width: 335 px; */
+            height: 213px;
+            padding: 24px;
+            margin-left: 32px;
+            margin-right: 32px;
+            position: relative;
+            }
+        
+        .shopping-list-card-img {
+            width: 116px;
+            height: 165px;
+            margin-right: 24px;
+            }
+        .shopping-list-card-description {
+            /* width: 508px; */
+            height: 53px;
+            }
+        .shopping-list-card-wrap { 
+            width: 508px;
+            margin-top: 48px;
+            }
+        .shopping-list-card-linkshop {
+            width: 140px;
+            gap: 16px;
+            }
+        .button-delete {
+            display: flex;
+            position: absolute;
+            top: 32px;
+            right: 24px; }
+}
+@media screen and (min-width:1440px) {
+.shopping-list {
+        width: 1440px;
+        margin: 0;
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .shopping-list-support-ukraine {
+        display: flex;
+        /* position: absolute; */
+        /* top: 40px;
+        left: 24px; */
+        /* margin-top: 40px; */
+        margin-left: 24px;
+        margin-right: 40px;
+    }
+
+        .shopping-list-container {
+            width: 996px;
+            margin: 0;
+            padding: 0;
+        }
+           .shopping-list-title-part1 {
+            margin: 0;
+            margin-bottom: 40px;
+           }
+
+        .shopping-list-card {
+            width: 948 px;
+            height: 213px;
+            padding: 24px;
+            /* margin-left: 40px;
+            margin-right: 32px; */
+            position: relative;
+            margin: 0;
+            margin-bottom: 20px;
+        }
+                
+        .shopping-list-card-wrap {
+            margin-top: 48px;
+            width: 808px;
+                }
 }
