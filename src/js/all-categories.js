@@ -8,7 +8,7 @@ async function fetchData(endpoint) {
     if (!response.ok) throw new Error(response.statusText);
     return await response.json();
   } catch (error) {
-    console.error('Ошибка при запросе данных:', error);
+    console.error('Error request data:', error);
   }
 }
 async function fetchCategoryData(categoryName) {
@@ -132,4 +132,19 @@ async function fetchAndDisplayCategories() {
 
 document.addEventListener('DOMContentLoaded', fetchAndDisplayCategories);
 
-// export { fetchCategoryData };
+export { fetchCategoryData };
+
+// як вам забрати данні по категорії
+// import export { fetchCategoryData };
+// <!--async function getAndProcessData() {-->
+//     <!--try {-->
+//     <!--const desiredCategory = "your_category_name"; //  ваша категорія-->
+//     <!--const data = await fetchCategoryData(desiredCategory);-->
+//     <!--console.log(data);-->
+//     <!--// -->
+//     <!--} catch (error) {-->
+//     <!--console.error("error:", error);-->
+//     <!--}-->
+//     <!--}-->
+
+//     <!--getAndProcessData();-->
