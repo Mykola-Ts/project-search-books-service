@@ -128,7 +128,7 @@
   .header-nav-container {
     display: none;
   }
-  .log-out {
+  .sigh-up {
     display: none;
   }
 }
@@ -194,7 +194,7 @@
     margin-left: auto;
   }
 
-  .log-out {
+  .sigh-up {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -210,7 +210,7 @@
     background: var(--white-color);
   }
 
-  .log-out:is(:hover, :focus, :active) {
+  .sigh-up:is(:hover, :focus, :active) {
     color: var(--white-color);
     background-color: var(--primary-color);
     border: none;
