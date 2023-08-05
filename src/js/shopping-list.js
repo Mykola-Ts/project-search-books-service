@@ -59,9 +59,10 @@ function getData() {
 
 
 function createMarkup(data) {
+
     blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
     shoppinglistContainer.innerHTML = `
-    <h2 class="shopping-list-title-part1">Shopping <span class="shopping-list-title-part2">List</span></h2>
+    <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
     `
     // let data = getData();
     // console.log(data);
@@ -117,10 +118,10 @@ function createMarkup(data) {
     `).join(``)
     }
     else {
-        shoppinglist.innerHTML += `
+        shoppinglistContainer.innerHTML += `
         <div class="empty-shopping-list">
         <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
-        <img class="shopping-list-empty-img" src="./empty-shoppinglist.jpg" alt="empty list " width="265"
+        <img class="shopping-list-empty-img" src="./img/empty-shoppinglist.jpg" alt="empty list " width="265"
             height="198" /></div>
         `
     }
