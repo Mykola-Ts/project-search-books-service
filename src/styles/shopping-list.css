@@ -41,7 +41,7 @@ body {
 .shopping-list-card {
     display: flex;
     /* width: 335 px; */
-    height: 142px;
+    height: 170px;
     border-radius: 16px;
     align-items: flex-start;
     border: 2px solid rgba(79, 46, 232, 0.40);
