@@ -57,7 +57,7 @@
       </button>
 
       <!-- Sigh Up BUTTON -->
-      <button data-login-button type="button" class="sigh-up">
+      <button data-login-button type="button" class="sigh-up btn-stayl">
         Sigh Up
         <svg class="arrow-right-icon" width="20" height="20">
           <use
@@ -66,6 +66,33 @@
           ></use>
         </svg>
       </button>
+
+      <div class="log-in-out-container visually-hidden">
+        <button class="user-in btn-stayl">
+          <img
+            src="../img/user-img.png"
+            alt="User foto"
+            class="user-foto"
+            width="37"
+            height="37"
+          />
+          Stephen
+          <svg class="arrow-right-icon" width="23" height="26">
+            <use href="../img/icon-sprite.svg#log-down" class="log-down"></use>
+          </svg>
+        </button>
+        <div class="dropdown">
+          <button data-login-button type="button" class="log-out btn-stayl">
+            Log out
+            <svg class="arrow-right-icon" width="20" height="20">
+              <use
+                href="../img/icon-sprite.svg#arrow-right"
+                class="log-out"
+              ></use>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </header>
