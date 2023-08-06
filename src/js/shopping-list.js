@@ -20,12 +20,12 @@ getBooks();
 function addToLocalstorage() {
     getBooks().then(dataBook => {
         let book = dataBook;
-        local(`project`, book);
+        dataChangeLocalstorage(`project`, book);
     })
 }
 addToLocalstorage();
 
-function local(key, value) {
+function dataChangeLocalstorage(key, value) {
     try {
     const serializedState = JSON.stringify(value);
     localStorage.setItem(key, serializedState);
@@ -41,20 +41,19 @@ function local(key, value) {
 
 // Рабочий код
 
-btnFromHeader.addEventListener(`click`, createPageShoppingList);
+btnFromHeader.addEventListener(`click`, onCreatePageShoppingList);
 
-function createPageShoppingList(e) {
+function onCreatePageShoppingList(e) {
     e.preventDefault();
-    let data = getData();
+    let data = getDataLocalStorage();
     createMarkup(data);
 }
 
 
-function getData() {
+function getDataLocalStorage() {
     const savedData = localStorage.getItem(`project`);
     let parsedData = [];
     return parsedData = JSON.parse(savedData);
-    console.log(parsedData[2]);
 };
 
 
@@ -134,35 +133,33 @@ const btnDeletebook = document.querySelector(`.shopping-list`);
 btnDeletebook.addEventListener(`click`, onDeleteBook);
 
 
-
-
 function onDeleteBook(e) {
     e.preventDefault();
     console.log(e.target);
     
     if (!e.target.classList.contains(`icon-delete-button`)) {
-        console.log(`no delete`);
+        // console.log(`no delete`);
         return;
     }
-    console.log(` delete`);
+    // console.log(` delete`);
     const deleteBook = e.target.closest(`.shopping-list-card`);
-    console.log(deleteBook);
+    // console.log(deleteBook);
     const deleteBookName = deleteBook.dataset.title;
-    console.log(deleteBookName);
-    let data = getData();
-    console.log(data);
+    // console.log(deleteBookName);
+    let data = getDataLocalStorage();
+    // console.log(data);
 
     const deleteBookStorage = data.find(({ title }) => title === deleteBookName);
     console.log(deleteBookStorage);
 
-    const indexBook = data.findIndex(el => el.title === deleteBookName);
-    console.log(indexBook);
+    const indexDeleteBook = data.findIndex(el => el.title === deleteBookName);
+    console.log(indexDeleteBook);
 
-    const newArray = data.splice(indexBook, 1);
+    const newArray = data.splice(indexDeleteBook, 1);
 
     console.log(data);
 
-    local(`project`, data);
+    dataChangeLocalstorage(`project`, data);
 
     createMarkup(data);
 
