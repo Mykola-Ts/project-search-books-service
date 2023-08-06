@@ -1,7 +1,4 @@
 /* ---------------- SHOPPING LIST ---------------- */
-body {
-    margin: 0;
-}
 
 .shopping-list-container {
     width: 100%;
@@ -13,13 +10,10 @@ body {
 
 
 .shopping-list-title-part1 {
-    color: #111;
-    font-family: DM Sans;
+    color: var(--text-black-color);
     font-size: 32px;
-    font-style: normal;
     font-weight: 700;
-    line-height: 1.19;
-    /* 118.75% */
+    line-height: 1.19;/* 118.75% */
     letter-spacing: -1.28px;
     margin-left: 20px;
     margin-right: 20px;
@@ -29,9 +23,7 @@ body {
 
 .shopping-list-title-part2 {
     color: #4F2EE8;
-    font-family: DM Sans;
     font-size: 32px;
-    font-style: normal;
     font-weight: 700;
     line-height: 38px;
     letter-spacing: -1.28px;
@@ -43,11 +35,9 @@ body {
     width: 335 px;
     height: 170px;
     border-radius: 16px;
-    /* align-items: flex-start; */
     border: 2px solid rgba(79, 46, 232, 0.40);
     padding: 14px;
     position: relative;
-    /* margin-top: 40px; */
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -57,7 +47,6 @@ body {
     display: block;
     width: 100px;
     height: 142px;
-    /* margin: 14px; */
     border-radius: 8px;
     margin-right: 14px;
 
@@ -65,21 +54,16 @@ body {
 
 .shopping-list-card-data {
     display: block;
-    /* width: 193px; */
 
 }
 
 .shopping-list-card-title {
-    color: #111;
-    font-family: DM Sans;
+    color: var(--text-black-color);
     font-size: 16px;
-    font-style: normal;
     font-weight: 700;
-    line-height: 1.13;
-    /* 112.5% */
+    line-height: 1.13;/* 112.5% */
     letter-spacing: -0.64px;
     text-transform: uppercase;
-    /* margin-bottom: 4px; */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -90,12 +74,9 @@ body {
 
 .shopping-list-card-category {
     color: #B4AFAF;
-    font-family: DM Sans;
     font-size: 12px;
-    font-style: normal;
     font-weight: 400;
-    line-height: 1.17;
-    /* 116.667% */
+    line-height: 1.17;/* 116.667% */
     letter-spacing: 0.36px;
     white-space: nowrap;
     overflow: hidden;
@@ -109,18 +90,12 @@ body {
     width: 193px;
     height: 68px;
     overflow: hidden;
-    color: #111;
+    color: var(--text-black-color);
     text-overflow: ellipsis;
-    /* whitespace: nowrap; */
-    font-family: DM Sans;
     font-size: 14px;
-    font-style: normal;
     font-weight: 400;
-    line-height: 1.29;
-    /* 128.571% */
+    line-height: 1.29;/* 128.571% */
     letter-spacing: -0.56px;
-    /* margin-top: 4px;
-margin-bottom: 0; */
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
@@ -131,25 +106,19 @@ margin-bottom: 0; */
 .shopping-list-card-wrap {
     display: flex;
     justify-content: start;
-    /* margin: 0; */
     align-items: flex-end;
     width: 193px;
     margin-top: 16px;
-    /* height: 16px; */
-
 
 }
 
 .shopping-list-card-author {
     color: #B4AFAF;
-    font-family: DM Sans;
     font-size: 12px;
     font-style: italic;
     font-weight: 400;
-    line-height: 1.17;
-    /* 116.667% */
+    line-height: 1.17;/* 116.667% */
     letter-spacing: -0.48px;
-    /* padding: 0; */
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -163,9 +132,7 @@ margin-bottom: 0; */
     display: flex;
     list-style: none;
     gap: 8px;
-    /* padding: 0; */
     margin: 0;
-    /* margin-left: auto; */
     align-items: flex-end;
     justify-content: flex-end;
     width: 80px;
@@ -236,6 +203,7 @@ margin-bottom: 0; */
 .shopping-list-empty-img {
     width: 265px;
     height: 198px;
+    background-color: transparent;
 }
 
 .shopping-list-support-ukraine {
@@ -342,9 +310,6 @@ margin-bottom: 0; */
 
     .shopping-list-support-ukraine {
         display: flex;
-        /* position: absolute; */
-        /* top: 40px;
-        left: 24px; */
         margin-top: 40px;
         margin-left: 24px;
         margin-right: 40px;
@@ -365,8 +330,6 @@ margin-bottom: 0; */
             width: 948 px;
             height: 213px;
             padding: 24px;
-            /* margin-left: 40px;
-            margin-right: 32px; */
             position: relative;
             margin: 0;
             margin-bottom: 20px;
@@ -375,5 +338,5 @@ margin-bottom: 0; */
         .shopping-list-card-wrap {
             margin-top: 48px;
             width: 808px;
-                }
+        }
 }

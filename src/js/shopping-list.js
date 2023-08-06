@@ -120,8 +120,8 @@ function createMarkup(data) {
         shoppinglistContainer.innerHTML += `
         <div class="empty-shopping-list">
         <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
-        <img class="shopping-list-empty-img" src="./img/empty-shoppinglist.jpg" alt="empty list " width="265"
-            height="198" /></div>
+        <img class="shopping-list-empty-img" src="./img/empty-shopping-list.png" alt="empty list " width="265"
+        </div>
         `
     }
     }
