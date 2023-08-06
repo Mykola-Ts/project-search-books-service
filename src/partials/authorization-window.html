@@ -1,1 +1,57 @@
-<div></div>
+<div class="auth-backdrop is-hidden" data-modal>
+  <div class="auth-modal">
+    <button class="auth-close" data-modal-close>
+      <svg class="auth-svg">
+        <use href="./img/auth-sprite.svg#icon-x-close"></use>
+      </svg>
+    </button>
+
+    <form class="auth-form">
+      <div class="auth-input-container">
+        <div class="auth-input-wrap">
+          <input
+            id="name"
+            class="auth-input"
+            type="text"
+            name="name"
+            placeholder="name"
+          />
+        </div>
+
+        <div class="auth-input-wrap">
+          <input
+            class="auth-input"
+            type="email"
+            name="email"
+            placeholder="email"
+            required
+          />
+          <svg class="auth-form-svg">
+            <use href="./img/auth-sprite.svg#icon-mail"></use>
+          </svg>
+        </div>
+
+        <div class="auth-input-wrap">
+          <input
+            class="auth-input"
+            type="password"
+            name="password"
+            placeholder="password"
+            required
+          />
+          <svg class="auth-form-svg">
+            <use href="./img/auth-sprite.svg#icon-lock"></use>
+          </svg>
+        </div>
+      </div>
+
+      <button type="submit" class="auth-form-button" data-modal-signup>
+        Sign Up
+      </button>
+    </form>
+    <div class="auth-form-wrap">
+      <button class="auth-form-link" data-modal-signup-link>Sign Up</button>
+      <button class="auth-form-link" data-modal-signin-link>Sign In</button>
+    </div>
+  </div>
+</div>
