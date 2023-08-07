@@ -10,7 +10,7 @@
   border: 1.5px solid var(--text-black-color);
 }
 
-.header.dark-theme {
+body.dark-theme .header {
   border: 1.5px solid var(--white-color);
 }
 
@@ -20,7 +20,7 @@
   justify-content: space-between;
 }
 
-.header.dark-theme .logo-text {
+body.dark-theme .logo-text {
   fill: var(--white-color);
 }
 
@@ -112,11 +112,11 @@
   fill: var(--primary-color);
 }
 
-.header.dark-theme .menu-open {
+body.dark-theme .menu-open {
   fill: var(--white-color);
 }
 
-.header.dark-theme .mobile-menu-btn-icon:hover .menu-open {
+body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
   fill: var(--primary-color);
 }
 
@@ -154,7 +154,7 @@
 
   .header-nav-link {
     display: flex;
-    font-family: DM Sans;
+    font-family: 'DMSansMedium';
     font-size: 14px;
     line-height: 1.3;
     letter-spacing: -0.56px;
@@ -164,7 +164,7 @@
   }
 
   .header-nav-link:is(:hover, :focus, :active) {
-    font-weight: 700;
+    font-family: 'DMSansBold';
     border-radius: 36px;
     background-color: var(--yellow-color);
     transition: background-color var(--transition-duration)
@@ -173,26 +173,26 @@
 
   .header-nav-link.current-page {
     color: var(--text-black-color);
-    font-weight: 700;
+    font-family: 'DMSansBold';
     border-radius: 36px;
     background-color: var(--yellow-color);
     transition: background-color var(--transition-duration)
       var(--transition-timing-function);
   }
 
-  .header.dark-theme .header-nav-link.current-page {
+  body.dark-theme .header-nav-link.current-page {
     color: var(--text-black-color);
   }
 
-  .header.dark-theme .header-nav-link:is(:hover, :focus, :active) {
+  body.dark-theme .header-nav-link:is(:hover, :focus, :active) {
     color: var(--text-black-color);
   }
 
-  .header.dark-theme .shopping-list-bag {
+  body.dark-theme .shopping-list-bag {
     fill: var(--white-color);
   }
 
-  .header.dark-theme
+  body.dark-theme
     .header-nav-link:is(:hover, :focus, :active)
     .shopping-list-bag {
     fill: var(--text-black-color);
@@ -217,7 +217,7 @@
     justify-content: space-between;
     width: 184px;
     height: 45px;
-    font-family: DM Sans;
+    font-family: 'DMSansMedium';
     padding: 15px 14px;
     text-align: left;
     font-size: 14px;
@@ -231,8 +231,6 @@
     color: var(--white-color);
     background: var(--primary-color);
   }
-
-  /********************************************/
 
   .user-in {
     border-radius: 36px;
@@ -249,13 +247,6 @@
     background: var(--white-color);
     z-index: 1;
   }
-
-  /* .btn:hover,
-  .dropdown:hover .btn {
-    background-color: #0b7dda;
-  } */
-
-  /********************************************/
 }
 
 @media screen and (min-width: 1440px) {
