@@ -1,1 +1,104 @@
-<header></header>
+<header class="header">
+  <div class="header-container container">
+    <a href="./index.html" class="logo-link link">
+      <svg class="header-logo-icon" width="24" height="24">
+        <use href="./img/header-icon.svg#icon-logo" class="icon-logo"></use>
+      </svg>
+      <svg class="header-logo-text" width="77" height="13">
+        <use href="./img/header-icon.svg#bookshelf" class="logo-text"></use>
+      </svg>
+    </a>
+
+    <!-- HRADER LINK -->
+    <ul class="header-nav-container">
+      <li class="header-nav-list">
+        <a href="./index.html" class="header-nav-link current-page link"
+          >home</a
+        >
+      </li>
+      <li class="header-nav-list">
+        <a href="./shopping-list.html" class="header-nav-link link"
+          >Shopping list
+          <svg class="shopping-list-bag" width="20" height="20">
+            <use href="./img/header-icon.svg#bag" class="bag"></use>
+          </svg>
+        </a>
+      </li>
+    </ul>
+
+    <div class="header-btn-container">
+      <div class="toolbar">
+        <!-- CHANGE THEME -->
+        <div class="theme-switch-control">
+          <input
+            class="theme-switch-toggle"
+            type="checkbox"
+            name="theme"
+            id="theme-switch-toggle"
+            aria-label="Chenge theme"
+          />
+          <label
+            aria-hidden="true"
+            class="theme-switch-track"
+            for="theme-switch-toggle"
+          >
+          </label>
+          <div aria-hidden="true" class="theme-switch-marker"></div>
+        </div>
+      </div>
+
+      <!-- MOBILE MENU OPEN -->
+      <button
+        class="mobile-menu-btn js-open-menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="mobile-menu-btn-icon" width="28" height="28">
+          <use href="./img/header-icon.svg#menu-open" class="menu-open"></use>
+        </svg>
+      </button>
+
+      <!-- Sigh Up BUTTON -->
+      <button data-login-button type="button" class="sigh-up header-btn-stayl">
+        Sigh Up
+        <svg class="arrow-right-icon" width="20" height="20">
+          <use
+            href="./img/header-icon.svg#arrow-right"
+            class="arrow-right"
+          ></use>
+        </svg>
+      </button>
+
+      <div class="log-in-out-container visually-hidden">
+        <button class="user-in header-btn-stayl">
+          <img
+            src="./img/header-log-in-user-foto"
+            alt="User foto"
+            class="user-foto"
+            width="37"
+            height="37"
+          />
+          Stephen
+          <svg class="arrow-right-icon" width="23" height="26">
+            <use href="./img/header-icon.svg#log-down" class="log-down"></use>
+          </svg>
+        </button>
+        <div class="dropdown">
+          <button
+            data-login-button
+            type="button"
+            class="log-out header-btn-stayl"
+          >
+            Log out
+            <svg class="arrow-right-icon" width="20" height="20">
+              <use
+                href="./img/header-icon.svg#arrow-right"
+                class="log-out"
+              ></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
