@@ -1,9 +1,9 @@
 // SHOPPING LIST
-const shoppinglist = document.querySelector(`.shopping-list`);
-const btnFromHeader = document.querySelector(`.btn-to-list`);
-const blockSupportUkraine = document.querySelector(`.shopping-list-support-ukraine`);
-const shoppinglistContainer = document.querySelector(`.shopping-list-container`);
-
+const shoppinglist = document.querySelector('.shopping-list');
+const btnFromHeader = document.querySelector('.btn-to-list')
+const blockSupportUkraine = document.querySelector('.shopping-list-support-ukraine');
+const shoppinglistContainer = document.querySelector('.shopping-list-container');
+console.log(btnFromHeader);
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
 function getBooks() {
