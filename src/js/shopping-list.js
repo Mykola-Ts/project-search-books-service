@@ -1,7 +1,7 @@
 // SHOPPING LIST
 const shoppinglist = document.querySelector(`.shopping-list`);
 const shoppinglistContainer = document.querySelector(`.shopping-list-container`);
-const clickToShoppingList = document.querySelector(`.header-nav-container`);
+const clickToShoppingList = document.querySelector(`.shoppinglist`);
 const btnDeletebook = document.querySelector(`.shopping-list`);
 
 // Для тестирования - получение и загрузка данных в localStorage.
@@ -40,10 +40,10 @@ btnDeletebook.addEventListener(`click`, onDeleteBook);
 function createShoppingList(e) {
     e.preventDefault();
     console.log(e.target);
-    if (!e.target.classList.contains(`shoppinglist`)) {
-        console.log(`no delete`);
-        return;
-    }
+    // if (!e.target.classList.contains(`shoppinglist`)) {
+    //     console.log(`no delete`);
+    //     return;
+    // }
     // const page = e.target.closest(`.header-nav-list`);
     console.log(`yes`);
     let data = getDataLocalStorage();
