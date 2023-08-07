@@ -9,6 +9,7 @@ async function fetchData(endpoint) {
     return await response.json();
   } catch (error) {
     console.error('Error request data:', error);
+    return null;
   }
 }
 async function fetchCategoryData(categoryName) {
@@ -89,7 +90,13 @@ async function displayBooksByCategory(category) {
   updateMainTitle(category);
   const booksDiv = document.getElementById('books');
   booksDiv.innerHTML = 'Loading...';
-  const books = await fetchCategoryData(category);
+  const books = await fetchData(`/category?category=${category}`);
+
+  if (!books || !Array.isArray(books)) {
+    booksDiv.innerHTML = 'Failed to fetch books or no books available.';
+    return;
+  }
+
   booksDiv.innerHTML = '';
   books.forEach(book => booksDiv.appendChild(createBookCard(book)));
 }
@@ -103,6 +110,12 @@ async function displayAllBlock() {
     const categoryName = category.textContent;
     if (categoryName === defaultCategory) continue;
     const books = await fetchData(`/category?category=${categoryName}`);
+
+    if (!books || !Array.isArray(books)) {
+      console.error('Failed to fetch books for category:', categoryName);
+      continue;
+    }
+
     booksDiv.appendChild(
       createCategoryBooksBlock(categoryName, books.slice(0, 5))
     );
