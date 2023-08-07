@@ -20,13 +20,13 @@ import {
 } from 'firebase/firestore';
 
 const refs = {
-  logInBtn: document.querySelector('[data-login-button]'),
-  logOutBtn: document.querySelector('[data-logout-button]'),
-  authBtn: document.querySelector('[data-modal-signup]'),
-  signUpLink: document.querySelector('[data-modal-signup-link]'),
-  signInLink: document.querySelector('[data-modal-signin-link]'),
-  modal: document.querySelector('[data-modal]'),
-  closeBtn: document.querySelector('[data-modal-close]'),
+  logInBtn: document.querySelector('button[data-login-button]'),
+  logOutBtn: document.querySelector('button[data-logout-button]'),
+  authBtn: document.querySelector('button[data-modal-signup]'),
+  signUpLink: document.querySelector('button[data-modal-signup-link]'),
+  signInLink: document.querySelector('button[data-modal-signin-link]'),
+  modal: document.querySelector('div[data-modal]'),
+  closeBtn: document.querySelector('button[data-modal-close]'),
   form: document.querySelector('.auth-form'),
   input: document.querySelector('#name'),
 };
