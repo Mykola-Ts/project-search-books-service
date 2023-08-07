@@ -21,6 +21,7 @@ function getBooks() {
     return dataBook;
   });
 }
+
 getBooks();
 function addToLocalstorage() {
   getBooks().then(dataBook => {
@@ -44,8 +45,6 @@ function dataChangeLocalstorage(key, value) {
 // -----------------
 
 // Рабочий код
-
-btnFromHeader.addEventListener(`click`, onCreatePageShoppingList);
 
 function onCreatePageShoppingList(e) {
   e.preventDefault();
@@ -71,7 +70,6 @@ function createMarkup(data) {
     shoppinglistContainer.innerHTML += data
       .map(
         el => `
-    
     <div class="shopping-list-card" data-title="${el.title}">
     
     <img class="shopping-list-card-img" src="${el.book_image}" alt="book image" />
