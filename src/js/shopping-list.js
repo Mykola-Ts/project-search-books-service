@@ -117,26 +117,19 @@ function createMarkup(data) {
     <ul class="shopping-list-card-linkshop">
         <li class="shop-item" >
             <a class="shop-link" href="${el.buy_links[0].url}">
-                <svg class="shop-icon" width="32" height="11">
-                <rect x="5" y="5" width="32" height="11"/>
-                    <use href=""></use>
-                </svg>
+            <img class="shopping-list-amazon-img" src="./img/amazon-icon.png" alt="logo-amazon " width="32" height="11"/>
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${el.buy_links[1].url}">
-                <svg class="shop-icon" width="16" height="16">
-                <rect x="5" y="5" width="16" height="16"/>
-                    <use href=""></use>
-                </svg>
+            <img class="shopping-list-applebook-img" src="./img/apple-book-icon.png" alt="logo-aapplebook " width="16" height="16" />
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${el.buy_links[4].url}">
-                <svg class="shop-icon"   width="16" height="16">
-                <rect x="5" y="5" width="16" height="16"/>
-                    <use href=""></use>
-                </svg>
+            <img class="shopping-list-applebook-img" src="./img/book-shop-icon.png" alt="logo-aapplebook " width="16"
+  height="16" />
+                
             </a>
         </li>
         </ul>
@@ -144,7 +137,7 @@ function createMarkup(data) {
     </div>
     <button type="button" class="button-delete">
         <svg class="icon-delete-button" width="16" height="16">
-            <use href=""></use>
+            <use href="./img/icon-delete.svg"></use>
         </svg>
     </button>
     </div>
@@ -154,7 +147,7 @@ function createMarkup(data) {
         shoppinglistContainer.innerHTML += `
         <div class="empty-shopping-list">
         <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
-        <img class="shopping-list-empty-img" src="./img/empty-shopping-list.png" alt="empty list " width="265"
+        <img class="shopping-list-empty-img" src="./img/empty-shopping-list.png" alt="empty list " width="265"/>
         </div>
         `
     }

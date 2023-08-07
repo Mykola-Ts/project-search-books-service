@@ -140,13 +140,10 @@
 }
 
 
-.shop-icon {
-    fill: #4F2EE8;
-}
+
 
 
 .shop-icon:hover  {
-    fill: #be2884;
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.15);
 }
 
@@ -162,16 +159,20 @@
     height: 28px;
     border-radius: 50%;
     cursor: pointer;
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    border: none;
 
 }
 
 .icon-delete-button {
-    width: 16px;
-    height: 16px;
-    align-content: center;
-    display: flex;
+    color: aliceblue;
 }
+.shopping-list-delete-img {
+        fill: aliceblue;
+        align-content: center;
+        display: flex;
+}
+
 
     .empty-shopping-list {
     gap: 14px;
@@ -274,8 +275,15 @@
         .button-delete {
             display: flex;
             position: absolute;
+            width: 32px;
+            height: 32px;
             top: 32px;
             right: 24px; }
+
+            .hopping-list-delete-img {
+            width: 18px;
+            height: 18px;
+            }
 
         .empty-shopping-list {
             width: 349px;
@@ -295,6 +303,21 @@
             padding-right: 10px;
     
 }
+        .shopping-list-amazon-img {
+            width: 48px;
+            height: 15px;
+        }
+
+        .shopping-list-applebook-img{
+            width: 28px;
+            height: 27px;
+        }
+
+        .shopping-list-applebook-img {
+            width: 28px;
+            height: 27px;
+        }
+
         .shopping-list-empty-img {
             width: 322px;
             height: 241px;
