@@ -7,8 +7,8 @@
     <title>Shopping list</title>
     
     
-    <script type="module" crossorigin src="/project-search-books-service/assets/scroll-up-b21b722f.js"></script>
-    <link rel="stylesheet" href="/project-search-books-service/assets/scroll-up-4a9ca107.css">
+    <script type="module" crossorigin src="/project-search-books-service/assets/scroll-up-59c1df13.js"></script>
+    <link rel="stylesheet" href="/project-search-books-service/assets/scroll-up-8b493f14.css">
   </head>
   <body class="light-theme">
     <!-- HEADER -->
@@ -64,14 +64,28 @@
       <!-- MOBILE MENU OPEN -->
       <button
         class="mobile-menu-btn js-open-menu"
+        data-menu-button
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
         <svg class="mobile-menu-btn-icon" width="28" height="28">
           <use href="/project-search-books-service/assets/header-icon-84926756.svg#menu-open" class="menu-open"></use>
+          <use href="/project-search-books-service/assets/header-icon-84926756.svg#x-close" class="menu-close"></use>
         </svg>
       </button>
-
+      <div class="mobile-menu_container" id="mobile-menu">
+        <div class="container">
+          <button  type="button" class="mobile-menu-sing-up">
+            Sigh Up
+            <svg class="arrow-right-icon" width="20" height="20">
+              <use
+                href="../img/header-icon.svg#arrow-right"
+                class="arrow-right"
+              ></use>
+            </svg>
+          </button>
+        </div>
+      </div>
       <!-- Sigh Up BUTTON -->
       <button data-login-button type="button" class="sigh-up header-btn-stayl">
         Sigh Up
