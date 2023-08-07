@@ -1,9 +1,9 @@
 // SHOPPING LIST
-const shoppinglist = document.querySelector('.shopping-list');
-const btnFromHeader = document.querySelector('.btn-to-list')
-const blockSupportUkraine = document.querySelector('.shopping-list-support-ukraine');
-const shoppinglistContainer = document.querySelector('.shopping-list-container');
-console.log(btnFromHeader);
+const shoppinglist = document.querySelector(`.shopping-list`);
+const shoppinglistContainer = document.querySelector(`.shopping-list-container`);
+const clickToShoppingList = document.querySelector(`.shoppinglist`);
+const btnDeletebook = document.querySelector(`.shopping-list`);
+
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
 function getBooks() {
@@ -11,7 +11,7 @@ function getBooks() {
         .then((response) => {
         if (!response.ok) {
         throw new Error(response.statusText)
-            }
+        }
             const dataBook = response.json();
         return dataBook;
         })
@@ -25,14 +25,6 @@ function addToLocalstorage() {
 }
 addToLocalstorage();
 
-function dataChangeLocalstorage(key, value) {
-    try {
-    const serializedState = JSON.stringify(value);
-    localStorage.setItem(key, serializedState);
-    } catch (error) {
-    console.error("Set state error: ", error.message);
-    }
-};
 
 
 // localStorage.clear();
@@ -41,14 +33,57 @@ function dataChangeLocalstorage(key, value) {
 
 // Рабочий код
 
-btnFromHeader.addEventListener(`click`, onCreatePageShoppingList);
 
-function onCreatePageShoppingList(e) {
+clickToShoppingList.addEventListener(`click`, createShoppingList);
+btnDeletebook.addEventListener(`click`, onDeleteBook);
+
+function createShoppingList(e) {
     e.preventDefault();
+    console.log(e.target);
+    // if (!e.target.classList.contains(`shoppinglist`)) {
+    //     console.log(`no delete`);
+    //     return;
+    // }
+    // const page = e.target.closest(`.header-nav-list`);
+    console.log(`yes`);
     let data = getDataLocalStorage();
+    console.log(data);
+
     createMarkup(data);
+    
 }
 
+function onDeleteBook(e) {
+    e.preventDefault();
+    // console.log(e.target);
+    
+    if (!e.target.classList.contains(`icon-delete-button`)) {
+        // console.log(`no delete`);
+        return;
+    }
+    // console.log(` delete`);
+    const deleteBook = e.target.closest(`.shopping-list-card`);
+    // console.log(deleteBook);
+    const deleteBookName = deleteBook.dataset.title;
+    // console.log(deleteBookName);
+    let data = getDataLocalStorage();
+    // console.log(data);
+
+    const deleteBookStorage = data.find(({ title }) => title === deleteBookName);
+    console.log(deleteBookStorage);
+
+    const indexDeleteBook = data.findIndex(el => el.title === deleteBookName);
+    console.log(indexDeleteBook);
+
+    const newArray = data.splice(indexDeleteBook, 1);
+
+    console.log(data);
+
+    dataChangeLocalstorage(`project`, data);
+
+    createMarkup(data);
+
+}  
 
 function getDataLocalStorage() {
     const savedData = localStorage.getItem(`project`);
@@ -63,12 +98,11 @@ function createMarkup(data) {
     shoppinglistContainer.innerHTML = `
     <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
     `
-    // let data = getData();
+    // let data = getDataLocalStorage();
     // console.log(data);
 
     if (data.length != 0) {
         shoppinglistContainer.innerHTML += data.map(el => `
-    
     <div class="shopping-list-card" data-title="${el.title}">
     
     <img class="shopping-list-card-img" src="${el.book_image}" alt="book image" />
@@ -127,42 +161,12 @@ function createMarkup(data) {
     }
     
 
-// doMarkup();
-
-const btnDeletebook = document.querySelector(`.shopping-list`);
-btnDeletebook.addEventListener(`click`, onDeleteBook);
-
-
-function onDeleteBook(e) {
-    e.preventDefault();
-    console.log(e.target);
-    
-    if (!e.target.classList.contains(`icon-delete-button`)) {
-        // console.log(`no delete`);
-        return;
+function dataChangeLocalstorage(key, value) {
+    try {
+    const serializedState = JSON.stringify(value);
+    localStorage.setItem(key, serializedState);
+    } catch (error) {
+    console.error("Set state error: ", error.message);
     }
-    // console.log(` delete`);
-    const deleteBook = e.target.closest(`.shopping-list-card`);
-    // console.log(deleteBook);
-    const deleteBookName = deleteBook.dataset.title;
-    // console.log(deleteBookName);
-    let data = getDataLocalStorage();
-    // console.log(data);
-
-    const deleteBookStorage = data.find(({ title }) => title === deleteBookName);
-    console.log(deleteBookStorage);
-
-    const indexDeleteBook = data.findIndex(el => el.title === deleteBookName);
-    console.log(indexDeleteBook);
-
-    const newArray = data.splice(indexDeleteBook, 1);
-
-    console.log(data);
-
-    dataChangeLocalstorage(`project`, data);
-
-    createMarkup(data);
-
-}  
-
+};
 

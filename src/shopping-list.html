@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon" />
-    <title>Shopping list</title>
-    <link rel="stylesheet" href="./styles/styles.css" />
-    <script src="./js/index.js" type="module"></script>
-  </head>
-  <body class="light-theme">
-    <!-- HEADER -->
-    <load src="./partials/header.html" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <title>Shopping list</title>
+  <link rel="stylesheet" href="./styles/styles.css" />
+</head>
 
-    <main>
-      <!-- Тестова кнопка замість хедера -->
-      <button type="button" class="btn-to-list">Header to Shooping List TEST</button>
-      <!-- SHOPPING LIST -->
-      <section class="shopping-list">
-        <!-- Support Ukraine -->
-        <load src="./partials/support-ukraine.html" />
-<!-- Shopping list -->
-        <div class="shopping-list-support-ukraine"></div>
-        <div class="shopping-list-container"></div>
-      </section>
-    </main>
+<body class="light-theme">
+  <!-- HEADER -->
+  <div clas="header-for-shoppinglist">
+  <load src="./partials/header.html" />
+  </div>
+  <main>
+    <!-- SHOPPING LIST -->
+    <section class="shopping-list">
+      <!-- Support Ukraine -->
+      <div class="shopping-list-support-ukraine">
+      <load src="./partials/support-ukraine.html" />
+      </div>
+    <!-- Shopping list -->
+      <div class="shopping-list-container"></div>
+    </section>
+  </main>
 
-    <!-- LOADER -->
-    <load src="./partials/loader.html" />
-    <!-- SCROLL UP -->
-    <load src="./partials/scroll-up.html" />
+  <!-- LOADER -->
+  <load src="./partials/loader.html" />
+  <!-- SCROLL UP -->
+  <load src="./partials/scroll-up.html" />
 
-    
-  </body>
+  <script type="module" src="./js/index.js"></script>
+  <!-- <script src="./js/shopping-list.js" type="module"></script> -->
+</body>
 </html>
