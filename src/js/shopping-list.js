@@ -6,24 +6,24 @@ const btnDeletebook = document.querySelector(`.shopping-list`);
 
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
-function getBooks() {
-    return fetch(`https://books-backend.p.goit.global/books/category?category=Series Books`)
-        .then((response) => {
-        if (!response.ok) {
-        throw new Error(response.statusText)
-        }
-            const dataBook = response.json();
-        return dataBook;
-        })
-};
-getBooks();
-function addToLocalstorage() {
-    getBooks().then(dataBook => {
-        let book = dataBook;
-        dataChangeLocalstorage(`project`, book);
-    })
-}
-addToLocalstorage();
+// function getBooks() {
+//     return fetch(`https://books-backend.p.goit.global/books/category?category=Series Books`)
+//         .then((response) => {
+//         if (!response.ok) {
+//         throw new Error(response.statusText)
+//         }
+//             const dataBook = response.json();
+//         return dataBook;
+//         })
+// };
+// getBooks();
+// function addToLocalstorage() {
+//     getBooks().then(dataBook => {
+//         let book = dataBook;
+//         dataChangeLocalstorage(`project`, book);
+//     })
+// }
+// addToLocalstorage();
 
 
 
