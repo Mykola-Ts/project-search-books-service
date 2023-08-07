@@ -6,24 +6,30 @@
     <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon" />
     <title>Shopping list</title>
     <link rel="stylesheet" href="./styles/styles.css" />
-    <script type="module" src="./js/index.js"></script>
+    <script src="./js/index.js" type="module"></script>
   </head>
   <body class="light-theme">
     <!-- HEADER -->
-    <load src="./partials/header.html"></load>
+    <load src="./partials/header.html" />
 
     <main>
+      <!-- Тестова кнопка замість хедера -->
+      <button type="button" class="btn-to-list">Header to Shooping List TEST</button>
       <!-- SHOPPING LIST -->
-      <section>
+      <section class="shopping-list">
         <!-- Support Ukraine -->
-        <load src="./partials/support-ukraine.html"></load>
-
-        <!-- Shopping list -->
-        <div></div>
+        <load src="./partials/support-ukraine.html" />
+<!-- Shopping list -->
+        <div class="shopping-list-support-ukraine"></div>
+        <div class="shopping-list-container"></div>
       </section>
     </main>
 
     <!-- LOADER -->
-    <load src="./partials/loader.html"></load>
+    <load src="./partials/loader.html" />
+    <!-- SCROLL UP -->
+    <load src="./partials/scroll-up.html" />
+
+    
   </body>
 </html>
