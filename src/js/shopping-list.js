@@ -6,24 +6,24 @@ const btnDeletebook = document.querySelector(`.shopping-list`);
 
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
-// function getBooks() {
-//     return fetch(`https://books-backend.p.goit.global/books/category?category=Series Books`)
-//         .then((response) => {
-//         if (!response.ok) {
-//         throw new Error(response.statusText)
-//         }
-//             const dataBook = response.json();
-//         return dataBook;
-//         })
-// };
-// getBooks();
-// function addToLocalstorage() {
-//     getBooks().then(dataBook => {
-//         let book = dataBook;
-//         dataChangeLocalstorage(`project`, book);
-//     })
-// }
-// addToLocalstorage();
+function getBooks() {
+    return fetch(`https://books-backend.p.goit.global/books/category?category=Series Books`)
+        .then((response) => {
+        if (!response.ok) {
+        throw new Error(response.statusText)
+        }
+            const dataBook = response.json();
+        return dataBook;
+        })
+};
+getBooks();
+function addToLocalstorage() {
+    getBooks().then(dataBook => {
+        let book = dataBook;
+        dataChangeLocalstorage(`project`, book);
+    })
+}
+addToLocalstorage();
 
 
 
@@ -44,10 +44,11 @@ function createShoppingList(e) {
         console.log(`no delete`);
         return;
     }
-
     // const page = e.target.closest(`.header-nav-list`);
-    // console.log(page);
+    console.log(`yes`);
     let data = getDataLocalStorage();
+    console.log(data);
+
     createMarkup(data);
     
 }
@@ -92,12 +93,12 @@ function getDataLocalStorage() {
 
 
 function createMarkup(data) {
-
+    console.log(`markup`);
     // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
     shoppinglistContainer.innerHTML = `
     <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
     `
-    // let data = getData();
+    // let data = getDataLocalStorage();
     // console.log(data);
 
     if (data.length != 0) {
