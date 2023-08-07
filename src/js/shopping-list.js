@@ -1,39 +1,43 @@
 // SHOPPING LIST
 const shoppinglist = document.querySelector(`.shopping-list`);
 const btnFromHeader = document.querySelector(`.btn-to-list`);
-const blockSupportUkraine = document.querySelector(`.shopping-list-support-ukraine`);
-const shoppinglistContainer = document.querySelector(`.shopping-list-container`);
+const blockSupportUkraine = document.querySelector(
+  `.shopping-list-support-ukraine`
+);
+const shoppinglistContainer = document.querySelector(
+  `.shopping-list-container`
+);
 
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
 function getBooks() {
-    return fetch(`https://books-backend.p.goit.global/books/category?category=Series Books`)
-        .then((response) => {
-        if (!response.ok) {
-        throw new Error(response.statusText)
-            }
-            const dataBook = response.json();
-        return dataBook;
-        })
-};
+  return fetch(
+    `https://books-backend.p.goit.global/books/category?category=Series Books`
+  ).then(response => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const dataBook = response.json();
+    return dataBook;
+  });
+}
 getBooks();
 function addToLocalstorage() {
-    getBooks().then(dataBook => {
-        let book = dataBook;
-        dataChangeLocalstorage(`project`, book);
-    })
+  getBooks().then(dataBook => {
+    let book = dataBook;
+    dataChangeLocalstorage(`project`, book);
+  });
 }
 addToLocalstorage();
 
 function dataChangeLocalstorage(key, value) {
-    try {
+  try {
     const serializedState = JSON.stringify(value);
     localStorage.setItem(key, serializedState);
-    } catch (error) {
-    console.error("Set state error: ", error.message);
-    }
-};
-
+  } catch (error) {
+    console.error('Set state error: ', error.message);
+  }
+}
 
 // localStorage.clear();
 
@@ -44,30 +48,29 @@ function dataChangeLocalstorage(key, value) {
 btnFromHeader.addEventListener(`click`, onCreatePageShoppingList);
 
 function onCreatePageShoppingList(e) {
-    e.preventDefault();
-    let data = getDataLocalStorage();
-    createMarkup(data);
+  e.preventDefault();
+  let data = getDataLocalStorage();
+  createMarkup(data);
 }
 
-
 function getDataLocalStorage() {
-    const savedData = localStorage.getItem(`project`);
-    let parsedData = [];
-    return parsedData = JSON.parse(savedData);
-};
-
+  const savedData = localStorage.getItem(`project`);
+  let parsedData = [];
+  return (parsedData = JSON.parse(savedData));
+}
 
 function createMarkup(data) {
-
-    // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
-    shoppinglistContainer.innerHTML = `
+  // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
+  shoppinglistContainer.innerHTML = `
     <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
-    `
-    // let data = getData();
-    // console.log(data);
+    `;
+  // let data = getData();
+  // console.log(data);
 
-    if (data.length != 0) {
-        shoppinglistContainer.innerHTML += data.map(el => `
+  if (data.length != 0) {
+    shoppinglistContainer.innerHTML += data
+      .map(
+        el => `
     
     <div class="shopping-list-card" data-title="${el.title}">
     
@@ -114,55 +117,51 @@ function createMarkup(data) {
         </svg>
     </button>
     </div>
-    `).join(``)
-    }
-    else {
-        shoppinglistContainer.innerHTML += `
+    `
+      )
+      .join(``);
+  } else {
+    shoppinglistContainer.innerHTML += `
         <div class="empty-shopping-list">
         <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
         <img class="shopping-list-empty-img" src="./img/empty-shopping-list.png" alt="empty list " width="265"
         </div>
-        `
-    }
-    }
-    
+        `;
+  }
+}
 
 // doMarkup();
 
 const btnDeletebook = document.querySelector(`.shopping-list`);
 btnDeletebook.addEventListener(`click`, onDeleteBook);
 
-
 function onDeleteBook(e) {
-    e.preventDefault();
-    console.log(e.target);
-    
-    if (!e.target.classList.contains(`icon-delete-button`)) {
-        // console.log(`no delete`);
-        return;
-    }
-    // console.log(` delete`);
-    const deleteBook = e.target.closest(`.shopping-list-card`);
-    // console.log(deleteBook);
-    const deleteBookName = deleteBook.dataset.title;
-    // console.log(deleteBookName);
-    let data = getDataLocalStorage();
-    // console.log(data);
+  e.preventDefault();
+  console.log(e.target);
 
-    const deleteBookStorage = data.find(({ title }) => title === deleteBookName);
-    console.log(deleteBookStorage);
+  if (!e.target.classList.contains(`icon-delete-button`)) {
+    // console.log(`no delete`);
+    return;
+  }
+  // console.log(` delete`);
+  const deleteBook = e.target.closest(`.shopping-list-card`);
+  // console.log(deleteBook);
+  const deleteBookName = deleteBook.dataset.title;
+  // console.log(deleteBookName);
+  let data = getDataLocalStorage();
+  // console.log(data);
 
-    const indexDeleteBook = data.findIndex(el => el.title === deleteBookName);
-    console.log(indexDeleteBook);
+  const deleteBookStorage = data.find(({ title }) => title === deleteBookName);
+  console.log(deleteBookStorage);
 
-    const newArray = data.splice(indexDeleteBook, 1);
+  const indexDeleteBook = data.findIndex(el => el.title === deleteBookName);
+  console.log(indexDeleteBook);
 
-    console.log(data);
+  const newArray = data.splice(indexDeleteBook, 1);
 
-    dataChangeLocalstorage(`project`, data);
+  console.log(data);
 
-    createMarkup(data);
+  dataChangeLocalstorage(`project`, data);
 
-}  
-
-
+  createMarkup(data);
+}
