@@ -93,7 +93,7 @@ function getDataLocalStorage() {
 
 
 function createMarkup(data) {
-    console.log(`markup`);
+
     // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
     shoppinglistContainer.innerHTML = `
     <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
