@@ -7,9 +7,9 @@
     <title>Bookshelf</title>
     
     
-    <script type="module" crossorigin src="/project-search-books-service/assets/index-b95123ca.js"></script>
-    <link rel="modulepreload" crossorigin href="/project-search-books-service/assets/shopping-list-b66e6c78.js">
-    <link rel="stylesheet" href="/project-search-books-service/assets/shopping-list-bbf0ecb0.css">
+    <script type="module" crossorigin src="/project-search-books-service/assets/index-41711abb.js"></script>
+    <link rel="modulepreload" crossorigin href="/project-search-books-service/assets/shopping-list-3e8bc254.js">
+    <link rel="stylesheet" href="/project-search-books-service/assets/shopping-list-b0dc7745.css">
   </head>
   <body>
     <!-- HEADER -->
@@ -301,7 +301,25 @@
 
 
     <!-- MODAL WINDOW -->
-    <div></div>
+    <div class="backdrop is-hidden" data-modal>
+  <div class="modal">
+    <div class="modal-wrap"></div>
+
+    <button type="button" class="modal-btn-add">Add to shopping list</button>
+
+    <button type="button" class="close-btn" data-modal-close>
+      <svg width="24" height="24" class="close-btn-icon">
+        <use href="/project-search-books-service/assets/icons-1df87a4c.svg#icon-x-close"></use>
+      </svg>
+    </button>
+
+    <p class="text-notification-of-added visually-hidden">
+      Сongratulations! You have added the book to the shopping list. <br />
+      To delete, press the button “Remove from the shopping list”.
+    </p>
+  </div>
+</div>
+
 
     <!-- LOADER -->
     <div>
