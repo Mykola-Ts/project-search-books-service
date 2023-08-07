@@ -1,4 +1,22 @@
 /* ---------------- All categories ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.book img:hover + .quick-view {
+  animation: slideDown 0.4s forwards;
+  display: block;
+}
+
 @media screen and (min-width: 375px) and (max-width: 767px) {
   .home-container {
     align-items: center;
@@ -21,7 +39,11 @@
 
   .book {
     display: none;
-    /* width: calc(33.33% - 16px); */
+  }
+  .book-title {
+    font-size: 16px;
+    margin-top: 14px;
+    margin-bottom: 4px;
   }
 
   .book:nth-child(1) {
@@ -48,6 +70,9 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
+  .wrapper-category-list {
+    display: flex;
+  }
   .home-container {
     /* flex-direction: column; */
     align-items: center;
@@ -56,7 +81,7 @@
   .category-list {
     width: 100%;
     margin-bottom: 24px;
-    margin-right: 0; /* Убираем отступ справа */
+    margin-right: 0;
   }
 
   .books-card-wrapper {
@@ -67,22 +92,29 @@
   }
 
   .book {
-    display: none; /* По умолчанию скрываем все книги */
+    display: none;
+  }
+  .book-title {
+    font-size: 16px;
+    margin-top: 14px;
+    margin-bottom: 4px;
   }
 
-  /* Показываем первые три книги */
   .book:nth-child(-n + 3) {
     display: block;
   }
   .books {
     justify-content: space-around;
   }
+  .book img {
+    width: 335px;
+    height: 485px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
 }
-/* /////////////////////////////////////////////////////////////////////// */
 
 @media screen and (min-width: 1280px) {
-  /* If you have any specific styles for larger screens, add them here */
-
   .book-section {
     display: flex;
     flex-wrap: wrap;
@@ -270,4 +302,70 @@
   gap: 16px;
   padding-bottom: 32px;
   margin-bottom: 32px;
+}
+
+.category-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.category-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.category-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.category-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.category-list {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.quick-view {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 0, 0.8) 100%
+  );
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: 'Open Sans', sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  max-height: 50%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 10px;
+  transition: opacity 0.4s, transform 0.4s;
+}
+
+.quick-view::-webkit-scrollbar {
+  width: 10px;
+}
+
+.quick-view::-webkit-scrollbar-thumb {
+  background: #ffeb3b;
+  border-radius: 10px;
+}
+
+.quick-view::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+
+.quick-view p {
+  margin: 8px 0;
+}
+
+.book {
+  position: relative;
 }

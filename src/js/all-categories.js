@@ -15,7 +15,6 @@ async function fetchCategoryData(categoryName) {
   return await fetchData(`/category?category=${categoryName}`);
 }
 
-// елементи
 function createCategoryElement(list_name) {
   const category = document.createElement('div');
   category.className = 'category';
@@ -37,7 +36,6 @@ function createCategoryElement(list_name) {
     }
   });
 
-  //  "all categories" за замовченням
   if (list_name === defaultCategory) {
     category.click();
   }
@@ -45,11 +43,14 @@ function createCategoryElement(list_name) {
   return category;
 }
 
-function createBookCard({ book_image, title, author }) {
+function createBookCard({ book_image, title, author, description }) {
   const bookCard = document.createElement('div');
   bookCard.className = 'book';
   bookCard.innerHTML = `
     <img src="${book_image}" alt="${title}">
+    <div class="quick-view">
+        <p>${description}</p>
+    </div>
     <h3 class="book-title">${title}</h3>
     <p class="book-author">by ${author}</p>
     `;
@@ -84,7 +85,6 @@ function createCategoryBooksBlock(categoryName, books) {
   return block;
 }
 
-// Відображення данных
 async function displayBooksByCategory(category) {
   updateMainTitle(category);
   const booksDiv = document.getElementById('books');
@@ -133,18 +133,3 @@ async function fetchAndDisplayCategories() {
 document.addEventListener('DOMContentLoaded', fetchAndDisplayCategories);
 
 export { fetchCategoryData };
-
-// як вам забрати данні по категорії
-// import export { fetchCategoryData };
-// <!--async function getAndProcessData() {-->
-//     <!--try {-->
-//     <!--const desiredCategory = "your_category_name"; //  ваша категорія-->
-//     <!--const data = await fetchCategoryData(desiredCategory);-->
-//     <!--console.log(data);-->
-//     <!--// -->
-//     <!--} catch (error) {-->
-//     <!--console.error("error:", error);-->
-//     <!--}-->
-//     <!--}-->
-
-//     <!--getAndProcessData();-->
