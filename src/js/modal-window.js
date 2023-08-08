@@ -94,9 +94,9 @@ async function fetchBookById(id) {
 function createMarkupModal(image, title, author, description, buyLinks) {
   const arrBuyLinks = buyLinks.slice(0, 3);
   const arrIconsLink = [
-    { name: 'Amazon', img: '../img/amazon-icon.png' },
-    { name: 'Apple Books', img: '../img/apple-book-icon.png' },
-    { name: 'Barnes and Noble', img: '../img/book-shop-icon.png' },
+    { name: 'Amazon', img: './img/amazon-icon.png' },
+    { name: 'Apple Books', img: './img/apple-book-icon.png' },
+    { name: 'Barnes and Noble', img: './img/book-shop-icon.png' },
   ];
 
   const markupLinks = arrBuyLinks
