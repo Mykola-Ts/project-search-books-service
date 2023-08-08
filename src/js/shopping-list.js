@@ -72,7 +72,7 @@ function createMarkup(data) {
         el => `
     <div class="shopping-list-card" data-title="${el.title}">
     
-    <img class="shopping-list-card-img" src="${el.book_image}" alt="book image" />
+//     <img class="shopping-list-card-img" src="${el.book_image}" alt="book image" />
     
     <div class="shopping-list-card-data">
 
@@ -128,10 +128,10 @@ function createMarkup(data) {
   }
 }
 
-// doMarkup();
+// // doMarkup();
 
-const btnDeletebook = document.querySelector(`.shopping-list`);
-btnDeletebook.addEventListener(`click`, onDeleteBook);
+// const btnDeletebook = document.querySelector(`.shopping-list`);
+// btnDeletebook.addEventListener(`click`, onDeleteBook);
 
 function onDeleteBook(e) {
   e.preventDefault();

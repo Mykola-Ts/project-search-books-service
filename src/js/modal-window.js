@@ -2,22 +2,28 @@
 import axios from 'axios';
 
 const selectors = {
-  openModalBtn: document.querySelector('[data-modal-open]'),
-  closeModalBtn: document.querySelector('[data-modal-close]'),
-  modal: document.querySelector('[data-modal]'),
-  backdrop: document.querySelector('.backdrop'),
+  closeModalBtn: document.querySelector('button[data-modal-window-close]'),
+  modal: document.querySelector('div[data-modal-window]'),
+  backdrop: document.querySelector('.backdrop-modal'),
   addBookBtn: document.querySelector('.modal-btn-add'),
   textNotificationOfAdded: document.querySelector(
     '.text-notification-of-added'
   ),
   modalWrap: document.querySelector('.modal-wrap'),
+  booksListWrap: document.querySelector('.books-list-wrap'),
 };
 const shoppingList = [];
 let openBook = {};
 
-// books.addEventListener('click', openBookModal);
+selectors.booksListWrap.addEventListener('click', openBookModal);
 
 function openBookModal(evt) {
+  evt.preventDefault();
+
+  if(!evt.target.closest('li.books-list-item')){
+    return
+  }
+
   const bookId = evt.target.closest('li').dataset.id;
 
   fetchBookById(bookId)
@@ -121,7 +127,7 @@ ${markupLinks}
 }
 
 function openModal() {
-  selectors.modal.classList.remove('is-hidden');
+  selectors.modal.classList.remove('is-hidden-modal');
   document.body.style.overflow = 'hidden';
   selectors.modal.style.overflow = 'auto';
 }
@@ -137,7 +143,7 @@ function closeModal(evt) {
 
   openBook = {};
 
-  selectors.modal.classList.add('is-hidden');
+  selectors.modal.classList.add('is-hidden-modal');
   document.body.style.overflow = '';
   selectors.modal.style.overflow = '';
 
