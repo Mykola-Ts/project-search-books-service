@@ -1,3 +1,7 @@
+.conteiner-support{
+    flex-shrink: 0;
+}
+
  @media screen and (max-width:767px) {
      .conteiner-support {
          padding: 24px 40px 20px 40px;
