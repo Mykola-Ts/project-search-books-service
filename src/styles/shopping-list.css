@@ -1,13 +1,13 @@
 /* ---------------- SHOPPING LIST ---------------- */
-
-.shopping-list-container {
-    width: 100%;
-}
 .shopping-list {
     display: flex;
     margin: 0 auto;
+    
 }
-
+.shopping-list-container {
+    width: 100%;
+    margin-top: 112px;
+}
 
 .shopping-list-title-part1 {
     color: var(--text-black-color);
@@ -17,12 +17,12 @@
     letter-spacing: -1.28px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     margin-bottom: 40px;
 }
 
 .shopping-list-title-part2 {
-    color: #4F2EE8;
+    color: var(--primary-color);
     font-size: 32px;
     font-weight: 700;
     line-height: 38px;
@@ -73,7 +73,7 @@
 }
 
 .shopping-list-card-category {
-    color: #B4AFAF;
+    color: var(--text-sub-color);
     font-size: 12px;
     font-weight: 400;
     line-height: 1.17;/* 116.667% */
@@ -113,7 +113,7 @@
 }
 
 .shopping-list-card-author {
-    color: #B4AFAF;
+    color: var(--text-sub-color);
     font-size: 12px;
     font-style: italic;
     font-weight: 400;
@@ -162,7 +162,7 @@
     height: 28px;
     border-radius: 50%;
     cursor: pointer;
-    color: #4F2EE8;
+    color: var(--primary-color);
 
 }
 
@@ -194,8 +194,7 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.29;
-    /* 128.571% */
+    line-height: 1.29;/* 128.571% */
     letter-spacing: -0.28px;
     
 }
@@ -209,7 +208,7 @@
 .shopping-list-support-ukraine {
     width: 356px;
     height: 474px;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     display: none;
 }
 
@@ -310,7 +309,7 @@
 
     .shopping-list-support-ukraine {
         display: flex;
-        margin-top: 40px;
+        margin-top: 112px;
         margin-left: 24px;
         margin-right: 40px;
     }
@@ -319,7 +318,7 @@
             width: 996px;
             margin: 0;
             padding: 0;
-            margin-top: 40px;
+            margin-top: 112px;
         }
         .shopping-list-title-part1 {
             margin: 0;

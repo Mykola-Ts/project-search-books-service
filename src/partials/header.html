@@ -17,7 +17,7 @@
         >
       </li>
       <li class="header-nav-list">
-        <a href="./shopping-list.html" class="header-nav-link link"
+        <a href="./shopping-list.html" class="header-nav-link link shoppinglist"
           >Shopping list
           <svg class="shopping-list-bag" width="20" height="20">
             <use href="./img/header-icon.svg#bag" class="bag"></use>
@@ -50,54 +50,74 @@
       <!-- MOBILE MENU OPEN -->
       <button
         class="mobile-menu-btn js-open-menu"
+        data-menu-button
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
         <svg class="mobile-menu-btn-icon" width="28" height="28">
           <use href="./img/header-icon.svg#menu-open" class="menu-open"></use>
+          <use href="./img/header-icon.svg#x-close" class="menu-close"></use>
         </svg>
       </button>
-
-      <!-- Sigh Up BUTTON -->
-      <button data-login-button type="button" class="sigh-up header-btn-stayl">
-        Sigh Up
-        <svg class="arrow-right-icon" width="20" height="20">
-          <use
-            href="./img/header-icon.svg#arrow-right"
-            class="arrow-right"
-          ></use>
-        </svg>
-      </button>
-
-      <div class="log-in-out-container visually-hidden">
-        <button class="user-in header-btn-stayl">
-          <img
-            src="./img/header-log-in-user-foto.png"
-            alt="User foto"
-            class="user-foto"
-            width="37"
-            height="37"
-          />
-          Stephen
-          <svg class="arrow-right-icon" width="23" height="26">
-            <use href="./img/header-icon.svg#log-down" class="log-down"></use>
-          </svg>
-        </button>
-        <div class="dropdown">
-          <button
-            data-logout-button
-            type="button"
-            class="log-out header-btn-stayl"
-          >
-            Log out
+      <div class="mobile-menu_container" id="mobile-menu">
+        <div class="container">
+          <button  type="button" class="mobile-menu-sing-up">
+            Sigh Up
             <svg class="arrow-right-icon" width="20" height="20">
               <use
-                href="./img/header-icon.svg#arrow-right"
-                class="log-out"
+                href="../img/header-icon.svg#arrow-right"
+                class="arrow-right"
               ></use>
             </svg>
           </button>
         </div>
+      </div>
+      <!-- Sign Up BUTTON -->
+      <div class="log-in-out-container">
+        <!-- <div class="log-in-out-container visually-hidden"> -->
+
+        <!-- <button class="user-in header-btn-stayl">
+        <img
+          src="./img/header-log-in-user-foto.png"
+          alt="User foto"
+          class="user-foto"
+          width="37"
+          height="37"
+        />
+        Stephen
+        <svg class="arrow-right-icon" width="23" height="26">
+          <use href="./img/header-icon.svg#log-down" class="log-down"></use>
+
+        </svg>
+        </button> -->
+
+        <!-- <div class="dropdown"> -->
+        <button
+          data-login-button
+          type="button"
+          class="sign-up header-btn-style"
+        >
+          Sign up
+          <svg class="arrow-right-icon" width="20" height="20">
+            <use
+              href="./img/header-icon.svg#arrow-right"
+              class="arrow-right"
+            ></use>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="log-out header-btn-style is-hidden"
+          data-logout-button
+        >
+          Log out
+          <svg class="arrow-right-icon" width="20" height="20">
+            <use href="./img/header-icon.svg#arrow-right" class=""></use>
+          </svg>
+        </button>
+
+        <!-- </div> -->
       </div>
     </div>
   </div>
