@@ -164,11 +164,11 @@
 
 }
 
-.icon-delete-button {
+/* .icon-delete-button {
     color: aliceblue;
-}
+} */
 .shopping-list-delete-img {
-        fill: aliceblue;
+        /* fill: aliceblue; */
         align-content: center;
         display: flex;
 }

@@ -137,7 +137,7 @@ function createMarkup(data) {
     </div>
     <button type="button" class="button-delete">
         <svg class="icon-delete-button" width="16" height="16">
-            <use href="./img/icon-delete.svg"></use>
+            <use href="./img/trash-icon.svg#icon-trash-icon"></use>
         </svg>
     </button>
     </div>
