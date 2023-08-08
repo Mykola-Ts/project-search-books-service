@@ -7,8 +7,8 @@
     <title>Bookshelf</title>
     
     
-    <script type="module" crossorigin src="/project-search-books-service/assets/scroll-up-ca7880fc.js"></script>
-    <link rel="stylesheet" href="/project-search-books-service/assets/scroll-up-ed649400.css">
+    <script type="module" crossorigin src="/project-search-books-service/assets/scroll-up-f6ba531e.js"></script>
+    <link rel="stylesheet" href="/project-search-books-service/assets/scroll-up-dfea382b.css">
   </head>
   <body>
     <!-- HEADER -->
@@ -143,10 +143,14 @@
 
     <main>
       <!-- HOME -->
-      <section>
-        <div>
+      <section class="home container">
+        <div class="home-wrap">
           <!-- All categories -->
-          <div>
+          <ul class="category-list">
+    
+</ul>
+
+<!-- <div>
     <div class="home-container">
         <div class="wrapper-category-list">
             <div class="category-list light-theme" id="categoryList"></div>
@@ -162,7 +166,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+
 
           <!-- Support Ukraine -->
           <div class="conteiner-support">
@@ -257,7 +263,14 @@
         </div>
 
         <!-- List of books -->
-        <div></div>
+        <div class="books-list-wrap visually-hidden">
+    <div class="best-sellers">
+
+      </div>
+      
+      <ul class="books-list"></ul>
+</div>
+
       </section>
     </main>
 
@@ -322,13 +335,13 @@
 
 
     <!-- MODAL WINDOW -->
-    <div class="backdrop is-hidden" data-modal>
-  <div class="modal">
+    <div class="backdrop-modal is-hidden-modal" data-modal-window>
+  <div class="modal-window">
     <div class="modal-wrap"></div>
 
     <button type="button" class="modal-btn-add">Add to shopping list</button>
 
-    <button type="button" class="close-btn" data-modal-close>
+    <button type="button" class="close-btn" data-modal-window-close>
       <svg width="24" height="24" class="close-btn-icon">
         <use href="/project-search-books-service/assets/icons-1df87a4c.svg#icon-x-close"></use>
       </svg>
@@ -382,9 +395,10 @@
 
 
     <!-- LOADER -->
-    <div>
+    <div class="loader-wrap">
   <!-- <div class="loader-wrap"></div> -->
 </div>
+
 
 
     <!-- SCROLL UP -->
