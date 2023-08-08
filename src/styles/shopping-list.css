@@ -56,8 +56,7 @@
     display: block;
 
 }
-
-.shopping-list-card-title {
+    .shopping-list-card-title {
     color: var(--text-black-color);
     font-size: 16px;
     font-weight: 700;

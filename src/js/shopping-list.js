@@ -1,8 +1,8 @@
 // SHOPPING LIST
 const shoppinglist = document.querySelector(`.shopping-list`);
 const shoppinglistContainer = document.querySelector(`.shopping-list-container`);
-const clickToShoppingList = document.querySelector(`.shoppinglist`);
 const btnDeletebook = document.querySelector(`.shopping-list`);
+
 
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
@@ -33,11 +33,13 @@ const btnDeletebook = document.querySelector(`.shopping-list`);
 
 // Рабочий код
 
-
-clickToShoppingList.addEventListener(`click`, createShoppingList);
+document.addEventListener("DOMContentLoaded", createShoppingList);
 btnDeletebook.addEventListener(`click`, onDeleteBook);
 
+
+
 function createShoppingList(e) {
+    console.log("DOM fully loaded and parsed");
     e.preventDefault();
     console.log(e.target);
     // if (!e.target.classList.contains(`shoppinglist`)) {
