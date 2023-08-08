@@ -159,7 +159,7 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
 
   .header-nav-link {
     display: flex;
-    font-family: font-family: inherit;
+    font-family: inherit;
     font-size: 14px;
     line-height: 1.3;
     letter-spacing: -0.56px;
@@ -223,7 +223,7 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
     justify-content: space-between;
     width: 184px;
     height: 45px;
-    font-family: font-family: inherit;
+    font-family: inherit;
     padding: 15px 14px;
     text-align: left;
     font-size: 14px;
