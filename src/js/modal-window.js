@@ -27,13 +27,15 @@ function openBookModal(evt) {
   const bookId = evt.target.closest('li').dataset.id;
 
   fetchBookById(bookId)
-    .then(({ book_image, title, author, description, _id, buy_links }) => {
+    .then(({ book_image, title, author, description, _id, buy_links, list_name }) => {
       openBook = {
         bookId: _id,
         bookName: title,
         bookAuthor: author,
         bookImage: book_image,
+        description: description,
         buyLinks: buy_links,
+        listName: list_name,
       };
 
       selectors.modalWrap.innerHTML = createMarkupModal(
