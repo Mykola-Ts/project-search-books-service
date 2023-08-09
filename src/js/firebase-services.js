@@ -18,7 +18,7 @@ import {
 
 import LocalStorageService from './localstorage-services';
 import { showAuthModal, closeAuthModal } from './authorization-window';
-import { dataChangeLocalstorage } from './shopping-list';
+// import { dataChangeLocalstorage } from './shopping-list';
 import { currentTheme } from './header';
 
 const LOCAL_USER_KEY = 'currentUser';

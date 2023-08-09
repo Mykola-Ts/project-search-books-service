@@ -8,19 +8,20 @@
 
 // SHOPPING LIST
 
-const shoppinglist = document.querySelector('.shopping-list');
+// const shoppinglist = document.querySelector('.shopping-list');
 const shoppinglistContainer = document.querySelector(
-  '.shopping-list-container'
+  ".shopping-list-container"
 );
+const btnDeletebook = document.querySelector(".shopping-list");
 
-const btnDeletebook = document.querySelector('.shopping-list');
+if (document.location.href === "http://localhost:5173/shopping-list.html") {
+  const headerNavLinkHome = document.querySelector(".header-nav-link-home");
+  const headerNavLinkShoppingList = document.querySelector(
+    ".header-nav-link-shoppinglist"
+  );
 
-if(document.location.href === "http://localhost:5173/shopping-list.html"){
-  const headerNavLinkHome = document.querySelector('.header-nav-link-home');
-  const headerNavLinkShoppingList = document.querySelector('.header-nav-link-shoppinglist');
-
-  headerNavLinkHome.classList.remove('current-page');
-  headerNavLinkShoppingList.classList.add('current-page')
+  headerNavLinkHome.classList.remove("current-page");
+  headerNavLinkShoppingList.classList.add("current-page");
 }
 
 // Для тестирования - получение и загрузка данных в localStorage.
@@ -47,10 +48,10 @@ if(document.location.href === "http://localhost:5173/shopping-list.html"){
 function dataChangeLocalstorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
-    firebaseService.addDataToDb(key, 'books', value);
+    firebaseService.addDataToDb(key, "books", value);
     localStorage.setItem(key, serializedState);
   } catch (error) {
-    console.error('Set state error: ', error.message);
+    console.error("Set state error: ", error.message);
   }
 }
 
@@ -60,23 +61,22 @@ function dataChangeLocalstorage(key, value) {
 
 // Рабочий код
 
-if (document.location.href === 'http://localhost:5173/shopping-list.html') {
-  document.addEventListener('DOMContentLoaded', createShoppingList);
+if (document.location.href === "http://localhost:5173/shopping-list.html") {
+  document.addEventListener("DOMContentLoaded", createShoppingList);
   btnDeletebook.addEventListener(`click`, onDeleteBook);
 }
 
 function createShoppingList(e) {
-  console.log('DOM fully loaded and parsed');
+  // console.log("DOM fully loaded and parsed");
   e.preventDefault();
   // if (!e.target.classList.contains(`shoppinglist`)) {
   //     console.log(`no delete`);
   //     return;
   // }
   // const page = e.target.closest(`.header-nav-list`);
-  console.log(`yes`);
+  // console.log(`yes`);
   let data = getDataLocalStorage();
-  console.log(data);
-
+  // console.log(data);
   createMarkup(data);
 }
 
@@ -97,31 +97,31 @@ function createMarkup(data) {
   if (data.length != 0) {
     shoppinglistContainer.innerHTML += data
       .map(
-        el => `
-    <div class="shopping-list-card" data-title="${el.title}">
+        (el) => `
+    <div class="shopping-list-card" data-title="${el.bookName}">
     
-//     <img class="shopping-list-card-img" src="${el.book_image}" alt="book image" />
+    <img class="shopping-list-card-img" src="${el.bookImage}" alt="book image" />
     
     <div class="shopping-list-card-data">
 
-    <h3 class="shopping-list-card-title">${el.title}</h3>
-    <p class="shopping-list-card-category">${el.list_name}</p>
+    <h3 class="shopping-list-card-title">${el.bookName}</h3>
+    <p class="shopping-list-card-category">${el.listName}</p>
     <p class="shopping-list-card-description">${el.description}</p>
     <div class="shopping-list-card-wrap">
-    <p class="shopping-list-card-author">${el.author}</p>
+    <p class="shopping-list-card-author">${el.bookAuthor}</p>
     <ul class="shopping-list-card-linkshop">
         <li class="shop-item" >
-            <a class="shop-link" href="${el.buy_links[0].url}">
+            <a class="shop-link" href="${el.buyLinks[0].url}">
             <img class="shopping-list-amazon-img" src="./img/amazon-icon.png" alt="logo-amazon " width="32" height="11"/>
             </a>
         </li>
         <li class="shop-item">
-            <a class="shop-link" href="${el.buy_links[1].url}">
+            <a class="shop-link" href="${el.buyLinks[1].url}">
             <img class="shopping-list-applebook-img" src="./img/apple-book-icon.png" alt="logo-aapplebook " width="16" height="16" />
             </a>
         </li>
         <li class="shop-item">
-            <a class="shop-link" href="${el.buy_links[4].url}">
+            <a class="shop-link" href="${el.buyLinks[4].url}">
             <img class="shopping-list-applebook-img" src="./img/book-shop-icon.png" alt="logo-aapplebook " width="16"
   height="16" />
                 
@@ -149,33 +149,39 @@ function createMarkup(data) {
   }
 }
 
-// // doMarkup();
+// if(document.location.href === "http://localhost:5173/shopping-list.html"){
+//   btnDeletebook.addEventListener(`click`, onDeleteBook);
+// }
 
-// const btnDeletebook = document.querySelector(`.shopping-list`);
-
-if (document.location.href === 'http://localhost:5173/shopping-list.html') {
+if (document.location.href === "http://localhost:5173/shopping-list.html") {
   btnDeletebook.addEventListener(`click`, onDeleteBook);
 }
 
 function onDeleteBook(e) {
   e.preventDefault();
-
+  console.log(e.target);
   if (!e.target.classList.contains(`icon-delete-button`)) {
-    // console.log(`no delete`);
+    console.log(`no delete`);
     return;
   }
-  // console.log(` delete`);
-  const deleteBook = e.target.closest(`.shopping-list-card`);
-  // console.log(deleteBook);
-  const deleteBookName = deleteBook.dataset.title;
-  // console.log(deleteBookName);
-  let data = getDataLocalStorage();
-  // console.log(data);
+  console.log(` delete`);
 
-  const deleteBookStorage = data.find(({ title }) => title === deleteBookName);
+  const deleteBook = e.target.closest(`.shopping-list-card`);
+  console.log(deleteBook);
+  const deleteBookName = deleteBook.dataset.title;
+  console.log(deleteBookName);
+  let data = getDataLocalStorage();
+  console.log(data);
+
+  const deleteBookStorage = data.find(
+    ({ bookName }) => bookName === deleteBookName
+  );
   console.log(deleteBookStorage);
 
-  const indexDeleteBook = data.findIndex(el => el.title === deleteBookName);
+  const indexDeleteBook = data.findIndex(
+    (el) => el.bookName === deleteBookName
+  );
+
   console.log(indexDeleteBook);
 
   const newArray = data.splice(indexDeleteBook, 1);
@@ -187,4 +193,4 @@ function onDeleteBook(e) {
   createMarkup(data);
 }
 
-export { dataChangeLocalstorage };
+// export { dataChangeLocalstorage };
