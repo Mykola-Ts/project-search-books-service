@@ -7,9 +7,9 @@
     <title>Bookshelf</title>
     
     
-    <script type="module" crossorigin src="/project-search-books-service/assets/index-3978f0ee.js"></script>
-    <link rel="modulepreload" crossorigin href="/project-search-books-service/assets/shopping-list-94abe4a3.js">
-    <link rel="stylesheet" href="/project-search-books-service/assets/shopping-list-edd27f31.css">
+    <script type="module" crossorigin src="/project-search-books-service/assets/index-71e6555c.js"></script>
+    <link rel="modulepreload" crossorigin href="/project-search-books-service/assets/shopping-list-e7a85478.js">
+    <link rel="stylesheet" href="/project-search-books-service/assets/shopping-list-8fb6da0c.css">
   </head>
   <body>
     <!-- HEADER -->
@@ -23,71 +23,57 @@
         <use href="/project-search-books-service/assets/header-icon-84926756.svg#bookshelf" class="logo-text"></use>
       </svg>
     </a>
+    <div class="toolbar">
+      <div class="theme-switch-control">
+        <input
+          class="theme-switch-toggle"
+          type="checkbox"
+          name="theme"
+          id="theme-switch-toggle"
+          aria-label="Chenge theme"
+        />
+        <label
+          aria-hidden="true"
+          class="theme-switch-track"
+          for="theme-switch-toggle"
+        >
+        </label>
+        <div aria-hidden="true" class="theme-switch-marker"></div>
+      </div>
+      <button
+      class="mobile-menu-btn js-open-menu"
+      data-menu-button
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="mobile-menu-btn-icon" width="28" height="28">
+        <use href="/project-search-books-service/assets/header-icon-84926756.svg#menu-open" class="menu-open"></use>
+        <use href="/project-search-books-service/assets/header-icon-84926756.svg#x-close" class="menu-close"></use>
+      </svg>
+    </button>
+    </div>
 
-    <ul class="header-nav-container">
+    <nav class="header-nav-menu">
+      <ul class="header-nav-container">
       <li class="header-nav-list">
-        <a href="./index.html" class="header-nav-link header-nav-link-home  current-page link"
+        <a href="./index.html" class="header-nav-link header-nav-link-home current-page link"
           >home</a
         >
       </li>
       <li class="header-nav-list">
-        <a href="./shopping-list.html" class="header-nav-link link header-nav-link-shoppinglist"
+        <a href="./shopping-list.html" class="header-nav-link link shoppinglist header-nav-link-shoppinglist"
           >Shopping list
           <svg class="shopping-list-bag" width="20" height="20">
             <use href="/project-search-books-service/assets/header-icon-84926756.svg#bag" class="bag"></use>
+            <use href="/project-search-books-service/assets/mobile-menu-icon-886ff59f.svg#icon-bag-white" class="white-bag"></use>
           </svg>
         </a>
       </li>
     </ul>
 
     <div class="header-btn-container">
-      <div class="toolbar">
-
-        <div class="theme-switch-control">
-          <input
-            class="theme-switch-toggle"
-            type="checkbox"
-            name="theme"
-            id="theme-switch-toggle"
-            aria-label="Chenge theme"
-          />
-          <label
-            aria-hidden="true"
-            class="theme-switch-track"
-            for="theme-switch-toggle"
-          >
-          </label>
-          <div aria-hidden="true" class="theme-switch-marker"></div>
-        </div>
-      </div>
-
-      <button
-        class="mobile-menu-btn js-open-menu"
-        data-menu-button
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <svg class="mobile-menu-btn-icon" width="28" height="28">
-          <use href="/project-search-books-service/assets/header-icon-84926756.svg#menu-open" class="menu-open"></use>
-          <use href="/project-search-books-service/assets/header-icon-84926756.svg#x-close" class="menu-close"></use>
-        </svg>
-      </button>
-      <div class="mobile-menu_container" id="mobile-menu">
-        <div class="container">
-          <button type="button" class="mobile-menu-sing-up">
-            Sigh Up
-            <svg class="arrow-right-icon" width="20" height="20">
-              <use
-                href="/project-search-books-service/assets/header-icon-84926756.svg#arrow-right"
-                class="arrow-right"
-              ></use>
-            </svg>
-          </button>
-        </div>
-      </div>
-
       <div class="log-in-out-container">
-
+        
         <button
           data-login-button
           type="button"
@@ -113,11 +99,16 @@
           </svg>
         </button>
 
-
       </div>
     </div>
+  </nav>
   </div>
 </header>
+
+
+
+
+
 
 
     <!-- MOBILE MENU -->
