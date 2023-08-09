@@ -1,6 +1,6 @@
 /* ---------------- MODAL WINDOW ---------------- */
 
-.backdrop {
+.backdrop-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -19,13 +19,13 @@
     visibility var(--transition-duration) var(--transition-timing-function);
 }
 
-.backdrop.is-hidden {
+.backdrop-modal.is-hidden-modal {
   pointer-events: none;
   visibility: hidden;
   opacity: 0;
 }
 
-.modal {
+.modal-window {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0) scaleY(1);
@@ -43,30 +43,30 @@
     var(--transition-timing-function);
 }
 
-body.dark-theme .modal {
+body.dark-theme .modal-window {
   border: 2px solid var(--white-color);
 
   background-color: var(--modal-background-color-dark-theme);
 }
 
-.backdrop.is-hidden .modal {
+.backdrop-modal.is-hidden-modal .modal-window {
   transform: translate(-50%, 0) scaleY(0.1);
   transform-origin: bottom;
 }
 
 @media screen and (min-width: 768px) and (min-height: 600px) {
-  .modal {
+  .modal-window {
     top: 50%;
     transform: translate(-50%, -50%) scaleY(1);
   }
 
-  .backdrop.is-hidden .modal {
+  .backdrop-modal.is-hidden-modal .modal-window {
     transform: translate(-50%, -50%) scaleY(0.1);
   }
 }
 
 @media screen and (min-width: 768px) {
-  .modal {
+  .modal-window {
     max-width: 580px;
     padding: 40px;
   }
