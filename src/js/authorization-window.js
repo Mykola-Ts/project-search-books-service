@@ -13,50 +13,49 @@ const refs = {
 const selectors = {
   signUpLink: document.querySelector('button[data-modal-signup-link]'),
   signInLink: document.querySelector('button[data-modal-signin-link]'),
-  modal: document.querySelector('div[data-modal]'),
+  modal: document.querySelector('div[data-modal-overlay]'),
   closeBtn: document.querySelector('button[data-modal-close]'),
 };
 
-// const firebaseService = new FirebaseService(refs);
+const firebaseService = new FirebaseService(refs);
 
-// firebaseService.logInBtn.addEventListener('click', onSignupClick);
-// firebaseService.logOutBtn.addEventListener('click', firebaseService.onSignOut);
-// selectors.modal.addEventListener('submit', onAuthFormSubmit);
+firebaseService.logInBtn.addEventListener('click', onSignupClick);
+firebaseService.logOutBtn.addEventListener('click', firebaseService.onSignOut);
+selectors.modal.addEventListener('submit', onAuthFormSubmit);
 
-// console.log(firebaseService.isUserAuthorized());
-// function onSignupClick() {
-//   if (firebaseService.isUserAuthorized) {
-//     firebaseService.logOutBtn.classList.toggle('is-hidden');
-//     closeAuthModal();
-//   } else {
-//     showAuthModal();
-//   }
-// }
+function onSignupClick() {
+  if (firebaseService.isUserAuthorized()) {
+    firebaseService.logOutBtn.classList.toggle('is-hidden');
+    closeAuthModal();
+  } else {
+    showAuthModal();
+  }
+}
 
-// function onAuthFormSubmit(evt) {
-//   evt.preventDefault();
+function onAuthFormSubmit(evt) {
+  evt.preventDefault();
 
-//   let {
-//     elements: {
-//       name: { value: name },
-//       email: { value: email },
-//       password: { value: password },
-//     },
-//   } = evt.target;
+  let {
+    elements: {
+      name: { value: name },
+      email: { value: email },
+      password: { value: password },
+    },
+  } = evt.target;
 
-//   name = name || email;
+  name = name || email;
 
-//   switch (evt.submitter.innerText) {
-//     case 'SIGN UP':
-//       evt.target.reset();
-//       firebaseService.createUser(email, password, name);
-//       break;
-//     case 'SIGN IN':
-//       evt.target.reset();
-//       firebaseService.signInUser(email, password, name);
-//       break;
-//   }
-// }
+  switch (evt.submitter.innerText) {
+    case 'SIGN UP':
+      evt.target.reset();
+      firebaseService.createUser(email, password, name);
+      break;
+    case 'SIGN IN':
+      evt.target.reset();
+      firebaseService.signInUser(email, password, name);
+      break;
+  }
+}
 
 function showAuthModal() {
   selectors.signUpLink.addEventListener('click', onSignUpLink);
@@ -81,8 +80,5 @@ function onSignInLink() {
   refs.input.hidden = true;
   refs.authBtn.textContent = 'Sign In';
 }
-
-// const currentTheme = localStorage.getItem('currentTheme');
-// console.log(currentTheme);
 
 export { onSignUpLink, onSignInLink, showAuthModal, closeAuthModal };
