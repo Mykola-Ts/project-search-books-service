@@ -1,12 +1,22 @@
-// SHOPPING LIST
-import FirebaseService from './firebase-services';
-const firebaseService = new FirebaseService();
+import * as firebaseService from './firebase-services';
+import * as header from './header';
+import * as mobileMenu from './mobile-menu';
+import * as supportUkraine from './support-ukraine';
+import * as pagination from './pagination';
+import * as loader from './loader';
+import * as scrollUp from './scroll-up';
 
-const shoppinglist = document.querySelector(`.shopping-list`);
+// SHOPPING LIST
+// import FirebaseService from './firebase-services';
+
+// const firebaseService = new FirebaseService();
+
+const shoppinglist = document.querySelector('.shopping-list');
 const shoppinglistContainer = document.querySelector(
-  `.shopping-list-container`
+  '.shopping-list-container'
 );
-const btnDeletebook = document.querySelector(`.shopping-list`);
+
+const btnDeletebook = document.querySelector('.shopping-list');
 
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
@@ -32,7 +42,7 @@ const btnDeletebook = document.querySelector(`.shopping-list`);
 function dataChangeLocalstorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
-    firebaseService.addDataToDb(key, 'books', value);
+    // firebaseService.addDataToDb(key, 'books', value);
     localStorage.setItem(key, serializedState);
   } catch (error) {
     console.error("Set state error: ", error.message);
@@ -45,13 +55,15 @@ function dataChangeLocalstorage(key, value) {
 
 // Рабочий код
 
-document.addEventListener("DOMContentLoaded", createShoppingList);
+if(document.location.href === "http://localhost:5173/shopping-list.html"){
+  document.addEventListener("DOMContentLoaded", createShoppingList);
 btnDeletebook.addEventListener(`click`, onDeleteBook);
+}
+
 
 function createShoppingList(e) {
   console.log("DOM fully loaded and parsed");
   e.preventDefault();
-  console.log(e.target);
   // if (!e.target.classList.contains(`shoppinglist`)) {
   //     console.log(`no delete`);
   //     return;
@@ -136,11 +148,13 @@ function createMarkup(data) {
 // // doMarkup();
 
 // const btnDeletebook = document.querySelector(`.shopping-list`);
-// btnDeletebook.addEventListener(`click`, onDeleteBook);
+
+if(document.location.href === "http://localhost:5173/shopping-list.html"){
+  btnDeletebook.addEventListener(`click`, onDeleteBook);
+}
 
 function onDeleteBook(e) {
   e.preventDefault();
-  console.log(e.target);
 
   if (!e.target.classList.contains(`icon-delete-button`)) {
     // console.log(`no delete`);

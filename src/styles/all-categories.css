@@ -125,6 +125,10 @@ gap: 40px;
   color: var(--primary-color);
 }
 
+body.dark-theme .open-category-title-item {
+  color: var(--yellow-color);
+}
+
 .books-list-by-category {
   width: 100%;
   overflow: hidden;

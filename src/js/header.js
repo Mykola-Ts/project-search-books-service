@@ -4,6 +4,7 @@ const Theme = {
   DARK: 'dark-theme',
 };
 const body = document.body;
+const header = document.querySelector('.header')
 const themeSwitch = document.querySelector('.theme-switch-toggle');
 
 themeSwitch.addEventListener('change', onChange);
