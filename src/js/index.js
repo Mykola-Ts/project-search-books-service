@@ -1,8 +1,6 @@
 // import * as firebaseService from './firebase-services';
-
 import * as header from './header';
 import * as authorizationWindow from './authorization-window';
-import * as modalWindow from './modal-window';
 import * as mobileMenu from './mobile-menu';
 import * as allCategories from './all-categories';
 import * as supportUkraine from './support-ukraine';
