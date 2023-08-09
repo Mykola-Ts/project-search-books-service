@@ -11,12 +11,16 @@
 
     <ul class="header-nav-container">
       <li class="header-nav-list">
-        <a href="./index.html" class="header-nav-link header-nav-link-home  current-page link"
+        <a
+          href="./index.html"
+          class="header-nav-link header-nav-link-home current-page link"
           >home</a
         >
       </li>
       <li class="header-nav-list">
-        <a href="./shopping-list.html" class="header-nav-link link header-nav-link-shoppinglist"
+        <a
+          href="./shopping-list.html"
+          class="header-nav-link link header-nav-link-shoppinglist"
           >Shopping list
           <svg class="shopping-list-bag" width="20" height="20">
             <use href="./img/header-icon.svg#bag" class="bag"></use>
@@ -27,7 +31,6 @@
 
     <div class="header-btn-container">
       <div class="toolbar">
-
         <div class="theme-switch-control">
           <input
             class="theme-switch-toggle"
@@ -72,18 +75,16 @@
       </div>
 
       <div class="log-in-out-container">
-
-        <button
-          data-login-button
-          type="button"
-          class="sign-up header-btn-style"
-        >
+        <!-- sign-up header-btn-style -->
+        <button data-login-button type="button" class="user-in">
           Sign up
-          <svg class="arrow-right-icon" width="20" height="20">
+          <img src="/src/img/header-log-in-user-foto.png" alt="" />
+          <svg class="signup-svg">
             <use
               href="./img/header-icon.svg#arrow-right"
               class="arrow-right"
             ></use>
+            <!-- <use href="./img/header-icon.svg#log-down" class="arrow-down"></use> -->
           </svg>
         </button>
 
@@ -97,8 +98,6 @@
             <use href="./img/header-icon.svg#arrow-right" class=""></use>
           </svg>
         </button>
-
-
       </div>
     </div>
   </div>
