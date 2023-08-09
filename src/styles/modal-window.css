@@ -88,6 +88,12 @@ body.dark-theme .modal-window {
   height: 100%;
 }
 
+.book-img-wrap {
+  border-radius: 8px;
+
+  overflow: hidden;
+}
+
 @media screen and (max-width: 767px) {
   .book-img-wrap {
     margin-bottom: 14px;
