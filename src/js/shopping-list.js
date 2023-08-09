@@ -1,19 +1,28 @@
-import * as firebaseService from './firebase-services';
-import * as header from './header';
-import * as mobileMenu from './mobile-menu';
-import * as supportUkraine from './support-ukraine';
-import * as pagination from './pagination';
-import * as loader from './loader';
-import * as scrollUp from './scroll-up';
+// import * as firebaseService from './firebase-services';
+// import * as header from './header';
+// import * as mobileMenu from './mobile-menu';
+// import * as supportUkraine from './support-ukraine';
+// import * as pagination from './pagination';
+// import * as loader from './loader';
+// import * as scrollUp from './scroll-up';
 
 // SHOPPING LIST
-// import FirebaseService from './firebase-services';
-
-// const firebaseService = new FirebaseService();
 
 // const shoppinglist = document.querySelector('.shopping-list');
-const shoppinglistContainer = document.querySelector('.shopping-list-container');
-const btnDeletebook = document.querySelector('.shopping-list');
+const shoppinglistContainer = document.querySelector(
+  ".shopping-list-container"
+);
+const btnDeletebook = document.querySelector(".shopping-list");
+
+if (document.location.href === "http://localhost:5173/shopping-list.html") {
+  const headerNavLinkHome = document.querySelector(".header-nav-link-home");
+  const headerNavLinkShoppingList = document.querySelector(
+    ".header-nav-link-shoppinglist"
+  );
+
+  headerNavLinkHome.classList.remove("current-page");
+  headerNavLinkShoppingList.classList.add("current-page");
+}
 
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
@@ -39,7 +48,7 @@ const btnDeletebook = document.querySelector('.shopping-list');
 function dataChangeLocalstorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
-    // firebaseService.addDataToDb(key, 'books', value);
+    firebaseService.addDataToDb(key, "books", value);
     localStorage.setItem(key, serializedState);
   } catch (error) {
     console.error("Set state error: ", error.message);
@@ -52,13 +61,10 @@ function dataChangeLocalstorage(key, value) {
 
 // Рабочий код
 
-if(document.location.href === "http://localhost:5173/shopping-list.html"){
+if (document.location.href === "http://localhost:5173/shopping-list.html") {
   document.addEventListener("DOMContentLoaded", createShoppingList);
   btnDeletebook.addEventListener(`click`, onDeleteBook);
 }
-
-
-
 
 function createShoppingList(e) {
   // console.log("DOM fully loaded and parsed");
@@ -143,12 +149,13 @@ function createMarkup(data) {
   }
 }
 
-
 // if(document.location.href === "http://localhost:5173/shopping-list.html"){
 //   btnDeletebook.addEventListener(`click`, onDeleteBook);
 // }
 
-
+if (document.location.href === "http://localhost:5173/shopping-list.html") {
+  btnDeletebook.addEventListener(`click`, onDeleteBook);
+}
 
 function onDeleteBook(e) {
   e.preventDefault();
@@ -158,7 +165,7 @@ function onDeleteBook(e) {
     return;
   }
   console.log(` delete`);
- 
+
   const deleteBook = e.target.closest(`.shopping-list-card`);
   console.log(deleteBook);
   const deleteBookName = deleteBook.dataset.title;
@@ -166,10 +173,15 @@ function onDeleteBook(e) {
   let data = getDataLocalStorage();
   console.log(data);
 
-  const deleteBookStorage = data.find(({ bookName }) => bookName === deleteBookName);
+  const deleteBookStorage = data.find(
+    ({ bookName }) => bookName === deleteBookName
+  );
   console.log(deleteBookStorage);
 
-  const indexDeleteBook = data.findIndex((el) => el.bookName === deleteBookName);
+  const indexDeleteBook = data.findIndex(
+    (el) => el.bookName === deleteBookName
+  );
+
   console.log(indexDeleteBook);
 
   const newArray = data.splice(indexDeleteBook, 1);
@@ -182,4 +194,3 @@ function onDeleteBook(e) {
 }
 
 // export { dataChangeLocalstorage };
-

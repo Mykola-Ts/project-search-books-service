@@ -15,9 +15,9 @@ const selectors = {
 const shoppingList = [];
 let openBook = {};
 
-selectors.booksListWrap.addEventListener('click', openBookModal);
 
-function openBookModal(evt) {
+
+export const openBookModal = function openBookModal(evt) {
   evt.preventDefault();
 
   if(!evt.target.closest('li.books-list-item')){
@@ -81,6 +81,8 @@ function openBookModal(evt) {
     .catch(err => console.log(err));
 }
 
+selectors.booksListWrap.addEventListener('click', openBookModal);
+
 async function fetchBookById(id) {
   const resp = await axios.get(
     `https://books-backend.p.goit.global/books/${id}`
@@ -96,17 +98,17 @@ async function fetchBookById(id) {
 function createMarkupModal(image, title, author, description, buyLinks) {
   const arrBuyLinks = buyLinks.slice(0, 3);
   const arrIconsLink = [
-    { name: 'Amazon', img: './img/amazon-icon.png' },
-    { name: 'Apple Books', img: './img/apple-book-icon.png' },
-    { name: 'Barnes and Noble', img: './img/book-shop-icon.png' },
+    { name: 'Amazon', img: 'amazon-icon' },
+    { name: 'Apple Books', img: 'apple-book-icon' },
+    { name: 'Barnes and Noble', img: 'book-shop-icon' },
   ];
 
   const markupLinks = arrBuyLinks
     .map(({ url, name }) => {
-      const iconLink = arrIconsLink.find(iconLink => iconLink.name === name);
+      const icon = arrIconsLink.find(iconLink => iconLink.name === name);
 
       return `<li><a href="${url}" target="_blank" rel="noopener noreferrer nofollow" class="buy-link">
-      <img src="${iconLink.img}" alt="${name}" class="buy-link-icon">
+      <img src="./img/${icon.img}.png" alt="${name}" class="buy-link-icon">
 </a></li>`;
     })
     .join('');

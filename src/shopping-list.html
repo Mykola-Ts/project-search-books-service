@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  <title>Shopping list</title>
-  <link rel="stylesheet" href="./styles/styles.css" />
-  <!-- <script type="module" src="./js/index.js"></script> -->
-  <script type="module" src="./js/shopping-list.js"></script>
- 
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <title>Shopping list</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <!-- <script type="module" src="./js/index.js"></script> -->
+    <script type="module" src="./js/index.js"></script>
+  </head>
 
-<body class="light-theme">
-  <!-- HEADER -->
-  <div clas="header-for-shoppinglist">
-  <load src="./partials/header.html" />
-  </div>
-  <main>
-    <!-- SHOPPING LIST -->
-    <section class="shopping-list">
-      <!-- Support Ukraine -->
-      <div class="shopping-list-support-ukraine">
-      <load src="./partials/support-ukraine.html" />
-      </div>
-    <!-- Shopping list -->
-      <div class="shopping-list-container">
-        <div id="pagination" class="tui-pagination shopping-list-container">
+  <body class="light-theme">
+    <!-- HEADER -->
+    <div clas="header-for-shoppinglist">
+      <load src="./partials/header.html" />
+    </div>
+    <main>
+      <!-- SHOPPING LIST -->
+      <section class="shopping-list">
+        <!-- Support Ukraine -->
+        <div class="shopping-list-support-ukraine">
+          <load src="./partials/support-ukraine.html" />
         </div>
-      </div>
-    </section>
-  </main>
+        <!-- Shopping list -->
+        <div class="shopping-list-container">
+          <div
+            id="pagination"
+            class="tui-pagination shopping-list-container"
+          ></div>
+        </div>
+      </section>
+    </main>
 
-  <!-- LOADER -->
-  <load src="./partials/loader.html" />
-  <!-- SCROLL UP -->
-  <load src="./partials/scroll-up.html" />
-
-  
-  
-
-</body>
+    <!-- AUTHORIZATION WINDOW -->
+    <load src="./partials/authorization-window.html" />
+    <!-- LOADER -->
+    <load src="./partials/loader.html" />
+    <!-- SCROLL UP -->
+    <load src="./partials/scroll-up.html" />
+  </body>
 </html>
-
