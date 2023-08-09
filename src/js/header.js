@@ -4,7 +4,7 @@ const Theme = {
   DARK: 'dark-theme',
 };
 const body = document.body;
-const header = document.querySelector('.header')
+const header = document.querySelector('.header');
 const themeSwitch = document.querySelector('.theme-switch-toggle');
 
 themeSwitch.addEventListener('change', onChange);
@@ -26,7 +26,6 @@ function onChange(evt) {
 
 function currentTheme() {
   const savedTheme = localStorage.getItem('currentTheme');
-  console.log(savedTheme);
   if (savedTheme) {
     body.classList.add(savedTheme);
     if (savedTheme === Theme.DARK) {
@@ -38,3 +37,5 @@ function currentTheme() {
     localStorage.setItem('currentTheme', Theme.LIGHT);
   }
 }
+
+export { currentTheme };

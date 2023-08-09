@@ -1,16 +1,12 @@
-import * as firebaseService from './firebase-services';
-import * as header from './header';
-import * as mobileMenu from './mobile-menu';
-import * as supportUkraine from './support-ukraine';
-import * as pagination from './pagination';
-import * as loader from './loader';
-import * as scrollUp from './scroll-up';
-import { doc } from 'firebase/firestore';
+// import * as firebaseService from './firebase-services';
+// import * as header from './header';
+// import * as mobileMenu from './mobile-menu';
+// import * as supportUkraine from './support-ukraine';
+// import * as pagination from './pagination';
+// import * as loader from './loader';
+// import * as scrollUp from './scroll-up';
 
 // SHOPPING LIST
-// import FirebaseService from './firebase-services';
-
-// const firebaseService = new FirebaseService();
 
 const shoppinglist = document.querySelector('.shopping-list');
 const shoppinglistContainer = document.querySelector(
@@ -51,10 +47,10 @@ if(document.location.href === "http://localhost:5173/shopping-list.html"){
 function dataChangeLocalstorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
-    // firebaseService.addDataToDb(key, 'books', value);
+    firebaseService.addDataToDb(key, 'books', value);
     localStorage.setItem(key, serializedState);
   } catch (error) {
-    console.error("Set state error: ", error.message);
+    console.error('Set state error: ', error.message);
   }
 }
 
@@ -64,14 +60,13 @@ function dataChangeLocalstorage(key, value) {
 
 // Рабочий код
 
-if(document.location.href === "http://localhost:5173/shopping-list.html"){
-  document.addEventListener("DOMContentLoaded", createShoppingList);
-btnDeletebook.addEventListener(`click`, onDeleteBook);
+if (document.location.href === 'http://localhost:5173/shopping-list.html') {
+  document.addEventListener('DOMContentLoaded', createShoppingList);
+  btnDeletebook.addEventListener(`click`, onDeleteBook);
 }
 
-
 function createShoppingList(e) {
-  console.log("DOM fully loaded and parsed");
+  console.log('DOM fully loaded and parsed');
   e.preventDefault();
   // if (!e.target.classList.contains(`shoppinglist`)) {
   //     console.log(`no delete`);
@@ -102,7 +97,7 @@ function createMarkup(data) {
   if (data.length != 0) {
     shoppinglistContainer.innerHTML += data
       .map(
-        (el) => `
+        el => `
     <div class="shopping-list-card" data-title="${el.title}">
     
 //     <img class="shopping-list-card-img" src="${el.book_image}" alt="book image" />
@@ -158,7 +153,7 @@ function createMarkup(data) {
 
 // const btnDeletebook = document.querySelector(`.shopping-list`);
 
-if(document.location.href === "http://localhost:5173/shopping-list.html"){
+if (document.location.href === 'http://localhost:5173/shopping-list.html') {
   btnDeletebook.addEventListener(`click`, onDeleteBook);
 }
 
@@ -180,7 +175,7 @@ function onDeleteBook(e) {
   const deleteBookStorage = data.find(({ title }) => title === deleteBookName);
   console.log(deleteBookStorage);
 
-  const indexDeleteBook = data.findIndex((el) => el.title === deleteBookName);
+  const indexDeleteBook = data.findIndex(el => el.title === deleteBookName);
   console.log(indexDeleteBook);
 
   const newArray = data.splice(indexDeleteBook, 1);

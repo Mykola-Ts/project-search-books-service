@@ -19,13 +19,11 @@ import {
 import LocalStorageService from './localstorage-services';
 import { showAuthModal, closeAuthModal } from './authorization-window';
 import { dataChangeLocalstorage } from './shopping-list';
+import { currentTheme } from './header';
 
 const LOCAL_USER_KEY = 'currentUser';
 const LOCAL_THEME_KEY = 'currentTheme';
 const LOCAL_DATA_KEY = 'shoppingList';
-// const firebaseApp = initializeApp(firebaseConfig);
-// const auth = getAuth(firebaseApp);
-// const db = getFirestore();
 const localStorageService = new LocalStorageService();
 
 export default class FirebaseService {
@@ -79,16 +77,12 @@ export default class FirebaseService {
         email,
       };
       const currentTheme = localStorage.getItem(LOCAL_THEME_KEY);
-      // const userRef = doc(this.db, `users/${uid}`);
-      // await setDoc(userRef, userData);
-      // const themeRef = doc(this.db, `themes/${uid}`);
-      // await setDoc(themeRef, currentTheme);
+      const themeData = { currentTheme };
 
       this.addDataToDb('currentUser', 'users', userData);
-      this.addDataToDb('currentTheme', 'themes', currentTheme);
+      this.addDataToDb('currentTheme', 'themes', themeData);
 
       localStorageService.saveToLocalStorage(LOCAL_USER_KEY, userData);
-      // closeAuthModal();
     } catch (error) {
       this.onError(error);
     }
@@ -104,10 +98,6 @@ export default class FirebaseService {
       this.readDataFromDb(LOCAL_USER_KEY, 'users');
       this.readDataFromDb(LOCAL_THEME_KEY, 'themes');
       this.readDataFromDb(LOCAL_DATA_KEY, 'books');
-      // this.readDataFromDbToLocal(
-      //   LOCAL_USER_KEY,
-      //   doc(this.db, `users/${userCredential.user.uid}`)
-      // );
     } catch (error) {
       this.onError(error);
     }
@@ -126,21 +116,17 @@ export default class FirebaseService {
 
   disableAuthListener = onAuthStateChanged(this.auth, async user => {
     if (user) {
-      // this.logOutBtn.classList.toggle('is-hidden');
       closeAuthModal();
-      try {
-        console.log('after auth:', this.auth.currentUser.uid);
-      } catch (error) {
-        this.onError(error);
-      }
+      currentTheme();
     } else {
       localStorageService.removeFromLocalStorage(LOCAL_USER_KEY);
-      showAuthModal();
     }
   });
 
   isUserAuthorized = () => {
-    return this.auth.currentUser ? true : false;
+    return localStorageService.loadFromLocalStorage(LOCAL_USER_KEY)
+      ? true
+      : false;
   };
 
   onError = error => {
@@ -180,41 +166,57 @@ export default class FirebaseService {
     }
   };
 
-  // this.logInBtn.textContent = userData.name;
-
-  addDataFromLocalToCloud = async (key, ref) => {
-    const data = localStorageService.loadFromLocalStorage(key);
+  readThemeFromDb = async (key, collectionName, serialized) => {
+    const user =
+      this.auth.currentUser ||
+      localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+    const docRef = doc(this.db, `${collectionName}/${user.uid}`);
     try {
-      await setDoc(ref, data);
-    } catch (error) {
-      this.onError(error);
-    }
-  };
-
-  readDataFromDbToLocal = async (key, ref) => {
-    try {
-      const snapshot = await getDoc(ref);
+      const snapshot = await getDoc(docRef);
       if (snapshot.exists()) {
-        const userData = snapshot.data();
-        localStorageService.saveToLocalStorage(key, userData);
-        this.logInBtn.textContent = userData.name;
+        const data = snapshot.data();
+        localStorageService.saveToLocalStorage(key, data);
       }
     } catch (error) {
       this.onError(error);
     }
   };
 
-  addShoppingListToDb = async data => {
-    const user = localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
-    if (!user) {
-      return;
-    }
-    const docRef = doc(this.db, `users/${user.uid}`);
-    const userData = { shoppingList: data };
-    try {
-      await setDoc(docRef, userData, { merge: true });
-    } catch (error) {
-      this.onError(error);
-    }
-  };
+  // this.logInBtn.textContent = userData.name;
+
+  //   addDataFromLocalToCloud = async (key, ref) => {
+  //     const data = localStorageService.loadFromLocalStorage(key);
+  //     try {
+  //       await setDoc(ref, data);
+  //     } catch (error) {
+  //       this.onError(error);
+  //     }
+  //   };
+
+  //   readDataFromDbToLocal = async (key, ref) => {
+  //     try {
+  //       const snapshot = await getDoc(ref);
+  //       if (snapshot.exists()) {
+  //         const userData = snapshot.data();
+  //         localStorageService.saveToLocalStorage(key, userData);
+  //         this.logInBtn.textContent = userData.name;
+  //       }
+  //     } catch (error) {
+  //       this.onError(error);
+  //     }
+  //   };
+
+  //   addShoppingListToDb = async data => {
+  //     const user = localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+  //     if (!user) {
+  //       return;
+  //     }
+  //     const docRef = doc(this.db, `users/${user.uid}`);
+  //     const userData = { shoppingList: data };
+  //     try {
+  //       await setDoc(docRef, userData, { merge: true });
+  //     } catch (error) {
+  //       this.onError(error);
+  //     }
+  //   };
 }
