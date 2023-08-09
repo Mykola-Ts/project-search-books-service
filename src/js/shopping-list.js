@@ -1,7 +1,7 @@
 // import * as firebaseService from './firebase-services';
 // import * as header from './header';
 // import * as mobileMenu from './mobile-menu';
-// import * as supportUkraine from './support-ukraine';
+import * as supportUkraine from './support-ukraine';
 // import * as pagination from './pagination';
 // import * as loader from './loader';
 // import * as scrollUp from './scroll-up';

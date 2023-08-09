@@ -213,6 +213,7 @@ gap: 40px;
 .book-img-wrap-item {
   position: relative;
 
+  border-radius: 8px;
   margin-bottom: 14px;
 
   overflow: hidden;
