@@ -17,25 +17,31 @@ function onClickNext() {
     if (refs.slider.clientHeight === 188) {
         if (sliderCount >= refs.sliderItem.length - 4) {
             addDisplayNone(refs.btnNext);
-            addDisplayBlock( refs.btnPrev);
+            addDisplayBlock(refs.btnPrev);
+            refs.btnNext.removeEventListener('click', onClickNext);
+            refs.btnPrev.addEventListener('click', onClickPrev);
     }  
     }
     else if (refs.slider.clientHeight === 292) {
         if (sliderCount >= refs.sliderItem.length - 6) {
             addDisplayNone(refs.btnNext);
             addDisplayBlock(refs.btnPrev);
+            refs.btnNext.removeEventListener('click', onClickNext);
+            refs.btnPrev.addEventListener('click', onClickPrev);
+
     }  
     }
-}
-
-refs.btnPrev.addEventListener('click', onClickPrev);
+} +
+    
 
 function onClickPrev() {
     sliderCount -= 1;
     rollSlider();
-     if (sliderCount === 0) {
-         addDisplayBlock(refs.btnNext);
-         addDisplayNone(refs.btnPrev);
+    if (sliderCount === 0) {
+        addDisplayBlock(refs.btnNext);
+        addDisplayNone(refs.btnPrev);
+        refs.btnPrev.removeEventListener('click', onClickPrev);
+        refs.btnNext.addEventListener('click', onClickNext);
     }
 }
 
@@ -50,3 +56,4 @@ function addDisplayBlock(el) {
 function addDisplayNone(el) {
     el.style.display = 'none';
 }
+
