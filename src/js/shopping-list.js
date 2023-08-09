@@ -17,10 +17,6 @@ document.addEventListener("DOMContentLoaded", createShoppingList);
     ".header-nav-link-shoppinglist"
   );
 
-  headerNavLinkHome.classList.remove("current-page");
-  headerNavLinkShoppingList.classList.add("current-page");
-
-
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
 // function getBooks() {
@@ -59,9 +55,12 @@ function dataChangeLocalstorage(key, value) {
 // Рабочий код
 
 function createShoppingList(e) {
-  if(e.target.location.pathname !== '/shopping-list.html'){
+  if(!e.target.location.pathname.includes('/shopping-list.html')){
     return
   }
+
+  headerNavLinkHome.classList.remove("current-page");
+  headerNavLinkShoppingList.classList.add("current-page");
 
   const shoppinglistContainer = document.querySelector(
     ".shopping-list-container"
