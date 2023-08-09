@@ -5,6 +5,7 @@ import * as supportUkraine from './support-ukraine';
 import * as pagination from './pagination';
 import * as loader from './loader';
 import * as scrollUp from './scroll-up';
+import { doc } from 'firebase/firestore';
 
 // SHOPPING LIST
 // import FirebaseService from './firebase-services';
@@ -17,6 +18,14 @@ const shoppinglistContainer = document.querySelector(
 );
 
 const btnDeletebook = document.querySelector('.shopping-list');
+
+if(document.location.href === "http://localhost:5173/shopping-list.html"){
+  const headerNavLinkHome = document.querySelector('.header-nav-link-home');
+  const headerNavLinkShoppingList = document.querySelector('.header-nav-link-shoppinglist');
+
+  headerNavLinkHome.classList.remove('current-page');
+  headerNavLinkShoppingList.classList.add('current-page')
+}
 
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
