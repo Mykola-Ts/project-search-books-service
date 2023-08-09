@@ -8,71 +8,57 @@
         <use href="./img/header-icon.svg#bookshelf" class="logo-text"></use>
       </svg>
     </a>
+    <div class="toolbar">
+      <div class="theme-switch-control">
+        <input
+          class="theme-switch-toggle"
+          type="checkbox"
+          name="theme"
+          id="theme-switch-toggle"
+          aria-label="Chenge theme"
+        />
+        <label
+          aria-hidden="true"
+          class="theme-switch-track"
+          for="theme-switch-toggle"
+        >
+        </label>
+        <div aria-hidden="true" class="theme-switch-marker"></div>
+      </div>
+      <button
+      class="mobile-menu-btn js-open-menu"
+      data-menu-button
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg class="mobile-menu-btn-icon" width="28" height="28">
+        <use href="./img/header-icon.svg#menu-open" class="menu-open"></use>
+        <use href="./img/header-icon.svg#x-close" class="menu-close"></use>
+      </svg>
+    </button>
+    </div>
 
-    <ul class="header-nav-container">
+    <nav class="header-nav-menu">
+      <ul class="header-nav-container">
       <li class="header-nav-list">
-        <a href="./index.html" class="header-nav-link header-nav-link-home  current-page link"
+        <a href="./index.html" class="header-nav-link header-nav-link-home current-page link"
           >home</a
         >
       </li>
       <li class="header-nav-list">
-        <a href="./shopping-list.html" class="header-nav-link link header-nav-link-shoppinglist"
+        <a href="./shopping-list.html" class="header-nav-link link shoppinglist header-nav-link-shoppinglist"
           >Shopping list
           <svg class="shopping-list-bag" width="20" height="20">
             <use href="./img/header-icon.svg#bag" class="bag"></use>
+            <use href="./img/mobile-menu-icon.svg#icon-bag-white" class="white-bag"></use>
           </svg>
         </a>
       </li>
     </ul>
 
     <div class="header-btn-container">
-      <div class="toolbar">
-
-        <div class="theme-switch-control">
-          <input
-            class="theme-switch-toggle"
-            type="checkbox"
-            name="theme"
-            id="theme-switch-toggle"
-            aria-label="Chenge theme"
-          />
-          <label
-            aria-hidden="true"
-            class="theme-switch-track"
-            for="theme-switch-toggle"
-          >
-          </label>
-          <div aria-hidden="true" class="theme-switch-marker"></div>
-        </div>
-      </div>
-
-      <button
-        class="mobile-menu-btn js-open-menu"
-        data-menu-button
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <svg class="mobile-menu-btn-icon" width="28" height="28">
-          <use href="./img/header-icon.svg#menu-open" class="menu-open"></use>
-          <use href="./img/header-icon.svg#x-close" class="menu-close"></use>
-        </svg>
-      </button>
-      <div class="mobile-menu_container" id="mobile-menu">
-        <div class="container">
-          <button type="button" class="mobile-menu-sing-up">
-            Sigh Up
-            <svg class="arrow-right-icon" width="20" height="20">
-              <use
-                href="./img/header-icon.svg#arrow-right"
-                class="arrow-right"
-              ></use>
-            </svg>
-          </button>
-        </div>
-      </div>
-
       <div class="log-in-out-container">
-
+        
         <button
           data-login-button
           type="button"
@@ -98,8 +84,13 @@
           </svg>
         </button>
 
-
       </div>
     </div>
+  </nav>
   </div>
 </header>
+
+
+
+
+
