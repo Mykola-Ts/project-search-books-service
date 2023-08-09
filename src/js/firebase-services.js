@@ -17,25 +17,16 @@ import {
 } from 'firebase/firestore';
 
 import LocalStorageService from './localstorage-services';
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyD73oYitNm6HMY6U12Qvku2isqF0ZeRwg0',
-  authDomain: 'search-book-service.firebaseapp.com',
-  projectId: 'search-book-service',
-  storageBucket: 'search-book-service.appspot.com',
-  messagingSenderId: '941650109651',
-  appId: '1:941650109651:web:2653c587a2d01f772fa026',
-};
+import { showAuthModal, closeAuthModal } from './authorization-window';
+import { dataChangeLocalstorage } from './shopping-list';
 
 const LOCAL_USER_KEY = 'currentUser';
-const LOKAL_THEME_KEY = 'currentTheme';
-const LOKAL_DATA_KEY = 'book-list';
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
-const db = getFirestore();
+const LOCAL_THEME_KEY = 'currentTheme';
+const LOCAL_DATA_KEY = 'shoppingList';
+// const firebaseApp = initializeApp(firebaseConfig);
+// const auth = getAuth(firebaseApp);
+// const db = getFirestore();
 const localStorageService = new LocalStorageService();
-
-const userCollectionRef = collection(db, 'users');
 
 export default class FirebaseService {
   constructor({
@@ -52,121 +43,178 @@ export default class FirebaseService {
     this.logInBtn = logInBtn;
     this.logOutBtn = logOutBtn;
     this.authBtn = authBtn;
-    this.signUpLink = signUpLink;
-    this.signInLink = signInLink;
-    this.modal = modal;
-    this.closeBtn = closeBtn;
     this.form = form;
     this.input = input;
-
-    this.createUser = this.createUser.bind(this);
-    this.signInUser = this.signInUser.bind(this);
-    this.onSignOut = this.onSignOut.bind(this);
-    this.monitorAuthState = this.monitorAuthState.bind(this);
-    this.showAuthModal = this.showAuthModal.bind(this);
-    this.closeAuthModal = this.closeAuthModal.bind(this);
-    this.onError = this.monitorAuthState.bind(this);
   }
 
-  async createUser(email, password, name) {
+  firebaseConfig = {
+    apiKey: 'AIzaSyD73oYitNm6HMY6U12Qvku2isqF0ZeRwg0',
+    authDomain: 'search-book-service.firebaseapp.com',
+    projectId: 'search-book-service',
+    storageBucket: 'search-book-service.appspot.com',
+    messagingSenderId: '941650109651',
+    appId: '1:941650109651:web:2653c587a2d01f772fa026',
+  };
+
+  firebaseApp = initializeApp(this.firebaseConfig);
+  auth = getAuth(this.firebaseApp);
+  db = getFirestore();
+
+  userCollectionRef = collection(this.db, 'users');
+  // themeCollectionRef = collection(this.userCollectionRef, 'theme');
+  // booksCollectionRef = collection(this.userCollectionRef, 'books');
+
+  createUser = async (email, password, name) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
-        auth,
+        this.auth,
         email,
         password
       );
-      const uid = userCredential.user.uid;
       this.logInBtn.textContent = name;
-      const userData = { uid, name, email };
+      const uid = userCredential.user.uid;
+      const userData = {
+        uid,
+        name,
+        email,
+      };
+      const currentTheme = localStorage.getItem(LOCAL_THEME_KEY);
+      // const userRef = doc(this.db, `users/${uid}`);
+      // await setDoc(userRef, userData);
+      // const themeRef = doc(this.db, `themes/${uid}`);
+      // await setDoc(themeRef, currentTheme);
+
+      this.addDataToDb('currentUser', 'users', userData);
+      this.addDataToDb('currentTheme', 'themes', currentTheme);
+
       localStorageService.saveToLocalStorage(LOCAL_USER_KEY, userData);
-      this.closeAuthModal();
-      await setDoc(doc(db, `users/${uid}`), userData, { merge: true });
+      // closeAuthModal();
     } catch (error) {
       this.onError(error);
     }
-  }
+  };
 
-  async signInUser(email, password) {
+  signInUser = async (email, password) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
-        auth,
+        this.auth,
         email,
         password
       );
-      const uid = userCredential.user.uid;
-      const docSnap = await getDoc(doc(db, `users/${uid}`));
-      localStorageService.saveToLocalStorage(LOCAL_USER_KEY, docSnap.data());
-      this.logInBtn.textContent = docSnap.data().name;
-      this.closeAuthModal();
+      this.readDataFromDb(LOCAL_USER_KEY, 'users');
+      this.readDataFromDb(LOCAL_THEME_KEY, 'themes');
+      this.readDataFromDb(LOCAL_DATA_KEY, 'books');
+      // this.readDataFromDbToLocal(
+      //   LOCAL_USER_KEY,
+      //   doc(this.db, `users/${userCredential.user.uid}`)
+      // );
     } catch (error) {
       this.onError(error);
     }
-  }
+  };
 
-  async onSignOut() {
-    console.log(auth);
-    console.log(this.logOutBtn);
+  onSignOut = async () => {
     try {
-      await signOut(auth);
+      await signOut(this.auth);
       this.logOutBtn.classList.add('is-hidden');
       this.logInBtn.textContent = 'Sign up';
-      this.closeAuthModal();
+      closeAuthModal();
     } catch (error) {
       this.onError(error);
     }
-  }
+  };
 
-  monitorAuthState() {
-    const disableAuthListener = onAuthStateChanged(auth, user => {
-      if (user) {
-        this.logOutBtn.classList.toggle('is-hidden');
-      } else {
-        localStorageService.removeFromLocalStorage(LOCAL_USER_KEY);
-        this.showAuthModal();
+  disableAuthListener = onAuthStateChanged(this.auth, async user => {
+    if (user) {
+      // this.logOutBtn.classList.toggle('is-hidden');
+      closeAuthModal();
+      try {
+        console.log('after auth:', this.auth.currentUser.uid);
+      } catch (error) {
+        this.onError(error);
       }
-    });
-  }
+    } else {
+      localStorageService.removeFromLocalStorage(LOCAL_USER_KEY);
+      showAuthModal();
+    }
+  });
 
-  showAuthModal() {
-    this.modal.classList.remove('is-hidden');
-  }
+  isUserAuthorized = () => {
+    return this.auth.currentUser ? true : false;
+  };
 
-  closeAuthModal() {
-    this.modal.classList.add('is-hidden');
-  }
-
-  onError(error) {
-    console.log(error.code);
+  onError = error => {
+    console.log(error);
     console.log(error.message);
-  }
+  };
 
-  //   const userCollectionRef = collection(db, 'users');
-
-  async addData(data) {
-    const docData = loadFromLocalStorage(LOCAL_USER_KEY);
-    console.log(docData);
-    try {
-      await setDoc(doc(db, `users/${docData.uid}`), docData, { merge: true });
-    } catch (error) {
-      onError(error);
+  addDataToDb = async (key, collectionName, data) => {
+    const user =
+      this.auth.currentUser ||
+      localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+    if (!user) {
+      return;
     }
-  }
-
-  async addNewDocument(data) {
+    data = data || localStorageService.loadFromLocalStorage(key);
+    const docRef = doc(this.db, `${collectionName}/${user.uid}`);
     try {
-      const newDoc = await addDoc(doc(db, `users/${docData.uid}`), docData, {
-        merge: true,
-      });
+      await setDoc(docRef, data);
     } catch (error) {
-      onError(error);
+      this.onError(error);
     }
-  }
+  };
 
-  async readData(params) {
-    const querySnapshot = await getDocs(collection(db, 'users'));
-    querySnapshot.forEach(doc => {
-      console.log(`${doc.id} => ${doc.data()}`);
-      console.log(JSON.stringify(doc.data()));
-    });
-  }
+  readDataFromDb = async (key, collectionName) => {
+    const user =
+      this.auth.currentUser ||
+      localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+    const docRef = doc(this.db, `${collectionName}/${user.uid}`);
+    try {
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        localStorageService.saveToLocalStorage(key, data);
+      }
+    } catch (error) {
+      this.onError(error);
+    }
+  };
+
+  // this.logInBtn.textContent = userData.name;
+
+  addDataFromLocalToCloud = async (key, ref) => {
+    const data = localStorageService.loadFromLocalStorage(key);
+    try {
+      await setDoc(ref, data);
+    } catch (error) {
+      this.onError(error);
+    }
+  };
+
+  readDataFromDbToLocal = async (key, ref) => {
+    try {
+      const snapshot = await getDoc(ref);
+      if (snapshot.exists()) {
+        const userData = snapshot.data();
+        localStorageService.saveToLocalStorage(key, userData);
+        this.logInBtn.textContent = userData.name;
+      }
+    } catch (error) {
+      this.onError(error);
+    }
+  };
+
+  addShoppingListToDb = async data => {
+    const user = localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+    if (!user) {
+      return;
+    }
+    const docRef = doc(this.db, `users/${user.uid}`);
+    const userData = { shoppingList: data };
+    try {
+      await setDoc(docRef, userData, { merge: true });
+    } catch (error) {
+      this.onError(error);
+    }
+  };
 }

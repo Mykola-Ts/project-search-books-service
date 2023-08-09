@@ -1,4 +1,7 @@
 // SHOPPING LIST
+import FirebaseService from './firebase-services';
+const firebaseService = new FirebaseService();
+
 const shoppinglist = document.querySelector(`.shopping-list`);
 const shoppinglistContainer = document.querySelector(
   `.shopping-list-container`
@@ -29,6 +32,7 @@ const btnDeletebook = document.querySelector(`.shopping-list`);
 function dataChangeLocalstorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
+    firebaseService.addDataToDb(key, 'books', value);
     localStorage.setItem(key, serializedState);
   } catch (error) {
     console.error("Set state error: ", error.message);
@@ -61,7 +65,7 @@ function createShoppingList(e) {
 }
 
 function getDataLocalStorage() {
-  const savedData = localStorage.getItem(`project`);
+  const savedData = localStorage.getItem(`shoppingList`);
   let parsedData = [];
   return (parsedData = JSON.parse(savedData));
 }
@@ -160,7 +164,9 @@ function onDeleteBook(e) {
 
   console.log(data);
 
-  dataChangeLocalstorage(`project`, data);
+  dataChangeLocalstorage(`shoppingList`, data);
 
   createMarkup(data);
 }
+
+export { dataChangeLocalstorage };
