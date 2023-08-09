@@ -1,20 +1,17 @@
 // import * as firebaseService from './firebase-services';
-// import * as header from './header';
-// import * as mobileMenu from './mobile-menu';
+import * as header from './header';
+import * as mobileMenu from './mobile-menu';
 import * as supportUkraine from './support-ukraine';
 // import * as pagination from './pagination';
-// import * as loader from './loader';
-// import * as scrollUp from './scroll-up';
+import * as loader from './loader';
+import * as scrollUp from './scroll-up';
 
 // SHOPPING LIST
 
 // const shoppinglist = document.querySelector('.shopping-list');
-const shoppinglistContainer = document.querySelector(
-  ".shopping-list-container"
-);
-const btnDeletebook = document.querySelector(".shopping-list");
 
-if (document.location.href === "http://localhost:5173/shopping-list.html") {
+document.addEventListener("DOMContentLoaded", createShoppingList);
+
   const headerNavLinkHome = document.querySelector(".header-nav-link-home");
   const headerNavLinkShoppingList = document.querySelector(
     ".header-nav-link-shoppinglist"
@@ -22,7 +19,7 @@ if (document.location.href === "http://localhost:5173/shopping-list.html") {
 
   headerNavLinkHome.classList.remove("current-page");
   headerNavLinkShoppingList.classList.add("current-page");
-}
+
 
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
@@ -61,12 +58,15 @@ function dataChangeLocalstorage(key, value) {
 
 // Рабочий код
 
-if (document.location.href === "http://localhost:5173/shopping-list.html") {
-  document.addEventListener("DOMContentLoaded", createShoppingList);
-  btnDeletebook.addEventListener(`click`, onDeleteBook);
-}
-
 function createShoppingList(e) {
+  if(e.target.location.pathname !== '/shopping-list.html'){
+    return
+  }
+
+  const shoppinglistContainer = document.querySelector(
+    ".shopping-list-container"
+  );
+
   // console.log("DOM fully loaded and parsed");
   e.preventDefault();
   // if (!e.target.classList.contains(`shoppinglist`)) {
@@ -78,6 +78,12 @@ function createShoppingList(e) {
   let data = getDataLocalStorage();
   // console.log(data);
   createMarkup(data);
+
+  const btnDeletebook = document.querySelector(".shopping-list");
+
+  if(btnDeletebook){
+    btnDeletebook.addEventListener(`click`, onDeleteBook);
+  }
 }
 
 function getDataLocalStorage() {
@@ -87,6 +93,9 @@ function getDataLocalStorage() {
 }
 
 function createMarkup(data) {
+  const shoppinglistContainer = document.querySelector(
+    ".shopping-list-container"
+  );
   // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
   shoppinglistContainer.innerHTML = `
     <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
@@ -147,14 +156,6 @@ function createMarkup(data) {
         </div>
         `;
   }
-}
-
-// if(document.location.href === "http://localhost:5173/shopping-list.html"){
-//   btnDeletebook.addEventListener(`click`, onDeleteBook);
-// }
-
-if (document.location.href === "http://localhost:5173/shopping-list.html") {
-  btnDeletebook.addEventListener(`click`, onDeleteBook);
 }
 
 function onDeleteBook(e) {

@@ -114,6 +114,8 @@ async function onClickCategory(evt) {
       .catch(error => {
         console.error('Error request data:', error);
       });
+
+      return;
   }
   if (evt.target.classList.contains('all-category-link')) {
     selectors.booksListWrap.classList.remove('visually-hidden');
@@ -129,6 +131,8 @@ async function onClickCategory(evt) {
       behavior: 'smooth',
       block: 'start',
     });
+    
+    return;
   }
 
   if (
