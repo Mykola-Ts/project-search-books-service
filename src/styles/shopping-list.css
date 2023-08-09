@@ -10,7 +10,6 @@
 }
 
 .shopping-list-title-part1 {
-    color: var(--text-black-color);
     font-size: 32px;
     font-weight: 700;
     line-height: 1.19;/* 118.75% */
@@ -197,6 +196,10 @@
     line-height: 1.29;/* 128.571% */
     letter-spacing: -0.28px;
     
+}
+
+body.dark-theme .shopping-list-text-empty {
+    color: rgba(255, 255, 255, 0.60);
 }
 
 .shopping-list-empty-img {

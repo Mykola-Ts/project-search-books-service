@@ -47,6 +47,14 @@ display: block;
   color: var(--primary-color);
 }
 
+body.dark-theme .category-list-link:is(:hover, :focus){
+  color: var(--yellow-color);
+}
+
+body.dark-theme .current-category{
+  color: var(--yellow-color);
+}
+
 @media screen and (min-width: 768px){
   .category-list-link {
     font-size: 18px;
@@ -98,7 +106,7 @@ gap: 40px;
     gap: 86px;
     }
 
-    .books-list-wrap {
+    .books-list-wrap, .open-category-books-list {
       width: 996px;
     }
 }
@@ -123,10 +131,6 @@ gap: 40px;
 
 .best-sellers-title-item, .open-category-title-item {
   color: var(--primary-color);
-}
-
-body.dark-theme .open-category-title-item {
-  color: var(--yellow-color);
 }
 
 .books-list-by-category {

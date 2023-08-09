@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { showLoader } from './loader';
 import { hideLoader } from './loader';
+import { openBookModal } from './modal-window';
 
 const API_URL = 'https://books-backend.p.goit.global/books';
 
@@ -14,6 +15,7 @@ const selectors = {
   bestSellers: document.querySelector('.best-sellers'),
   loader: document.querySelector('.loader-wrap'),
   booksListWrap: document.querySelector('.books-list-wrap'),
+  openCategoryBooksList: document.querySelector('.open-category-books-list'),
 };
 const categoriesBook = [];
 
@@ -22,62 +24,116 @@ selectors.home.style.topMargin = getTopMargin(selectors.home);
 showLoader(selectors.loader);
 selectors.loader.classList.add('common-loader');
 
-fetchData('/category-list')
-  .then(data => {
-    const markupCategoryList = `<li class="category-list-item all-categories-list-item current-category"><a href="#" class="category-list-link all-category-link link" data-name="top-books">All categories</a></li>${createCategoryListMarkup(
-      data
-    )}`;
+createCategories();
 
-    selectors.categoryList.innerHTML = markupCategoryList;
+function createCategories() {
+  fetchData('/category-list')
+    .then(data => {
+      const markupCategoryList = `<li class="category-list-item all-categories-list-item current-category"><a href="#" class="category-list-link all-category-link link" data-name="top-books">All categories</a></li>${createCategoryListMarkup(
+        data
+      )}`;
 
-    selectors.allCategoryLink = document.querySelector('.all-category-link');
+      selectors.categoryList.innerHTML = markupCategoryList;
 
-    selectors.categoryList.addEventListener('click', onClickCategory);
+      selectors.allCategoryLink = document.querySelector('.all-category-link');
 
-    data.map(({ list_name }) => {
-      categoriesBook.push(list_name);
-    });
+      selectors.categoryList.addEventListener('click', onClickCategory);
 
-    fetchData('/top-books')
-      .then(data => {
-        const markupBestSellersList = createBookMarkup(
-          data.map(({ books }) => books[0]).slice(0, 5)
-        );
+      data.map(({ list_name }) => {
+        categoriesBook.push(list_name);
+      });
 
-        selectors.bestSellers.innerHTML = `
+      fetchData('/top-books')
+        .then(data => {
+          const markupBestSellersList = createBookMarkup(
+            data.map(({ books }) => books[0]).slice(0, 5)
+          );
+
+          selectors.bestSellers.innerHTML = `
         <h2 class="best-sellers-title">Best Sellers <span class="best-sellers-title-item">Books</span></h2>
         <ul class="best-sellers-list books-list-by-category">${markupBestSellersList}</ul>
         <button type="button" class="see-more-btn see-more-btn-best-sellers">SEE MORE</button>`;
-      })
-      .catch(error => {
-        console.error('Error request data:', error);
-      });
+        })
+        .catch(error => {
+          console.error('Error request data:', error);
+        });
 
-    fetchBooksByCategory(categoriesBook)
-      .then(data => {
-        const markup = createCategoryMarkup(data);
+      fetchBooksByCategory(categoriesBook)
+        .then(data => {
+          const markup = createCategoryMarkup(data);
 
-        const booksList = document.querySelector('.books-list');
-        booksList.innerHTML = markup;
+          const booksList = document.querySelector('.books-list');
+          booksList.innerHTML = markup;
 
-        selectors.booksListWrap.addEventListener('click', onClickCategory);
-      })
-      .catch(error => {
-        console.error('Error request data:', error);
-      });
-  })
-  .catch(error => {
-    console.error('Error request data:', error);
-  })
-  .finally(() => {
-    hideLoader(selectors.loader);
-    selectors.loader.classList.remove('common-loader');
-    selectors.booksListWrap.classList.remove('visually-hidden');
-  });
+          selectors.booksListWrap.addEventListener('click', onClickCategory);
+        })
+        .catch(error => {
+          console.error('Error request data:', error);
+        });
+    })
+    .catch(error => {
+      console.error('Error request data:', error);
+    })
+    .finally(() => {
+      hideLoader(selectors.loader);
+      selectors.loader.classList.remove('common-loader');
+      selectors.booksListWrap.classList.remove('visually-hidden');
+    });
+}
 
 async function onClickCategory(evt) {
+  if (evt.target.classList.contains('see-more-btn-best-sellers')) {
+    fetchData('/top-books')
+      .then(data => {
+
+        let markup = '';
+
+        data.map(({ books }) => (markup += createBookMarkup(books.slice(0, 3))));
+
+        selectors.openCategoryBooksList.innerHTML = `<h2 class="open-category-title">Best Sellers<span class="open-category-title-item"> Books</span></h2><ul class="open-category-list books-list-by-category">${markup}</ul>`;
+
+        const booksListItem = document.querySelectorAll('.books-list-item');
+        booksListItem.forEach(item =>
+          item.classList.remove('books-list-item-category')
+        );
+
+        document
+          .querySelectorAll('.books-list-item')
+          .forEach(item => item.classList.remove('books-list-item-category'));
+
+        selectors.booksListWrap.classList.add('visually-hidden');
+        selectors.openCategoryBooksList.classList.remove('visually-hidden');
+
+        selectors.openCategoryBooksList.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+
+        selectors.openCategoryBooksList.addEventListener('click', openBookModal);
+      })
+      .catch(error => {
+        console.error('Error request data:', error);
+      });
+  }
+  if (evt.target.classList.contains('all-category-link')) {
+    selectors.booksListWrap.classList.remove('visually-hidden');
+    selectors.openCategoryBooksList.classList.add('visually-hidden');
+
+    changeCurrentCategory('top-books');
+
+    document
+      .querySelectorAll('.books-list-item')
+      .forEach(item => item.classList.add('books-list-item-category'));
+
+    selectors.booksListWrap.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+
   if (
-    !evt.target.classList.contains('category-list-link')&& !evt.target.classList.contains('see-more-btn') ||
+    (!evt.target.classList.contains('category-list-link') &&
+      !evt.target.classList.contains('see-more-btn')) ||
     evt.target.classList.contains('all-category-link') ||
     evt.target.classList.contains('see-more-btn-best-sellers')
   ) {
@@ -85,8 +141,7 @@ async function onClickCategory(evt) {
   }
 
   try {
-
-    changeCurrentCategory(evt.target.dataset.name)
+    changeCurrentCategory(evt.target.dataset.name);
 
     const data = await fetchData(
       `/category?category=${evt.target.dataset.name}`
@@ -106,30 +161,37 @@ async function onClickCategory(evt) {
         .join(' ');
     }
 
-    selectors.booksListWrap.innerHTML = `<h2 class="open-category-title">${categoryTitle}<span class="open-category-title-item"> ${categoryTitleItem}</span></h2><ul class="open-category-list books-list-by-category">${markup}</ul>`;
+    selectors.openCategoryBooksList.innerHTML = `<h2 class="open-category-title">${categoryTitle}<span class="open-category-title-item"> ${categoryTitleItem}</span></h2><ul class="open-category-list books-list-by-category">${markup}</ul>`;
 
     const booksListItem = document.querySelectorAll('.books-list-item');
     booksListItem.forEach(item =>
       item.classList.remove('books-list-item-category')
     );
 
-    selectors.booksListWrap.scrollIntoView({
+    selectors.booksListWrap.classList.add('visually-hidden');
+    selectors.openCategoryBooksList.classList.remove('visually-hidden');
+
+    selectors.openCategoryBooksList.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
     });
+
+    selectors.openCategoryBooksList.addEventListener('click', openBookModal);
   } catch (error) {
     console.error('Error request data:', error);
   }
 }
 
-function changeCurrentCategory(datasetName){
-  if(document.querySelector('.current-category')){
+function changeCurrentCategory(datasetName) {
+  if (document.querySelector('.current-category')) {
     const currentCategory = document.querySelector('.current-category');
-    
+
     currentCategory.classList.remove('current-category');
   }
 
-  const changeCurrentCategory = document.querySelector(`[data-name="${datasetName}"]`)
+  const changeCurrentCategory = document.querySelector(
+    `[data-name="${datasetName}"]`
+  );
   changeCurrentCategory.classList.add('current-category');
 }
 
@@ -154,7 +216,9 @@ function createCategoryMarkup(arr) {
     <ul class="books-list-by-category">
     ${createBookMarkup(value.slice(0, 5))}
     </ul>
-    <button type="button" class="see-more-btn" data-name="${categoriesBook[idCategory]}">SEE MORE</button>
+    <button type="button" class="see-more-btn" data-name="${
+      categoriesBook[idCategory]
+    }">SEE MORE</button>
     </li>`;
 
       idCategory += 1;
@@ -226,9 +290,6 @@ async function fetchData(endpoint) {
 
   return response.json();
 }
-
-
-
 
 // // All categories
 // const API_URL = 'https://books-backend.p.goit.global/books';

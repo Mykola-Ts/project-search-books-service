@@ -15,6 +15,14 @@ const shoppinglistContainer = document.querySelector(
 
 const btnDeletebook = document.querySelector('.shopping-list');
 
+if(document.location.href === "http://localhost:5173/shopping-list.html"){
+  const headerNavLinkHome = document.querySelector('.header-nav-link-home');
+  const headerNavLinkShoppingList = document.querySelector('.header-nav-link-shoppinglist');
+
+  headerNavLinkHome.classList.remove('current-page');
+  headerNavLinkShoppingList.classList.add('current-page')
+}
+
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
 // function getBooks() {
