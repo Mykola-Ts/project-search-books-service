@@ -14,7 +14,6 @@
 @media screen and (max-width: 767px) {
   .header {
     position: fixed;
-    
   }
 
   .header::before {
@@ -28,19 +27,23 @@
     background-color: var(--white-color);
     border-radius: 0px 0px 7px 7px;
     border: 1.5px solid var(--text-black-color);
-    
-    
   }
-  .header.dark-theme::before{
+  body.dark-theme .header::before {
     content: '';
-    background-color:var(--dark-theme-color);
-}
-.mobile-menu-btn .menu-close .dark-theme{
-  fill: var(--white-color);
-}
-.mobile-menu-btn .light-theme{
-  fill: var(--text-black-color);
-}
+    background-color: var(--dark-theme-color);
+    border: 1.5px solid var(--white-color);
+  }
+
+  body.dark-theme .mobile-menu-btn.js-open-menu.is-open .menu-close {
+    fill: var(--white-color);
+  }
+
+  body.dark-theme
+    .mobile-menu-btn.js-open-menu.is-open:is(:hover, :focus, :active)
+    .menu-close {
+    fill: var(--primary-color);
+  }
+
   .logo-link {
     position: relative;
     z-index: 5;
@@ -64,7 +67,7 @@
     background-image: url(../img/mob-menu-img.png),
       radial-gradient(
         189.32% 190.93% at 59.76% -23.42%,
-       var(--primary-color) 18.03%,
+        var(--primary-color) 18.03%,
         var(--white-color) 100%
       );
     background-repeat: no-repeat;
@@ -80,14 +83,12 @@
 
   .header-nav-menu.is-open .header-nav-container {
     display: flex;
-    
   }
 
   .header-nav-menu.hidden {
-      transition: top;
-      display: none;
-    }
-  
+    transition: top;
+    display: none;
+  }
 
   .header-nav-container {
     gap: 17px;
@@ -105,18 +106,17 @@
   .header-nav-link:hover,
   .header-nav-link:focus {
     color: var(--text-black-color);
-    
   }
   .header-nav-link:hover .shopping-list-bag .bag,
-  .header-nav-link:focus .shopping-list-bag .bag{
+  .header-nav-link:focus .shopping-list-bag .bag {
     display: block;
   }
 
   .header-nav-link:hover .shopping-list-bag .white-bag,
-  .header-nav-link:focus .shopping-list-bag .white-bag{
+  .header-nav-link:focus .shopping-list-bag .white-bag {
     display: none;
   }
-  .header-nav-link-shoppinglist{
+  .header-nav-link-shoppinglist {
     display: flex;
   }
   .shopping-list-bag .bag {
@@ -127,7 +127,7 @@
     display: flex;
     justify-content: space-between;
     width: 184px;
-height: 48px;
+    height: 48px;
     position: absolute;
     top: 84px;
     left: 20px;
@@ -138,7 +138,6 @@ height: 48px;
     bottom: 70px;
     left: 20px;
   }
-
 }
 @media screen and (min-width: 768px) {
   .white-bag {
