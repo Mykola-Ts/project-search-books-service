@@ -2,11 +2,11 @@
 
 // const shoppinglist = document.querySelector('.shopping-list');
 
-document.addEventListener("DOMContentLoaded", createShoppingList);
+document.addEventListener('DOMContentLoaded', createShoppingList);
 
-const headerNavLinkHome = document.querySelector(".header-nav-link-home");
+const headerNavLinkHome = document.querySelector('.header-nav-link-home');
 const headerNavLinkShoppingList = document.querySelector(
-  ".header-nav-link-shoppinglist"
+  '.header-nav-link-shoppinglist'
 );
 
 // Для тестирования - получение и загрузка данных в localStorage.
@@ -35,7 +35,7 @@ function dataChangeLocalstorage(key, value) {
     const serializedState = JSON.stringify(value);
     localStorage.setItem(key, serializedState);
   } catch (error) {
-    console.error("Set state error: ", error.message);
+    console.error('Set state error: ', error.message);
   }
 }
 
@@ -46,15 +46,15 @@ function dataChangeLocalstorage(key, value) {
 // Рабочий код
 
 function createShoppingList(e) {
-  if (!e.target.location.pathname.includes("/shopping-list.html")) {
+  if (!e.target.location.pathname.includes('/shopping-list.html')) {
     return;
   }
 
-  headerNavLinkHome.classList.remove("current-page");
-  headerNavLinkShoppingList.classList.add("current-page");
+  headerNavLinkHome.classList.remove('current-page');
+  headerNavLinkShoppingList.classList.add('current-page');
 
   const shoppinglistContainer = document.querySelector(
-    ".shopping-list-container"
+    '.shopping-list-container'
   );
 
   e.preventDefault();
@@ -68,7 +68,7 @@ function createShoppingList(e) {
   // console.log(data);
   createMarkup(data);
 
-  const btnDeletebook = document.querySelector(".shopping-list");
+  const btnDeletebook = document.querySelector('.shopping-list');
 
   if (btnDeletebook) {
     btnDeletebook.addEventListener(`click`, onDeleteBook);
@@ -83,7 +83,7 @@ function getDataLocalStorage() {
 
 function createMarkup(data) {
   const shoppinglistContainer = document.querySelector(
-    ".shopping-list-container"
+    '.shopping-list-container'
   );
   // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
   shoppinglistContainer.innerHTML = `
@@ -95,7 +95,7 @@ function createMarkup(data) {
   if (data.length != 0) {
     shoppinglistContainer.innerHTML += data
       .map(
-        (el) => `
+        el => `
     <div class="shopping-list-card" data-title="${el.bookName}">
     
     <img class="shopping-list-card-img" src="${el.bookImage}" alt="book image" />
@@ -154,19 +154,16 @@ function onDeleteBook(e) {
   }
 
   const deleteBook = e.target.closest(`.shopping-list-card`);
-  
+
   const deleteBookName = deleteBook.dataset.title;
 
   let data = getDataLocalStorage();
- 
 
   const deleteBookStorage = data.find(
     ({ bookName }) => bookName === deleteBookName
   );
 
-  const indexDeleteBook = data.findIndex(
-    (el) => el.bookName === deleteBookName
-  );
+  const indexDeleteBook = data.findIndex(el => el.bookName === deleteBookName);
 
   console.log(indexDeleteBook);
 

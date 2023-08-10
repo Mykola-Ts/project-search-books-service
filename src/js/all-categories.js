@@ -19,19 +19,20 @@ const selectors = {
 };
 const categoriesBook = [];
 
-
-document.addEventListener("DOMContentLoaded", createBookList);
+document.addEventListener('DOMContentLoaded', createBookList);
 
 function createBookList(evt) {
-  if (evt.target.location.pathname.includes("/index.html")) {
-    selectors.home.style.topMargin = getTopMargin(selectors.home);
-
-    showLoader(selectors.loader);
-    selectors.loader.classList.add('common-loader');
-
-    createCategories();
-    
+  if (evt.target.location.pathname.includes('/shopping-list.html')) {
+    return;
   }
+
+  selectors.home.style.topMargin = getTopMargin(selectors.home);
+
+  showLoader(selectors.loader);
+  
+  selectors.loader.classList.add('common-loader');
+
+  createCategories();
 }
 
 function createCategories() {
