@@ -1,11 +1,3 @@
-// import * as firebaseService from './firebase-services';
-import * as header from "./header";
-import * as mobileMenu from "./mobile-menu";
-import * as supportUkraine from "./support-ukraine";
-// import * as pagination from './pagination';
-import * as loader from "./loader";
-import * as scrollUp from "./scroll-up";
-
 // SHOPPING LIST
 
 // const shoppinglist = document.querySelector('.shopping-list');
@@ -65,7 +57,6 @@ function createShoppingList(e) {
     ".shopping-list-container"
   );
 
-  // console.log("DOM fully loaded and parsed");
   e.preventDefault();
   // if (!e.target.classList.contains(`shoppinglist`)) {
   //     console.log(`no delete`);
@@ -158,24 +149,20 @@ function createMarkup(data) {
 
 function onDeleteBook(e) {
   e.preventDefault();
-  console.log(e.target);
   if (!e.target.classList.contains(`icon-delete-button`)) {
-    console.log(`no delete`);
     return;
   }
-  console.log(` delete`);
 
   const deleteBook = e.target.closest(`.shopping-list-card`);
-  console.log(deleteBook);
+  
   const deleteBookName = deleteBook.dataset.title;
-  console.log(deleteBookName);
+
   let data = getDataLocalStorage();
-  console.log(data);
+ 
 
   const deleteBookStorage = data.find(
     ({ bookName }) => bookName === deleteBookName
   );
-  console.log(deleteBookStorage);
 
   const indexDeleteBook = data.findIndex(
     (el) => el.bookName === deleteBookName
@@ -184,8 +171,6 @@ function onDeleteBook(e) {
   console.log(indexDeleteBook);
 
   const newArray = data.splice(indexDeleteBook, 1);
-
-  console.log(data);
 
   dataChangeLocalstorage(`shoppingList`, data);
 
