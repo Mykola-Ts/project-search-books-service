@@ -153,7 +153,6 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
   transition: background-color var(--transition-duration)
     var(--transition-timing-function);
     min-width: 72px;
-    margin-left: 15px;
 }
 
 .header-btn-style {
