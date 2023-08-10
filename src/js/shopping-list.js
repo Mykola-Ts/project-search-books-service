@@ -14,27 +14,6 @@ const headerNavLinkShoppingList = document.querySelector(
   '.header-nav-link-shoppinglist'
 );
 
-// Для тестирования - получение и загрузка данных в localStorage.
-// После загрузки данных , нужно закоментировать.
-// function getBooks() {
-//     return fetch(`https://books-backend.p.goit.global/books/category?category=Series Books`)
-//         .then((response) => {
-//         if (!response.ok) {
-//         throw new Error(response.statusText)
-//         }
-//             const dataBook = response.json();
-//         return dataBook;
-//         })
-// };
-// getBooks();
-// function addToLocalstorage() {
-//     getBooks().then(dataBook => {
-//         let book = dataBook;
-//         dataChangeLocalstorage(`project`, book);
-//     })
-// }
-// addToLocalstorage();
-
 function dataChangeLocalstorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
@@ -43,8 +22,6 @@ function dataChangeLocalstorage(key, value) {
     console.error('Set state error: ', error.message);
   }
 }
-
-// localStorage.clear();
 
 // -----------------
 
@@ -62,12 +39,6 @@ function createShoppingList(e) {
     '.shopping-list-container'
   );
 
-  // if (!e.target.classList.contains(`shoppinglist`)) {
-  //     console.log(`no delete`);
-  //     return;
-  // }
-  // const page = e.target.closest(`.header-nav-list`);
-  // console.log(`yes`);
   let data = getDataLocalStorage();
   // console.log(data);
   createMarkup(data);
@@ -89,7 +60,6 @@ function createMarkup(data) {
   const shoppinglistContainer = document.querySelector(
     '.shopping-list-container'
   );
-  // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
   shoppinglistContainer.innerHTML = `
     <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
     `;
@@ -152,7 +122,7 @@ function createMarkup(data) {
 }
 
 function onDeleteBook(e) {
-  if (!e.target.classList.contains(`icon-delete-button`)) {
+ if (!e.target.classList.contains('icon-delete-button') && !e.target.closest('button.button-delete')) {
     return;
   }
 
