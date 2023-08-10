@@ -320,6 +320,20 @@ gap: 40px;
   row-gap: 40px;
 }
 
+.category-list::-webkit-scrollbar-track {
+  background: #F1F1F1;
+  border-radius: 10px;
+}
+
+.category-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.category-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 /* /////////////////////// */
 
 /* @media screen and (min-width: 375px) and (max-width: 767px) {
