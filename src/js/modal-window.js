@@ -3,6 +3,9 @@ import axios from 'axios';
 
 import FirebaseService from './firebase-services';
 const firebaseService = new FirebaseService();
+import amazonIcon from '../../src/img/amazon-icon.png'
+import appleBookIcon from '../../src/img/apple-book-icon.png'
+import bookShopIcon from '../../src/img/book-shop-icon.png'
 
 const selectors = {
   closeModalBtn: document.querySelector('button[data-modal-window-close]'),
@@ -119,9 +122,9 @@ async function fetchBookById(id) {
 function createMarkupModal(image, title, author, description, buyLinks) {
   const arrBuyLinks = buyLinks.slice(0, 3);
   const arrIconsLink = [
-    { name: 'Amazon', img: 'amazon-icon' },
-    { name: 'Apple Books', img: 'apple-book-icon' },
-    { name: 'Barnes and Noble', img: 'book-shop-icon' },
+    { name: 'Amazon', img: amazonIcon },
+    { name: 'Apple Books', img: appleBookIcon },
+    { name: 'Barnes and Noble', img: bookShopIcon },
   ];
 
   const markupLinks = arrBuyLinks
@@ -129,7 +132,7 @@ function createMarkupModal(image, title, author, description, buyLinks) {
       const icon = arrIconsLink.find(iconLink => iconLink.name === name);
 
       return `<li><a href="${url}" target="_blank" rel="noopener noreferrer nofollow" class="buy-link">
-      <img src="./img/${icon.img}.png" alt="${name}" class="buy-link-icon">
+      <img src="${icon.img}" alt="${name}" class="buy-link-icon">
 </a></li>`;
     })
     .join('');
