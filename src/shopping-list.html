@@ -3,27 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <title>Shopping list</title>
     <link rel="stylesheet" href="./styles/styles.css" />
     <script type="module" src="./js/index.js"></script>
   </head>
+
   <body class="light-theme">
     <!-- HEADER -->
-    <load src="./partials/header.html"></load>
-
+    <div clas="header-for-shoppinglist">
+      <load src="./partials/header.html" />
+    </div>
     <main>
       <!-- SHOPPING LIST -->
-      <section>
+      <section class="shopping-list container">
         <!-- Support Ukraine -->
-        <load src="./partials/support-ukraine.html"></load>
-
+        <div class="shopping-list-support-ukraine">
+          <load src="./partials/support-ukraine.html" />
+        </div>
         <!-- Shopping list -->
-        <div></div>
+        <div class="shopping-list-container">
+          <div
+            id="pagination"
+            class="tui-pagination shopping-list-container"
+          ></div>
+        </div>
       </section>
     </main>
 
+    <!-- AUTHORIZATION WINDOW -->
+    <load src="./partials/authorization-window.html" />
+    <!-- MODAL WINDOW -->
+    <load src="./partials/modal-window.html" />
     <!-- LOADER -->
-    <load src="./partials/loader.html"></load>
+    <load src="./partials/loader.html" />
+    <!-- SCROLL UP -->
+    <load src="./partials/scroll-up.html" />
   </body>
 </html>
