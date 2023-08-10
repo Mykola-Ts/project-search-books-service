@@ -1,6 +1,9 @@
 // MODAL WINDOW
 import axios from 'axios';
 
+import FirebaseService from './firebase-services';
+const firebaseService = new FirebaseService();
+
 const selectors = {
   closeModalBtn: document.querySelector('button[data-modal-window-close]'),
   modal: document.querySelector('div[data-modal-window]'),
@@ -15,71 +18,81 @@ const selectors = {
 const shoppingList = [];
 let openBook = {};
 
-
-
 export const openBookModal = function openBookModal(evt) {
   evt.preventDefault();
 
-  if(!evt.target.closest('li.books-list-item')){
-    return
+  if (!evt.target.closest('li.books-list-item')) {
+    return;
   }
 
   const bookId = evt.target.closest('li').dataset.id;
 
   fetchBookById(bookId)
-    .then(({ book_image, title, author, description, _id, buy_links, list_name }) => {
-      openBook = {
-        bookId: _id,
-        bookName: title,
-        bookAuthor: author,
-        bookImage: book_image,
-        description: description,
-        buyLinks: buy_links,
-        listName: list_name,
-      };
-
-      selectors.modalWrap.innerHTML = createMarkupModal(
+    .then(
+      ({
         book_image,
         title,
         author,
         description,
-        buy_links
-      );
+        _id,
+        buy_links,
+        list_name,
+      }) => {
+        openBook = {
+          bookId: _id,
+          bookName: title,
+          bookAuthor: author,
+          bookImage: book_image,
+          description: description,
+          buyLinks: buy_links,
+          listName: list_name,
+        };
 
-      if (!!~findBookInShoppingList(shoppingList, openBook)) {
-        selectors.addBookBtn.textContent = 'remove from the shopping list';
+        selectors.modalWrap.innerHTML = createMarkupModal(
+          book_image,
+          title,
+          author,
+          description,
+          buy_links
+        );
 
-        selectors.addBookBtn.addEventListener('click', removeBook);
+        if (!!~findBookInShoppingList(shoppingList, openBook)) {
+          selectors.addBookBtn.textContent = 'remove from the shopping list';
 
-        if (
-          selectors.textNotificationOfAdded.classList.contains(
-            'visually-hidden'
-          )
-        ) {
-          selectors.textNotificationOfAdded.classList.remove('visually-hidden');
+          selectors.addBookBtn.addEventListener('click', removeBook);
+
+          if (
+            selectors.textNotificationOfAdded.classList.contains(
+              'visually-hidden'
+            )
+          ) {
+            selectors.textNotificationOfAdded.classList.remove(
+              'visually-hidden'
+            );
+          }
+        } else {
+          selectors.addBookBtn.textContent = 'Add to shopping list';
+
+          selectors.addBookBtn.addEventListener('click', addBook);
+
+          if (
+            !selectors.textNotificationOfAdded.classList.contains(
+              'visually-hidden'
+            )
+          ) {
+            selectors.textNotificationOfAdded.classList.add('visually-hidden');
+          }
         }
-      } else {
-        selectors.addBookBtn.textContent = 'Add to shopping list';
 
-        selectors.addBookBtn.addEventListener('click', addBook);
+        openModal();
 
-        if (
-          !selectors.textNotificationOfAdded.classList.contains(
-            'visually-hidden'
-          )
-        ) {
-          selectors.textNotificationOfAdded.classList.add('visually-hidden');
-        }
+        selectors.closeModalBtn.addEventListener('click', closeModal);
+        selectors.backdrop.addEventListener('click', closeModal);
+        document.addEventListener('keydown', closeModal);
       }
-
-      openModal();
-
-      selectors.closeModalBtn.addEventListener('click', closeModal);
-      selectors.backdrop.addEventListener('click', closeModal);
-      document.addEventListener('keydown', closeModal);
-    })
+    )
     .catch(err => console.log(err));
-}
+};
 
 selectors.booksListWrap.addEventListener('click', openBookModal);
 
@@ -162,6 +175,7 @@ function addBook(evt) {
   shoppingList.push(openBook);
 
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+  firebaseService.addDataToDb('shoppingList', 'books', { shoppingList });
 
   selectors.addBookBtn.textContent = 'remove from the shopping list';
   selectors.textNotificationOfAdded.classList.remove('visually-hidden');
@@ -176,6 +190,7 @@ function removeBook() {
   shoppingList.splice(idRemoveBook, 1);
 
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+  firebaseService.addDataToDb('shoppingList', 'books', { shoppingList });
 
   selectors.addBookBtn.textContent = 'Add to shopping list';
   selectors.textNotificationOfAdded.classList.add('visually-hidden');

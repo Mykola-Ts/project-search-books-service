@@ -96,7 +96,7 @@ export default class FirebaseService {
         password
       );
       this.readDataFromDb(LOCAL_USER_KEY, 'users');
-      this.readDataFromDb(LOCAL_THEME_KEY, 'themes');
+      this.readThemeFromDb();
       this.readDataFromDb(LOCAL_DATA_KEY, 'books');
     } catch (error) {
       this.onError(error);
@@ -166,57 +166,20 @@ export default class FirebaseService {
     }
   };
 
-  readThemeFromDb = async (key, collectionName, serialized) => {
+  readThemeFromDb = async () => {
     const user =
       this.auth.currentUser ||
       localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
-    const docRef = doc(this.db, `${collectionName}/${user.uid}`);
+    const docRef = doc(this.db, `themes/${user.uid}`);
     try {
       const snapshot = await getDoc(docRef);
       if (snapshot.exists()) {
         const data = snapshot.data();
-        localStorageService.saveToLocalStorage(key, data);
+        localStorage.setItem(LOCAL_THEME_KEY, data.currentTheme);
       }
+      currentTheme();
     } catch (error) {
       this.onError(error);
     }
   };
-
-  // this.logInBtn.textContent = userData.name;
-
-  //   addDataFromLocalToCloud = async (key, ref) => {
-  //     const data = localStorageService.loadFromLocalStorage(key);
-  //     try {
-  //       await setDoc(ref, data);
-  //     } catch (error) {
-  //       this.onError(error);
-  //     }
-  //   };
-
-  //   readDataFromDbToLocal = async (key, ref) => {
-  //     try {
-  //       const snapshot = await getDoc(ref);
-  //       if (snapshot.exists()) {
-  //         const userData = snapshot.data();
-  //         localStorageService.saveToLocalStorage(key, userData);
-  //         this.logInBtn.textContent = userData.name;
-  //       }
-  //     } catch (error) {
-  //       this.onError(error);
-  //     }
-  //   };
-
-  //   addShoppingListToDb = async data => {
-  //     const user = localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
-  //     if (!user) {
-  //       return;
-  //     }
-  //     const docRef = doc(this.db, `users/${user.uid}`);
-  //     const userData = { shoppingList: data };
-  //     try {
-  //       await setDoc(docRef, userData, { merge: true });
-  //     } catch (error) {
-  //       this.onError(error);
-  //     }
-  //   };
 }
