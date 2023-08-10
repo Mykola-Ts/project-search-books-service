@@ -5,6 +5,7 @@ import shoppingListEmptyImg from '../../src/img/empty-shopping-list.png';
 import amazonIcon from '../../src/img/amazon-icon.png';
 import appleBookIcon from '../../src/img/apple-book-icon.png';
 import bookShopIcon from '../../src/img/book-shop-icon.png';
+import iconsSvg from '../../src/img/icons.svg'
 
 document.addEventListener('DOMContentLoaded', createShoppingList);
 
@@ -133,7 +134,7 @@ function createMarkup(data) {
     </div>
     <button type="button" class="button-delete">
         <svg class="icon-delete-button" width="16" height="16">
-            <use href="./img/trash-icon.svg#icon-trash-icon"></use>
+            <use href="${iconsSvg}#icon-trash-icon"></use>
         </svg>
     </button>
     </div>

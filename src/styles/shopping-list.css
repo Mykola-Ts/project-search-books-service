@@ -30,7 +30,7 @@
 
 .shopping-list-card {
   display: flex;
-  width: 335 px;
+  width: 100%;
   height: 170px;
   border-radius: 16px;
   border: 2px solid rgba(79, 46, 232, 0.4);
@@ -234,7 +234,6 @@ body.dark-theme .shopping-list-text-empty {
   }
 
   .shopping-list-card {
-    /* width: 335 px; */
     height: 213px;
     padding: 24px;
     margin-left: 32px;
@@ -340,7 +339,6 @@ body.dark-theme .shopping-list-text-empty {
   }
 
   .shopping-list-card {
-    width: 948 px;
     height: 213px;
     padding: 24px;
     position: relative;
