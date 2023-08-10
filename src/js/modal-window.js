@@ -100,9 +100,11 @@ export const openBookModal = function openBookModal(evt) {
 document.addEventListener('DOMContentLoaded', addEventListenerModal);
 
 function addEventListenerModal(evt) {
-  if (evt.target.location.pathname.includes('/index.html')) {
-    selectors.booksListWrap.addEventListener('click', openBookModal);
+  if (evt.target.location.pathname.includes('/shopping-list.html')) {
+    return
   }
+
+  selectors.booksListWrap.addEventListener('click', openBookModal);
 }
 
 async function fetchBookById(id) {
