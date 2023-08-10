@@ -3,9 +3,9 @@ import axios from 'axios';
 
 import FirebaseService from './firebase-services';
 const firebaseService = new FirebaseService();
-import amazonIcon from '../../src/img/amazon-icon.png'
-import appleBookIcon from '../../src/img/apple-book-icon.png'
-import bookShopIcon from '../../src/img/book-shop-icon.png'
+import amazonIcon from '../../src/img/amazon-icon.png';
+import appleBookIcon from '../../src/img/apple-book-icon.png';
+import bookShopIcon from '../../src/img/book-shop-icon.png';
 
 const selectors = {
   closeModalBtn: document.querySelector('button[data-modal-window-close]'),
@@ -97,15 +97,13 @@ export const openBookModal = function openBookModal(evt) {
     .catch(err => console.log(err));
 };
 
-document.addEventListener("DOMContentLoaded", addEventListenerModal);
+document.addEventListener('DOMContentLoaded', addEventListenerModal);
 
 function addEventListenerModal(evt) {
-  if (evt.target.location.pathname.includes("/index.html")) {
+  if (evt.target.location.pathname.includes('/index.html')) {
     selectors.booksListWrap.addEventListener('click', openBookModal);
   }
 }
-
-
 
 async function fetchBookById(id) {
   const resp = await axios.get(
@@ -215,5 +213,3 @@ function findBookInShoppingList(shoppingList, currentBook) {
     return shoppingList.bookId === currentBook.bookId;
   });
 }
-
-
