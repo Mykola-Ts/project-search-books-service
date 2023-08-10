@@ -5,7 +5,7 @@ import shoppingListEmptyImg from '../../src/img/empty-shopping-list.png';
 import amazonIcon from '../../src/img/amazon-icon.png';
 import appleBookIcon from '../../src/img/apple-book-icon.png';
 import bookShopIcon from '../../src/img/book-shop-icon.png';
-import iconsSvg from '../../src/img/icons.svg'
+import iconsSvg from '../../src/img/icons.svg';
 
 document.addEventListener('DOMContentLoaded', createShoppingList);
 
@@ -70,6 +70,7 @@ function createShoppingList(e) {
   // console.log(`yes`);
   let data = getDataLocalStorage();
   // console.log(data);
+
   createMarkup(data);
 
   const btnDeletebook = document.querySelector('.shopping-list');
@@ -80,6 +81,10 @@ function createShoppingList(e) {
 }
 
 function getDataLocalStorage() {
+  if (!localStorage.getItem('shoppingList')) {
+    return;
+  }
+
   const savedData = localStorage.getItem(`shoppingList`);
   let parsedData = [];
   return (parsedData = JSON.parse(savedData));
@@ -89,14 +94,28 @@ function createMarkup(data) {
   const shoppinglistContainer = document.querySelector(
     '.shopping-list-container'
   );
-  // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
+
   shoppinglistContainer.innerHTML = `
-    <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
-    `;
+  <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
+  `;
+
+  if (!data) {
+    shoppinglistContainer.innerHTML += `
+        <div class="empty-shopping-list">
+        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
+        <img class="shopping-list-empty-img" src="${shoppingListEmptyImg}" alt="empty list " width="265"/>
+        </div>
+        `;
+
+    return;
+  }
+
+  // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
+
   // let data = getData();
   // console.log(data);
 
-  if (data.length != 0) {
+  if (data.length > 0) {
     shoppinglistContainer.innerHTML += data
       .map(
         el => `
@@ -167,8 +186,6 @@ function onDeleteBook(e) {
   );
 
   const indexDeleteBook = data.findIndex(el => el.bookName === deleteBookName);
-
-  console.log(indexDeleteBook);
 
   const newArray = data.splice(indexDeleteBook, 1);
 
