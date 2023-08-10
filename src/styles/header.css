@@ -220,6 +220,10 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
     color: var(--text-black-color);
   }
 
+  body.dark-theme .header-nav-link.current-page .shopping-list-bag {
+    fill: var(--text-black-color);
+  }
+
   body.dark-theme .header-nav-link:is(:hover, :focus, :active) {
     color: var(--text-black-color);
   }
