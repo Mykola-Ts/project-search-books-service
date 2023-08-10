@@ -1,10 +1,10 @@
 // import * as firebaseService from './firebase-services';
-import * as header from './header';
-import * as mobileMenu from './mobile-menu';
-import * as supportUkraine from './support-ukraine';
+import * as header from "./header";
+import * as mobileMenu from "./mobile-menu";
+import * as supportUkraine from "./support-ukraine";
 // import * as pagination from './pagination';
-import * as loader from './loader';
-import * as scrollUp from './scroll-up';
+import * as loader from "./loader";
+import * as scrollUp from "./scroll-up";
 
 // SHOPPING LIST
 
@@ -12,10 +12,10 @@ import * as scrollUp from './scroll-up';
 
 document.addEventListener("DOMContentLoaded", createShoppingList);
 
-  const headerNavLinkHome = document.querySelector(".header-nav-link-home");
-  const headerNavLinkShoppingList = document.querySelector(
-    ".header-nav-link-shoppinglist"
-  );
+const headerNavLinkHome = document.querySelector(".header-nav-link-home");
+const headerNavLinkShoppingList = document.querySelector(
+  ".header-nav-link-shoppinglist"
+);
 
 // Для тестирования - получение и загрузка данных в localStorage.
 // После загрузки данных , нужно закоментировать.
@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", createShoppingList);
 function dataChangeLocalstorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
-    firebaseService.addDataToDb(key, "books", value);
     localStorage.setItem(key, serializedState);
   } catch (error) {
     console.error("Set state error: ", error.message);
@@ -55,8 +54,8 @@ function dataChangeLocalstorage(key, value) {
 // Рабочий код
 
 function createShoppingList(e) {
-  if(!e.target.location.pathname.includes('/shopping-list.html')){
-    return
+  if (!e.target.location.pathname.includes("/shopping-list.html")) {
+    return;
   }
 
   headerNavLinkHome.classList.remove("current-page");
@@ -80,7 +79,7 @@ function createShoppingList(e) {
 
   const btnDeletebook = document.querySelector(".shopping-list");
 
-  if(btnDeletebook){
+  if (btnDeletebook) {
     btnDeletebook.addEventListener(`click`, onDeleteBook);
   }
 }

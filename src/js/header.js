@@ -26,15 +26,22 @@ function onChange(evt) {
 
 function currentTheme() {
   const savedTheme = localStorage.getItem('currentTheme');
-  if (savedTheme) {
-    body.classList.add(savedTheme);
-    if (savedTheme === Theme.DARK) {
+
+  switch (localStorage.getItem('currentTheme')) {
+    case Theme.LIGHT:
+      body.classList.add(Theme.LIGHT);
+      body.classList.remove(Theme.DARK);
+      themeSwitch.checked = false;
+      break;
+    case Theme.DARK:
+      body.classList.remove(Theme.LIGHT);
+      body.classList.add(Theme.DARK);
       themeSwitch.checked = true;
-    }
-  } else {
-    body.classList.add(Theme.LIGHT);
-    header.classList.add(Theme.LIGHT);
-    localStorage.setItem('currentTheme', Theme.LIGHT);
+      break;
+    default:
+      body.classList.add(Theme.LIGHT);
+      localStorage.setItem('currentTheme', Theme.LIGHT);
+      break;
   }
 }
 
