@@ -103,4 +103,4 @@ ${a}
         <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
         <img class="shopping-list-empty-img" src="${OI}" alt="empty list " width="265"/>
         </div>
-        `}function BI(t){if(!t.target.classList.contains("icon-delete-button"))return;const n=t.target.closest(".shopping-list-card").dataset.title;let r=Gd();r.find(({bookName:s})=>s===n);const i=r.findIndex(s=>s.bookName===n);console.log(i),r.splice(i,1),FI("shoppingList",r),Qd(r)}
+        `}function BI(t){if(!t.target.classList.contains("icon-delete-button")&&!t.target.closest("button.button-delete"))return;const n=t.target.closest(".shopping-list-card").dataset.title;let r=Gd();r.find(({bookName:s})=>s===n);const i=r.findIndex(s=>s.bookName===n);console.log(i),r.splice(i,1),FI("shoppingList",r),Qd(r)}
