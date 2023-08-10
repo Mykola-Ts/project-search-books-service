@@ -1,6 +1,10 @@
 // SHOPPING LIST
 
 // const shoppinglist = document.querySelector('.shopping-list');
+import shoppingListEmptyImg from '../../src/img/empty-shopping-list.png';
+import amazonIcon from '../../src/img/amazon-icon.png';
+import appleBookIcon from '../../src/img/apple-book-icon.png';
+import bookShopIcon from '../../src/img/book-shop-icon.png';
 
 document.addEventListener('DOMContentLoaded', createShoppingList);
 
@@ -57,7 +61,6 @@ function createShoppingList(e) {
     '.shopping-list-container'
   );
 
-  e.preventDefault();
   // if (!e.target.classList.contains(`shoppinglist`)) {
   //     console.log(`no delete`);
   //     return;
@@ -109,18 +112,18 @@ function createMarkup(data) {
     <p class="shopping-list-card-author">${el.bookAuthor}</p>
     <ul class="shopping-list-card-linkshop">
         <li class="shop-item" >
-            <a class="shop-link" href="${el.buyLinks[0].url}">
-            <img class="shopping-list-amazon-img" src="./img/amazon-icon.png" alt="logo-amazon " width="32" height="11"/>
+            <a class="shop-link" href="${el.buyLinks[0].url}" target="_blank" rel="noopener noreferrer nofollow">
+            <img class="shopping-list-amazon-img" src="${amazonIcon}" alt="logo-amazon " width="32" height="11"/>
             </a>
         </li>
         <li class="shop-item">
-            <a class="shop-link" href="${el.buyLinks[1].url}">
-            <img class="shopping-list-applebook-img" src="./img/apple-book-icon.png" alt="logo-aapplebook " width="16" height="16" />
+            <a class="shop-link" href="${el.buyLinks[1].url}" target="_blank" rel="noopener noreferrer nofollow">
+            <img class="shopping-list-applebook-img" src="${appleBookIcon}" alt="logo-aapplebook " width="16" height="16" />
             </a>
         </li>
         <li class="shop-item">
-            <a class="shop-link" href="${el.buyLinks[4].url}">
-            <img class="shopping-list-applebook-img" src="./img/book-shop-icon.png" alt="logo-aapplebook " width="16"
+            <a class="shop-link" href="${el.buyLinks[2].url}" target="_blank" rel="noopener noreferrer nofollow">
+            <img class="shopping-list-applebook-img" src="${bookShopIcon}" alt="logo-aapplebook " width="16"
   height="16" />
                 
             </a>
@@ -141,14 +144,13 @@ function createMarkup(data) {
     shoppinglistContainer.innerHTML += `
         <div class="empty-shopping-list">
         <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
-        <img class="shopping-list-empty-img" src="./img/empty-shopping-list.png" alt="empty list " width="265"/>
+        <img class="shopping-list-empty-img" src="${shoppingListEmptyImg}" alt="empty list " width="265"/>
         </div>
         `;
   }
 }
 
 function onDeleteBook(e) {
-  e.preventDefault();
   if (!e.target.classList.contains(`icon-delete-button`)) {
     return;
   }
