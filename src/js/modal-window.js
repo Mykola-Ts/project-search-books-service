@@ -21,6 +21,13 @@ const selectors = {
 const shoppingList = [];
 let openBook = {};
 
+if(localStorage.getItem("shoppingList") && localStorage.getItem("shoppingList").length > 0){
+  const savedBooks = JSON.parse(localStorage.getItem("shoppingList"));
+  savedBooks.map(book => {
+    shoppingList.push(book);
+  });
+}
+
 export const openBookModal = function openBookModal(evt) {
   evt.preventDefault();
 
@@ -131,7 +138,7 @@ function createMarkupModal(image, title, author, description, buyLinks) {
     .map(({ url, name }) => {
       const icon = arrIconsLink.find(iconLink => iconLink.name === name);
 
-      return `<li><a href="${url}" target="_blank" rel="noopener noreferrer nofollow" class="buy-link">
+      return `<li class="buy-link-icon-item"><a href="${url}" target="_blank" rel="noopener noreferrer nofollow" class="buy-link">
       <img src="${icon.img}" alt="${name}" class="buy-link-icon">
 </a></li>`;
     })

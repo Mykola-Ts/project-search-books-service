@@ -142,7 +142,7 @@
 .btn-prev-icon {
     width: 100%;
     height: 100%;
-    rotate: 180deg;
+    transform: rotate(180deg);
 }
 
 .btn-next-icon {

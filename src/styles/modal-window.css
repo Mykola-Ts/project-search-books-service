@@ -273,10 +273,10 @@ body.dark-theme .text-notification-of-added {
   }
 }
 
-/* .buy-link-icon {
-  filter: grayscale(100%);
-} */
+body.dark-theme .buy-link-icon-item:first-child .buy-link-icon:first-child{
+filter: invert(1);
+}
 
-/* .buy-link:is(:hover, :focus) .buy-link-icon {
-  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.15);
-} */
+.buy-link:is(:hover, :focus) .buy-link-icon{
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15));
+}
