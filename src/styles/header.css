@@ -154,7 +154,7 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
   background-color: var(--yellow-color);
   transition: background-color var(--transition-duration)
     var(--transition-timing-function);
-    width: 72px;
+    min-width: 72px;
     margin-left: 15px;
 }
 
