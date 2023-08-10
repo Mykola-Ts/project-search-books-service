@@ -7,8 +7,8 @@
     <title>Shopping list</title>
     
     
-    <script type="module" crossorigin src="/project-search-books-service/assets/shopping-list-e7a85478.js"></script>
-    <link rel="stylesheet" href="/project-search-books-service/assets/shopping-list-8fb6da0c.css">
+    <script type="module" crossorigin src="/project-search-books-service/assets/shopping-list-96b551dc.js"></script>
+    <link rel="stylesheet" href="/project-search-books-service/assets/shopping-list-33c53b8a.css">
   </head>
 
   <body class="light-theme">
@@ -42,74 +42,117 @@
         <div aria-hidden="true" class="theme-switch-marker"></div>
       </div>
       <button
-      class="mobile-menu-btn js-open-menu"
-      data-menu-button
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <svg class="mobile-menu-btn-icon" width="28" height="28">
-        <use href="/project-search-books-service/assets/header-icon-84926756.svg#menu-open" class="menu-open"></use>
-        <use href="/project-search-books-service/assets/header-icon-84926756.svg#x-close" class="menu-close"></use>
-      </svg>
-    </button>
+        class="mobile-menu-btn js-open-menu"
+        data-menu-button
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg class="mobile-menu-btn-icon" width="28" height="28">
+          <use href="/project-search-books-service/assets/header-icon-84926756.svg#menu-open" class="menu-open"></use>
+          <use href="/project-search-books-service/assets/header-icon-84926756.svg#x-close" class="menu-close"></use>
+        </svg>
+      </button>
     </div>
 
     <nav class="header-nav-menu">
       <ul class="header-nav-container">
-      <li class="header-nav-list">
-        <a href="./index.html" class="header-nav-link header-nav-link-home current-page link"
-          >home</a
-        >
-      </li>
-      <li class="header-nav-list">
-        <a href="./shopping-list.html" class="header-nav-link link shoppinglist header-nav-link-shoppinglist"
-          >Shopping list
-          <svg class="shopping-list-bag" width="20" height="20">
-            <use href="/project-search-books-service/assets/header-icon-84926756.svg#bag" class="bag"></use>
-            <use href="/project-search-books-service/assets/mobile-menu-icon-886ff59f.svg#icon-bag-white" class="white-bag"></use>
-          </svg>
-        </a>
-      </li>
-    </ul>
+        <li class="header-nav-list">
+          <a
+            href="./index.html"
+            class="header-nav-link header-nav-link-home current-page link"
+            >home</a
+          >
+        </li>
+        <li class="header-nav-list">
+          <a
+            href="./shopping-list.html"
+            class="header-nav-link link header-nav-link-shoppinglist"
+            >Shopping list
+            <svg class="shopping-list-bag" width="20" height="20">
+              <use href="/project-search-books-service/assets/header-icon-84926756.svg#bag" class="bag"></use>
+              <use
+                href="/project-search-books-service/assets/mobile-menu-icon-886ff59f.svg#icon-bag-white"
+                class="white-bag"
+              ></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
 
-    <div class="header-btn-container">
-      <div class="log-in-out-container">
-        
+      <div class="header-btn-container">
+        <div class="toolbar">
+          <div class="theme-switch-control">
+            <input
+              class="theme-switch-toggle"
+              type="checkbox"
+              name="theme"
+              id="theme-switch-toggle"
+              aria-label="Chenge theme"
+            />
+            <label
+              aria-hidden="true"
+              class="theme-switch-track"
+              for="theme-switch-toggle"
+            >
+            </label>
+            <div aria-hidden="true" class="theme-switch-marker"></div>
+          </div>
+        </div>
+
         <button
-          data-login-button
-          type="button"
-          class="sign-up header-btn-style"
+          class="mobile-menu-btn js-open-menu"
+          data-menu-button
+          aria-expanded="false"
+          aria-controls="mobile-menu"
         >
-          Sign up
-          <svg class="arrow-right-icon" width="20" height="20">
-            <use
-              href="/project-search-books-service/assets/header-icon-84926756.svg#arrow-right"
-              class="arrow-right"
-            ></use>
+          <svg class="mobile-menu-btn-icon" width="28" height="28">
+            <use href="/project-search-books-service/assets/header-icon-84926756.svg#menu-open" class="menu-open"></use>
+            <use href="/project-search-books-service/assets/header-icon-84926756.svg#x-close" class="menu-close"></use>
           </svg>
         </button>
+        <div class="mobile-menu_container" id="mobile-menu">
+          <div class="container">
+            <button type="button" class="mobile-menu-sing-up">
+              Sigh Up
+              <svg class="arrow-right-icon" width="20" height="20">
+                <use
+                  href="/project-search-books-service/assets/header-icon-84926756.svg#arrow-right"
+                  class="arrow-right"
+                ></use>
+              </svg>
+            </button>
+          </div>
+        </div>
 
-        <button
-          type="button"
-          class="log-out header-btn-style is-hidden"
-          data-logout-button
-        >
-          Log out
-          <svg class="arrow-right-icon" width="20" height="20">
-            <use href="/project-search-books-service/assets/header-icon-84926756.svg#arrow-right" class=""></use>
-          </svg>
-        </button>
+        <div class="log-in-out-container">
+          <!-- sign-up header-btn-style -->
+          <button data-login-button type="button" class="user-in">
+            Sign up
+            <img src="/src/img/header-log-in-user-foto.png" alt="" />
+            <svg class="signup-svg">
+              <use
+                href="/project-search-books-service/assets/header-icon-84926756.svg#arrow-right"
+                class="arrow-right"
+              ></use>
+              <!-- <use href="./img/header-icon.svg#log-down" class="arrow-down"></use> -->
+            </svg>
+          </button>
 
+          <button
+            type="button"
+            class="log-out header-btn-style is-hidden"
+            data-logout-button
+          >
+            Log out
+            <svg class="arrow-right-icon" width="20" height="20">
+              <use href="/project-search-books-service/assets/header-icon-84926756.svg#arrow-right" class=""></use>
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
   </div>
 </header>
-
-
-
-
-
 
     </div>
     <main>
@@ -278,6 +321,26 @@
       <button class="auth-form-link" data-modal-signup-link>Sign Up</button>
       <button class="auth-form-link" data-modal-signin-link>Sign In</button>
     </div>
+  </div>
+</div>
+
+    <!-- MODAL WINDOW -->
+    <div class="backdrop-modal is-hidden-modal" data-modal-window>
+  <div class="modal-window">
+    <div class="modal-wrap"></div>
+
+    <button type="button" class="modal-btn-add">Add to shopping list</button>
+
+    <button type="button" class="close-btn" data-modal-window-close>
+      <svg width="24" height="24" class="close-btn-icon">
+        <use href="/project-search-books-service/assets/icons-1df87a4c.svg#icon-x-close"></use>
+      </svg>
+    </button>
+
+    <p class="text-notification-of-added visually-hidden">
+      Сongratulations! You have added the book to the shopping list. <br />
+      To delete, press the button “Remove from the shopping list”.
+    </p>
   </div>
 </div>
 
