@@ -64,9 +64,17 @@ function createMarkup(data) {
     <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
     `;
   // let data = getData();
-  // console.log(data);
+  console.log(data);
 
-  if (data.length != 0) {
+  if (data == null || data.length === 0) {
+    shoppinglistContainer.innerHTML += `
+        <div class="empty-shopping-list">
+        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
+        <img class="shopping-list-empty-img" src="${shoppingListEmptyImg}" alt="empty list " width="265"/>
+        </div>
+        `;
+
+  } else {
     shoppinglistContainer.innerHTML += data
       .map(
         el => `
@@ -111,13 +119,6 @@ function createMarkup(data) {
     `
       )
       .join(``);
-  } else {
-    shoppinglistContainer.innerHTML += `
-        <div class="empty-shopping-list">
-        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
-        <img class="shopping-list-empty-img" src="${shoppingListEmptyImg}" alt="empty list " width="265"/>
-        </div>
-        `;
   }
 }
 
