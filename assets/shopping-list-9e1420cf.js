@@ -64,7 +64,12 @@ ${a}
         <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
         <img class="shopping-list-empty-img" src="${fl}" alt="empty list " width="265"/>
         </div>
-        `;return}t.length>0?e.innerHTML+=t.map(n=>`
+        `;return}console.log(t),t===null||t.length===0?e.innerHTML+=`
+        <div class="empty-shopping-list">
+        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
+        <img class="shopping-list-empty-img" src="${fl}" alt="empty list " width="265"/>
+        </div>
+        `:e.innerHTML+=t.map(n=>`
     <div class="shopping-list-card" data-title="${n.bookName}">
     
     <img class="shopping-list-card-img" src="${n.bookImage}" alt="book image" />
@@ -84,12 +89,12 @@ ${a}
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${n.buyLinks[1].url}" target="_blank" rel="noopener noreferrer nofollow">
-            <img class="shopping-list-applebook-img" src="${Hd}" alt="logo-aapplebook " width="16" height="16" />
+            <img class="shopping-list-applebook-img" src="${Hd}" alt="logo-applebook " width="16" height="16" />
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${n.buyLinks[2].url}" target="_blank" rel="noopener noreferrer nofollow">
-            <img class="shopping-list-applebook-img" src="${zd}" alt="logo-aapplebook " width="16"
+            <img class="shopping-list-bookshop-img" src="${zd}" alt="logo-bookshop " width="16"
   height="16" />
                 
             </a>
@@ -103,9 +108,4 @@ ${a}
         </svg>
     </button>
     </div>
-    `).join(""):e.innerHTML+=`
-        <div class="empty-shopping-list">
-        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
-        <img class="shopping-list-empty-img" src="${fl}" alt="empty list " width="265"/>
-        </div>
-        `}function UI(t){if(!t.target.classList.contains("icon-delete-button")&&!t.target.closest("button.button-delete"))return;const n=t.target.closest(".shopping-list-card").dataset.title;let r=Qd();r.find(({bookName:s})=>s===n);const i=r.findIndex(s=>s.bookName===n);r.splice(i,1),xI("shoppingList",r),Jd(r)}
+    `).join("")}function UI(t){if(!t.target.classList.contains("icon-delete-button")&&!t.target.closest("button.button-delete"))return;const n=t.target.closest(".shopping-list-card").dataset.title;let r=Qd();r.find(({bookName:s})=>s===n);const i=r.findIndex(s=>s.bookName===n);r.splice(i,1),xI("shoppingList",r),Jd(r)}
