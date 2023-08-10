@@ -19,12 +19,20 @@ const selectors = {
 };
 const categoriesBook = [];
 
-selectors.home.style.topMargin = getTopMargin(selectors.home);
 
-showLoader(selectors.loader);
-selectors.loader.classList.add('common-loader');
+document.addEventListener("DOMContentLoaded", createBookList);
 
-createCategories();
+function createBookList(evt) {
+  if (evt.target.location.pathname.includes("/index.html")) {
+    selectors.home.style.topMargin = getTopMargin(selectors.home);
+
+    showLoader(selectors.loader);
+    selectors.loader.classList.add('common-loader');
+
+    createCategories();
+    
+  }
+}
 
 function createCategories() {
   fetchData('/category-list')
@@ -85,10 +93,11 @@ async function onClickCategory(evt) {
   if (evt.target.classList.contains('see-more-btn-best-sellers')) {
     fetchData('/top-books')
       .then(data => {
-
         let markup = '';
 
-        data.map(({ books }) => (markup += createBookMarkup(books.slice(0, 3))));
+        data.map(
+          ({ books }) => (markup += createBookMarkup(books.slice(0, 3)))
+        );
 
         selectors.openCategoryBooksList.innerHTML = `<h2 class="open-category-title">Best Sellers<span class="open-category-title-item"> Books</span></h2><ul class="open-category-list books-list-by-category">${markup}</ul>`;
 
@@ -109,13 +118,16 @@ async function onClickCategory(evt) {
           block: 'start',
         });
 
-        selectors.openCategoryBooksList.addEventListener('click', openBookModal);
+        selectors.openCategoryBooksList.addEventListener(
+          'click',
+          openBookModal
+        );
       })
       .catch(error => {
         console.error('Error request data:', error);
       });
 
-      return;
+    return;
   }
   if (evt.target.classList.contains('all-category-link')) {
     selectors.booksListWrap.classList.remove('visually-hidden');
@@ -131,7 +143,7 @@ async function onClickCategory(evt) {
       behavior: 'smooth',
       block: 'start',
     });
-    
+
     return;
   }
 
@@ -294,6 +306,16 @@ async function fetchData(endpoint) {
 
   return response.json();
 }
+
+// document.addEventListener("DOMContentLoaded", removeEventListener);
+
+// function removeEventListener(evt) {
+//   if (!evt.target.location.pathname.includes("/index.html")) {
+//     selectors.openCategoryBooksList.removeEventListener('click', openBookModal);
+//     selectors.booksListWrap.removeEventListener('click', onClickCategory);
+//     selectors.categoryList.removeEventListener('click', onClickCategory);
+//   }
+// }
 
 // // All categories
 // const API_URL = 'https://books-backend.p.goit.global/books';

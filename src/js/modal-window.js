@@ -94,7 +94,15 @@ export const openBookModal = function openBookModal(evt) {
     .catch(err => console.log(err));
 };
 
-selectors.booksListWrap.addEventListener('click', openBookModal);
+document.addEventListener("DOMContentLoaded", addEventListenerModal);
+
+function addEventListenerModal(evt) {
+  if (evt.target.location.pathname.includes("/index.html")) {
+    selectors.booksListWrap.addEventListener('click', openBookModal);
+  }
+}
+
+
 
 async function fetchBookById(id) {
   const resp = await axios.get(
@@ -204,3 +212,5 @@ function findBookInShoppingList(shoppingList, currentBook) {
     return shoppingList.bookId === currentBook.bookId;
   });
 }
+
+
