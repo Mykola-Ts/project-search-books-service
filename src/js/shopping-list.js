@@ -66,7 +66,7 @@ function createMarkup(data) {
   // let data = getData();
   console.log(data);
 
-  if (data == null || data.length === 0) {
+  if (data === null || data.length === 0) {
     shoppinglistContainer.innerHTML += `
         <div class="empty-shopping-list">
         <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
