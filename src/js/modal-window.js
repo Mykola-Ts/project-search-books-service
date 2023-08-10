@@ -21,6 +21,15 @@ const selectors = {
 const shoppingList = [];
 let openBook = {};
 
+if(localStorage.getItem("shoppingList") && localStorage.getItem("shoppingList").length > 0){
+  const savedBooks = JSON.parse(localStorage.getItem("shoppingList"));
+  savedBooks.map(book => {
+    shoppingList.push(book);
+  });
+}
+
+console.log("shoppingList", shoppingList);
+
 export const openBookModal = function openBookModal(evt) {
   evt.preventDefault();
 
