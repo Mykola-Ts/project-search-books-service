@@ -3,7 +3,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 50;
+  z-index: 5;
   width: 100%;
   padding: 18px 0;
   border-radius: 0px 0px 8px 8px;
@@ -152,8 +152,8 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
   background-color: var(--yellow-color);
   transition: background-color var(--transition-duration)
     var(--transition-timing-function);
-    min-width: 72px;
-    margin-left: 15px;
+  min-width: 72px;
+  margin-left: 15px;
 }
 
 .header-btn-style {
@@ -182,19 +182,21 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
 
 .log-out.is-hidden {
   transform: translateY(0%);
-  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--transition-duration)
+    var(--transition-timing-function);
 }
 
 .log-out {
-  /* position: absolute;
+  position: absolute;
   top: 0;
-  z-index: -1; */
+  z-index: -1;
   border-radius: 18px;
   padding: 15px 14px;
   border: 1.5px solid var(--text-black-color);
   background: var(--white-color);
-  transform: translateY(110%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(105%);
+  transition: transform var(--transition-duration)
+    var(--transition-timing-function);
 }
 
 @media screen and (min-width: 768px) {
@@ -290,20 +292,20 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
     justify-content: space-between;
     width: 184px;
     height: 45px;
-    padding: 15px 14px;
+    padding: 14px;
     text-align: left;
     font-size: 14px;
     line-height: 1.29;
     letter-spacing: -0.56px;
   }
 
+  .log-in-out-container {
+    position: relative;
+  }
+
   .signup-svg {
     width: 20px;
     height: 20px;
-  }
-
-  .arrow-right {
-    display: none;
   }
 
   .signup-svg-arrowdown {
@@ -312,7 +314,7 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
   }
 
   .sign-up {
-    padding: 15px 14px;
+    padding: 14px;
     border-radius: 18px;
     border: 1.5px solid var(--text-black-color);
     color: var(--white-color);
@@ -320,6 +322,9 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
   }
 
   .user-in {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 184px;
     height: 45px;
     border-radius: 36px;
@@ -328,10 +333,36 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.44px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     border: none;
     color: var(--white-color);
     background: var(--primary-color);
+  }
+
+  .btn-user-photo {
+    display: none;
+  }
+
+  .arrow-down {
+    display: none;
+  }
+
+  .user-in .btn-user-photo,
+  .user-in .arrow-down {
+    display: block;
+  }
+
+  .user-in .arrow-right {
+    display: none;
+  }
+
+  .login-btn-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   @media screen and (min-width: 1440px) {

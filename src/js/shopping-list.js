@@ -5,7 +5,7 @@ import shoppingListEmptyImg from '../../src/img/empty-shopping-list.png';
 import amazonIcon from '../../src/img/amazon-icon.png';
 import appleBookIcon from '../../src/img/apple-book-icon.png';
 import bookShopIcon from '../../src/img/book-shop-icon.png';
-import iconsSvg from '../../src/img/icons.svg'
+import iconsSvg from '../../src/img/icons.svg';
 
 document.addEventListener('DOMContentLoaded', createShoppingList);
 
@@ -122,7 +122,10 @@ function createMarkup(data) {
 }
 
 function onDeleteBook(e) {
- if (!e.target.classList.contains('icon-delete-button') && !e.target.closest('button.button-delete')) {
+  if (
+    !e.target.classList.contains('icon-delete-button') &&
+    !e.target.closest('button.button-delete')
+  ) {
     return;
   }
 
@@ -146,5 +149,3 @@ function onDeleteBook(e) {
 
   createMarkup(data);
 }
-
-// export { dataChangeLocalstorage };

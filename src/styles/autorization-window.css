@@ -6,13 +6,26 @@
   width: 100vw;
   height: 100vh;
   background: radial-gradient(190% 190% at -90% -90%, #fff 18%, #4f2ee8 100%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--transition-duration)
+      var(--transition-timing-function),
+    visibility var(--transition-duration) var(--transition-timing-function);
+}
+
+.auth-backdrop.is-hidden {
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .auth-modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%) scaleY(1);
+  transform-origin: top;
   max-width: 375px;
   width: calc(100% - 40px);
   display: inline-flex;
@@ -24,10 +37,12 @@
   border-radius: 18px;
   border: none;
   background: var(--dark-theme-color);
-  opacity: 1;
-  scale: 1;
-  transition: scale var(--transition-duration) var(--transition-timing-function),
-    scale var(--transition-duration) var(--transition-timing-function);
+  transition: transform var(--transition-duration)
+    var(--transition-timing-function);
+}
+
+.auth-backdrop.is-hidden .auth-modal {
+  transform: translate(-50%, -50%) scaleY(0.1);
 }
 
 .auth-form {
@@ -136,11 +151,6 @@
   pointer-events: none;
   visibility: hidden;
   opacity: 0;
-}
-
-.is-hidden .auth-modal {
-  opacity: 0;
-  scale: 0;
 }
 
 .auth-form-button {

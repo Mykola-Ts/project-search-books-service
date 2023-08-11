@@ -63,31 +63,38 @@
         </li>
       </ul>
 
-        <div class="log-in-out-container">
-          <!-- sign-up header-btn-style -->
-          <button data-login-button type="button" class="user-in sign-up">
-            Sign up
-            <img src="/src/img/header-log-in-user-foto.png" alt="" />
-            <svg class="signup-svg" width="20" height="20">
-              <use
-                href="./img/header-icon.svg#arrow-right"
-                class="arrow-right"
-              ></use>
-              <!-- <use href="./img/header-icon.svg#log-down" class="arrow-down"></use> -->
-            </svg>
-          </button>
+      <div class="log-in-out-container">
+        <!-- sign-up header-btn-style -->
+        <button
+          data-login-button
+          type="button"
+          class="header-btn-style sign-up"
+        >
+          <img
+            class="btn-user-photo"
+            src="./img/header-log-in-user-foto.png"
+            alt="user photo"
+          />
+          <span class="login-btn-text">Sign up</span>
+          <svg class="signup-svg">
+            <use
+              href="./img/header-icon.svg#arrow-right"
+              class="arrow-right"
+            ></use>
+            <use href="./img/header-icon.svg#log-down" class="arrow-down"></use>
+          </svg>
+        </button>
 
-          <button
-            type="button"
-            class="log-out header-btn-style is-hidden"
-            data-logout-button
-          >
-            Log out
-            <svg class="arrow-right-icon" width="20" height="20">
-              <use href="./img/header-icon.svg#arrow-right" class=""></use>
-            </svg>
-          </button>
-        </div>
+        <button
+          type="button"
+          class="log-out header-btn-style is-hidden"
+          data-logout-button
+        >
+          Log out
+          <svg class="arrow-right-icon" width="20" height="20">
+            <use href="./img/header-icon.svg#arrow-right" class=""></use>
+          </svg>
+        </button>
       </div>
     </nav>
   </div>
