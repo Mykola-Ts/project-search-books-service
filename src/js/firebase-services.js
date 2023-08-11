@@ -16,6 +16,9 @@ import {
 } from './authorization-window';
 import { currentTheme } from './header';
 
+import { showLoader } from './loader';
+import { hideLoader } from './loader';
+
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import '@fortawesome/fontawesome-free/css/all.css';
 
@@ -64,6 +67,7 @@ export default class FirebaseService {
   db = getFirestore();
 
   createUser = async (email, password, name) => {
+    showLoader(document.querySelector('.auth-form'));
     try {
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
@@ -86,11 +90,14 @@ export default class FirebaseService {
 
       userLoggedInBtnStyle(name);
     } catch (error) {
+      hideLoader(document.querySelector('.auth-form'));
       this.onError(error);
     }
+    hideLoader(document.querySelector('.auth-form'));
   };
 
   signInUser = async (email, password) => {
+    showLoader(document.querySelector('.loader-thumb'));
     try {
       const userCredential = await signInWithEmailAndPassword(
         this.auth,
@@ -103,18 +110,23 @@ export default class FirebaseService {
 
       const userData = userLoggedInBtnStyle(this.userName);
     } catch (error) {
+      hideLoader(document.querySelector('.loader-thumb'));
       this.onError(error);
     }
+    hideLoader(document.querySelector('.loader-thumb'));
   };
 
   onSignOut = async () => {
+    showLoader(document.querySelector('.auth-form'));
     try {
       await signOut(this.auth);
       userLoggedOutBtnStyle();
       closeAuthModal();
     } catch (error) {
+      hideLoader(document.querySelector('.auth-form'));
       this.onError(error);
     }
+    hideLoader(document.querySelector('.auth-form'));
   };
 
   disableAuthListener = onAuthStateChanged(this.auth, async user => {
