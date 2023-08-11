@@ -84,10 +84,7 @@
 .shopping-list-card-description {
   height: 54px;
   width: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  white-space: pre-wrap;
-  -webkit-line-clamp: 3;
+  display: block;
   overflow: hidden;
   font-size: 14px;
   font-weight: 400;
