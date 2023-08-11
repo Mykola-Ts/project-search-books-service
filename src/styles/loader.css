@@ -54,7 +54,7 @@
 
 @keyframes paging {
   from {
-    transform: translateX(0);
+    transform: rotateY(0);
   }
   to {
     transform: rotateY(-180deg);
