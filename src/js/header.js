@@ -1,4 +1,5 @@
 // HEADER
+import { saveNewTheme } from './authorization-window';
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
@@ -20,11 +21,10 @@ function onChange(evt) {
     body.classList.remove(Theme.LIGHT);
     localStorage.setItem('currentTheme', Theme.DARK);
   }
+  saveNewTheme();
 }
 
 function currentTheme() {
-  const savedTheme = localStorage.getItem('currentTheme');
-
   switch (localStorage.getItem('currentTheme')) {
     case Theme.LIGHT:
       body.classList.add(Theme.LIGHT);

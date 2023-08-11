@@ -21,8 +21,11 @@ const selectors = {
 const shoppingList = [];
 let openBook = {};
 
-if(localStorage.getItem("shoppingList") && localStorage.getItem("shoppingList").length > 0){
-  const savedBooks = JSON.parse(localStorage.getItem("shoppingList"));
+if (
+  localStorage.getItem('shoppingList') &&
+  localStorage.getItem('shoppingList').length > 0
+) {
+  const savedBooks = JSON.parse(localStorage.getItem('shoppingList'));
   savedBooks.map(book => {
     shoppingList.push(book);
   });
@@ -108,7 +111,7 @@ document.addEventListener('DOMContentLoaded', addEventListenerModal);
 
 function addEventListenerModal(evt) {
   if (evt.target.location.pathname.includes('/shopping-list.html')) {
-    return
+    return;
   }
 
   selectors.booksListWrap.addEventListener('click', openBookModal);

@@ -1,6 +1,5 @@
 // SHOPPING LIST
 
-// const shoppinglist = document.querySelector('.shopping-list');
 import shoppingListEmptyImg from "../../src/img/empty-shopping-list.png";
 import amazonIcon from "../../src/img/amazon-icon.png";
 import appleBookIcon from "../../src/img/apple-book-icon.png";
@@ -36,7 +35,6 @@ function createShoppingList(e) {
   );
 
   let data = getDataLocalStorage();
-  // console.log(data);
 
   createMarkup(data);
 
@@ -80,7 +78,6 @@ function createMarkup(data) {
   // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
 
   // let data = getData();
-  console.log(data);
 
   if (data === null || data.length === 0) {
     shoppinglistContainer.innerHTML += `
@@ -165,5 +162,3 @@ function onDeleteBook(e) {
 
   createMarkup(data);
 }
-
-// export { dataChangeLocalstorage };

@@ -1,4 +1,3 @@
-// import * as firebaseService from './firebase-services';
 import * as header from './header';
 import * as authorizationWindow from './authorization-window';
 import * as mobileMenu from './mobile-menu';

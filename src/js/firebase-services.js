@@ -6,20 +6,43 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-import {
-  getFirestore,
-  collection,
-  doc,
-  setDoc,
-  getDoc,
-  addDoc,
-  getDocs,
-} from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 
 import LocalStorageService from './localstorage-services';
-import { showAuthModal, closeAuthModal } from './authorization-window';
-// import { dataChangeLocalstorage } from './shopping-list';
+import {
+  closeAuthModal,
+  userLoggedInBtnStyle,
+  userLoggedOutBtnStyle,
+} from './authorization-window';
 import { currentTheme } from './header';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import '@fortawesome/fontawesome-free/css/all.css';
+
+Notify.init({
+  width: '345px',
+  position: 'rigth-top',
+  cssAnimationStyle: 'from-top',
+  borderRadius: '18px',
+  fontFamily: 'DM Sans',
+  fontSize: '18px',
+  clickToClose: true,
+  useIcon: true,
+  pauseOnHover: true,
+  useFontAwesome: true,
+  fontAwesomeIconStyle: 'basic',
+  fontAwesomeIconSize: '35px',
+  success: {
+    background: '#3baea0',
+    fontAwesomeClassName: 'fa-solid fa-book-open',
+    fontAwesomeIconColor: '#93e4c1',
+  },
+  failure: {
+    background: '#e84a5f',
+    fontAwesomeClassName: 'fa-solid fa-book-skull',
+    fontAwesomeIconColor: '#ff847c',
+  },
+});
 
 const LOCAL_USER_KEY = 'currentUser';
 const LOCAL_THEME_KEY = 'currentTheme';
@@ -27,24 +50,6 @@ const LOCAL_DATA_KEY = 'shoppingList';
 const localStorageService = new LocalStorageService();
 
 export default class FirebaseService {
-  constructor({
-    logInBtn,
-    logOutBtn,
-    authBtn,
-    signUpLink,
-    signInLink,
-    modal,
-    closeBtn,
-    form,
-    input,
-  } = {}) {
-    this.logInBtn = logInBtn;
-    this.logOutBtn = logOutBtn;
-    this.authBtn = authBtn;
-    this.form = form;
-    this.input = input;
-  }
-
   firebaseConfig = {
     apiKey: 'AIzaSyD73oYitNm6HMY6U12Qvku2isqF0ZeRwg0',
     authDomain: 'search-book-service.firebaseapp.com',
@@ -58,10 +63,6 @@ export default class FirebaseService {
   auth = getAuth(this.firebaseApp);
   db = getFirestore();
 
-  userCollectionRef = collection(this.db, 'users');
-  // themeCollectionRef = collection(this.userCollectionRef, 'theme');
-  // booksCollectionRef = collection(this.userCollectionRef, 'books');
-
   createUser = async (email, password, name) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -69,7 +70,6 @@ export default class FirebaseService {
         email,
         password
       );
-      this.logInBtn.textContent = name;
       const uid = userCredential.user.uid;
       const userData = {
         uid,
@@ -83,6 +83,8 @@ export default class FirebaseService {
       this.addDataToDb('currentTheme', 'themes', themeData);
 
       localStorageService.saveToLocalStorage(LOCAL_USER_KEY, userData);
+
+      userLoggedInBtnStyle(name);
     } catch (error) {
       this.onError(error);
     }
@@ -97,7 +99,9 @@ export default class FirebaseService {
       );
       this.readDataFromDb(LOCAL_USER_KEY, 'users');
       this.readThemeFromDb();
-      this.readDataFromDb(LOCAL_DATA_KEY, 'books');
+      this.readBooksFromDb();
+
+      const userData = userLoggedInBtnStyle(this.userName);
     } catch (error) {
       this.onError(error);
     }
@@ -106,8 +110,7 @@ export default class FirebaseService {
   onSignOut = async () => {
     try {
       await signOut(this.auth);
-      this.logOutBtn.classList.add('is-hidden');
-      this.logInBtn.textContent = 'Sign up';
+      userLoggedOutBtnStyle();
       closeAuthModal();
     } catch (error) {
       this.onError(error);
@@ -118,20 +121,19 @@ export default class FirebaseService {
     if (user) {
       closeAuthModal();
       currentTheme();
+      this.readUserNameFromDb(user);
     } else {
       localStorageService.removeFromLocalStorage(LOCAL_USER_KEY);
     }
   });
 
-  isUserAuthorized = () => {
-    return localStorageService.loadFromLocalStorage(LOCAL_USER_KEY)
-      ? true
-      : false;
-  };
-
   onError = error => {
-    console.log(error);
-    console.log(error.message);
+    Notify.failure(
+      `Oops, something went wrong. Try reloading the page. Here's the error message: ${error.message}`,
+      {
+        clickToClose: true,
+      }
+    );
   };
 
   addDataToDb = async (key, collectionName, data) => {
@@ -150,6 +152,36 @@ export default class FirebaseService {
     }
   };
 
+  addThemeToDb = async () => {
+    const user =
+      this.auth.currentUser ||
+      localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+    if (!user) {
+      return;
+    }
+    const theme = localStorageService.loadFromLocalStorage(LOCAL_THEME_KEY);
+    console.log(theme);
+    const docRef = doc(this.db, `themes/${user.uid}`);
+    try {
+      await setDoc(docRef, theme);
+    } catch (error) {
+      this.onError(error);
+    }
+  };
+
+  readUserNameFromDb = async userInstance => {
+    const docRef = doc(this.db, `users/${userInstance.uid}`);
+    try {
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        userLoggedInBtnStyle(data.name);
+      }
+    } catch (error) {
+      this.onError(error);
+    }
+  };
+
   readDataFromDb = async (key, collectionName) => {
     const user =
       this.auth.currentUser ||
@@ -161,6 +193,40 @@ export default class FirebaseService {
         const data = snapshot.data();
         localStorageService.saveToLocalStorage(key, data);
       }
+    } catch (error) {
+      this.onError(error);
+    }
+  };
+
+  readBooksFromDb = async () => {
+    const user =
+      this.auth.currentUser ||
+      localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+    const docRef = doc(this.db, `books/${user.uid}`);
+    try {
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        let arrayOfBooks = data.shoppingList;
+        localStorageService.saveToLocalStorage(LOCAL_DATA_KEY, arrayOfBooks);
+      }
+    } catch (error) {
+      this.onError(error);
+    }
+  };
+
+  addThemeToDb = async () => {
+    const user =
+      this.auth.currentUser ||
+      localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+    if (!user) {
+      return;
+    }
+    const theme = localStorage.getItem(LOCAL_THEME_KEY);
+    console.log(theme);
+    const docRef = doc(this.db, `themes/${user.uid}`);
+    try {
+      await setDoc(docRef, theme);
     } catch (error) {
       this.onError(error);
     }
