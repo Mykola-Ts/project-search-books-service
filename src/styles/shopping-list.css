@@ -179,7 +179,6 @@ body.dark-theme .shop-item:first-child .shop-link:first-child {
   height: 36px;
   color: rgba(0, 0, 0, 0.6);
   text-align: center;
-  font-family: DM Sans;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -238,7 +237,6 @@ body.dark-theme .shopping-list-text-empty {
 
   .shopping-list-card {
     height: 213px;
-    padding: 24px;
     margin-left: 32px;
     margin-right: 32px;
     position: relative;
@@ -350,4 +348,14 @@ body.dark-theme .shopping-list-text-empty {
     margin-top: 48px;
     width: 808px;
   }
+}
+
+@media screen and (max-width: 767px) {
+  .shopping-list {
+    padding-top: 106px;
+}
+
+.shopping-list-card-category {
+  max-width: 180px;
+}
 }

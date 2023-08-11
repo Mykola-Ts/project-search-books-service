@@ -19,7 +19,6 @@
     "axios": "^1.4.0",
     "firebase": "^10.1.0",
     "notiflix": "^3.2.6",
-    "swiper": "^10.1.0",
     "vite-plugin-full-reload": "^1.0.5",
     "vite-plugin-html-inject": "^1.0.1"
   }
