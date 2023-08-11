@@ -7,8 +7,8 @@
     <title>Bookshelf</title>
     
     
-    <script type="module" crossorigin src="/project-search-books-service/assets/shopping-list-a7969224.js"></script>
-    <link rel="stylesheet" href="/project-search-books-service/assets/shopping-list-491fe509.css">
+    <script type="module" crossorigin src="/project-search-books-service/assets/shopping-list-ca92a6e4.js"></script>
+    <link rel="stylesheet" href="/project-search-books-service/assets/shopping-list-b1a89597.css">
   </head>
   <body>
     <!-- HEADER -->
@@ -77,31 +77,38 @@
         </li>
       </ul>
 
-        <div class="log-in-out-container">
-          <!-- sign-up header-btn-style -->
-          <button data-login-button type="button" class="user-in sign-up">
-            Sign up
-            <img src="/src/img/header-log-in-user-foto.png" alt="" />
-            <svg class="signup-svg" width="20" height="20">
-              <use
-                href="/project-search-books-service/assets/icons-85c1e733.svg#arrow-right"
-                class="arrow-right"
-              ></use>
-              <!-- <use href="./img/header-icon.svg#log-down" class="arrow-down"></use> -->
-            </svg>
-          </button>
+      <div class="log-in-out-container">
+        <!-- sign-up header-btn-style -->
+        <button
+          data-login-button
+          type="button"
+          class="header-btn-style sign-up"
+        >
+          <img
+            class="btn-user-photo"
+            src="data:image/png;base64,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"
+            alt="user photo"
+          />
+          <span class="login-btn-text">Sign up</span>
+          <svg class="signup-svg">
+            <use
+              href="./img/header-icon.svg#arrow-right"
+              class="arrow-right"
+            ></use>
+            <use href="./img/header-icon.svg#log-down" class="arrow-down"></use>
+          </svg>
+        </button>
 
-          <button
-            type="button"
-            class="log-out header-btn-style is-hidden"
-            data-logout-button
-          >
-            Log out
-            <svg class="arrow-right-icon" width="20" height="20">
-              <use href="/project-search-books-service/assets/icons-85c1e733.svg#arrow-right" class=""></use>
-            </svg>
-          </button>
-        </div>
+        <button
+          type="button"
+          class="log-out header-btn-style is-hidden"
+          data-logout-button
+        >
+          Log out
+          <svg class="arrow-right-icon" width="20" height="20">
+            <use href="./img/header-icon.svg#arrow-right" class=""></use>
+          </svg>
+        </button>
       </div>
     </nav>
   </div>
