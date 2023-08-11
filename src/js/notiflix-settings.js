@@ -1,9 +1,7 @@
 import Notiflix from 'notiflix';
-// fa icons styles
-// npm install @fortawesome/fontawesome-free
 import '@fortawesome/fontawesome-free/css/all.css';
 
-Notiflix.Notify.init({
+export default Notiflix.Notify.init({
   width: '345px',
   position: 'left-bottom',
   cssAnimationStyle: 'from-bottom',

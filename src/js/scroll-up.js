@@ -1,4 +1,5 @@
 // SCROLL UP
+
 const scrollUpBtn = document.querySelector('.js-btn-up');
 scrollUpBtn.classList.add('is-hidden');
 

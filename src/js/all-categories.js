@@ -4,6 +4,8 @@ import axios from 'axios';
 import { showLoader } from './loader';
 import { hideLoader } from './loader';
 import { openBookModal } from './modal-window';
+import { Notify } from 'notiflix';
+import notiflixSettings from './notiflix-settings';
 
 const API_URL = 'https://books-backend.p.goit.global/books';
 
@@ -26,10 +28,8 @@ function createBookList(evt) {
     return;
   }
 
-  selectors.home.style.topMargin = getTopMargin(selectors.home);
-
   showLoader(selectors.loader);
-  
+
   selectors.loader.classList.add('common-loader');
 
   createCategories();
@@ -64,7 +64,9 @@ function createCategories() {
         <button type="button" class="see-more-btn see-more-btn-best-sellers">SEE MORE</button>`;
         })
         .catch(error => {
-          console.error('Error request data:', error);
+          Notify.failure(
+            `Oops, something went wrong. Try reloading the page. Here's the error message: ${error.message}`
+          );
         });
 
       fetchBooksByCategory(categoriesBook)
@@ -76,22 +78,22 @@ function createCategories() {
 
           selectors.booksListWrap.addEventListener('click', onClickCategory);
         })
-        .catch(error => {
-          console.error('Error request data:', error);
-        });
     })
     .catch(error => {
-      console.error('Error request data:', error);
+      Notify.failure(
+        `Oops, something went wrong. Try reloading the page. Here's the error message: ${error.message}`
+      );
     })
     .finally(() => {
-      hideLoader(selectors.loader);
-      selectors.loader.classList.remove('common-loader');
       selectors.booksListWrap.classList.remove('visually-hidden');
     });
 }
 
 async function onClickCategory(evt) {
   if (evt.target.classList.contains('see-more-btn-best-sellers')) {
+    showLoader(selectors.loader);
+    selectors.loader.classList.add('common-loader');
+
     fetchData('/top-books')
       .then(data => {
         let markup = '';
@@ -125,12 +127,21 @@ async function onClickCategory(evt) {
         );
       })
       .catch(error => {
-        console.error('Error request data:', error);
+        Notify.failure(
+          'Sorry, there are no books matching your search query. Please try again.'
+        );
+      })
+      .finally(() => {
+        hideLoader(selectors.loader);
+        selectors.loader.classList.remove('common-loader');
       });
 
     return;
   }
   if (evt.target.classList.contains('all-category-link')) {
+    showLoader(selectors.loader);
+    selectors.loader.classList.add('common-loader');
+
     selectors.booksListWrap.classList.remove('visually-hidden');
     selectors.openCategoryBooksList.classList.add('visually-hidden');
 
@@ -145,6 +156,9 @@ async function onClickCategory(evt) {
       block: 'start',
     });
 
+    hideLoader(selectors.loader);
+    selectors.loader.classList.remove('common-loader');
+
     return;
   }
 
@@ -158,6 +172,9 @@ async function onClickCategory(evt) {
   }
 
   try {
+    showLoader(selectors.loader);
+    selectors.loader.classList.add('common-loader');
+
     changeCurrentCategory(evt.target.dataset.name);
 
     const data = await fetchData(
@@ -195,8 +212,13 @@ async function onClickCategory(evt) {
 
     selectors.openCategoryBooksList.addEventListener('click', openBookModal);
   } catch (error) {
-    console.error('Error request data:', error);
+    Notify.failure(
+      `Oops, something went wrong. Try reloading the page. Here's the error message: ${error.message}`
+    );
   }
+
+  hideLoader(selectors.loader);
+  selectors.loader.classList.remove('common-loader');
 }
 
 function changeCurrentCategory(datasetName) {
@@ -240,6 +262,9 @@ function createCategoryMarkup(arr) {
 
       idCategory += 1;
 
+      hideLoader(selectors.loader);
+      selectors.loader.classList.remove('common-loader');
+
       return markup;
     })
     .join('');
@@ -270,14 +295,6 @@ function createBookMarkup(arr) {
     .join('');
 }
 
-function getTopMargin(element) {
-  const { height } = selectors.header.getBoundingClientRect();
-
-  const margin = Math.ceil(height);
-
-  element.style.marginTop = `${margin}px`;
-}
-
 async function fetchBooksByCategory(categoriesBook) {
   const arrOfPromises = categoriesBook.map(async category => {
     const resp = await axios.get(`${API_URL}/category?category=${category}`);
@@ -293,9 +310,11 @@ async function fetchBooksByCategory(categoriesBook) {
     ({ status }) => status === 'fulfilled'
   );
 
-  // if (!data.length) {
-  //   throw new Error(resp.statusText);
-  // }
+  if (!data.length) {
+    throw new Error(
+      'Sorry, there are no books matching your search query. Please try again.'
+    );
+  }
 
   return data;
 }
@@ -307,162 +326,3 @@ async function fetchData(endpoint) {
 
   return response.json();
 }
-
-// document.addEventListener("DOMContentLoaded", removeEventListener);
-
-// function removeEventListener(evt) {
-//   if (!evt.target.location.pathname.includes("/index.html")) {
-//     selectors.openCategoryBooksList.removeEventListener('click', openBookModal);
-//     selectors.booksListWrap.removeEventListener('click', onClickCategory);
-//     selectors.categoryList.removeEventListener('click', onClickCategory);
-//   }
-// }
-
-// // All categories
-// const API_URL = 'https://books-backend.p.goit.global/books';
-// const defaultCategory = 'all categories';
-
-// async function fetchData(endpoint) {
-//   try {
-//     const response = await fetch(`${API_URL}${endpoint}`);
-//     if (!response.ok) throw new Error(response.statusText);
-//     return await response.json();
-//   } catch (error) {
-//     console.error('Error request data:', error);
-//     return null;
-//   }
-// }
-// async function fetchCategoryData(categoryName) {
-//   return await fetchData(`/category?category=${categoryName}`);
-// }
-
-// function createCategoryElement(list_name) {
-//   const category = document.createElement('div');
-//   category.className = 'category';
-//   category.dataset.category = list_name;
-//   category.textContent = list_name;
-
-//   category.addEventListener('click', () => {
-//     document.querySelectorAll('.category').forEach(cat => {
-//       cat.classList.remove('selected-category');
-//     });
-//     category.classList.add('selected-category');
-
-//     if (list_name !== defaultCategory) {
-//       updateMainTitle(list_name);
-//       displayBooksByCategory(list_name);
-//     } else {
-//       updateMainTitle('Best Sellers Books');
-//       displayAllBlock();
-//     }
-//   });
-
-//   if (list_name === defaultCategory) {
-//     category.click();
-//   }
-
-//   return category;
-// }
-
-// function createBookCard({ book_image, title, author, description }) {
-//   const bookCard = document.createElement('div');
-//   bookCard.className = 'book';
-//   bookCard.innerHTML = `
-//     <img src="${book_image}" alt="${title}">
-//     <div class="quick-view">
-//         <p>${description}</p>
-//     </div>
-//     <h3 class="book-title">${title}</h3>
-//     <p class="book-author">by ${author}</p>
-//     `;
-//   return bookCard;
-// }
-
-// function createCategoryBooksBlock(categoryName, books) {
-//   const block = document.createElement('div');
-//   block.className = 'category-books';
-
-//   const categoryHeader = document.createElement('div');
-//   categoryHeader.className = 'category-header';
-
-//   const headerText =
-//     categoryName === defaultCategory ? 'Best Sellers Books' : categoryName;
-//   categoryHeader.innerHTML = `<h2 class="category-title">${headerText}</h2>`;
-
-//   const categoryContent = document.createElement('div');
-//   categoryContent.className = 'category-content';
-//   books.forEach(book => categoryContent.appendChild(createBookCard(book)));
-
-//   const seeMoreButton = document.createElement('button');
-//   seeMoreButton.className = 'see-more';
-//   seeMoreButton.textContent = 'SEE MORE';
-//   seeMoreButton.addEventListener('click', () =>
-//     displayBooksByCategory(categoryName)
-//   );
-
-//   block.appendChild(categoryHeader);
-//   block.appendChild(categoryContent);
-//   block.appendChild(seeMoreButton);
-//   return block;
-// }
-
-// async function displayBooksByCategory(category) {
-//   updateMainTitle(category);
-//   const booksDiv = document.getElementById('books');
-//   booksDiv.innerHTML = 'Loading...';
-//   const books = await fetchData(`/category?category=${category}`);
-
-//   if (!books || !Array.isArray(books)) {
-//     booksDiv.innerHTML = 'Failed to fetch books or no books available.';
-//     return;
-//   }
-
-//   booksDiv.innerHTML = '';
-//   books.forEach(book => booksDiv.appendChild(createBookCard(book)));
-// }
-
-// async function displayAllBlock() {
-//   updateMainTitle(defaultCategory);
-//   const categories = document.querySelectorAll('.category');
-//   const booksDiv = document.getElementById('books');
-//   booksDiv.innerHTML = '';
-//   for (const category of categories) {
-//     const categoryName = category.textContent;
-//     if (categoryName === defaultCategory) continue;
-//     const books = await fetchData(`/category?category=${categoryName}`);
-
-//     if (!books || !Array.isArray(books)) {
-//       console.error('Failed to fetch books for category:', categoryName);
-//       continue;
-//     }
-
-//     booksDiv.appendChild(
-//       createCategoryBooksBlock(categoryName, books.slice(0, 5))
-//     );
-//   }
-// }
-
-// function updateMainTitle(categoryName) {
-//   const titleElement = document.querySelector('.title-category');
-//   let words =
-//     categoryName === defaultCategory ? 'Best Sellers Books' : categoryName;
-//   words = words.split(' ');
-//   const lastWord = words.pop();
-//   titleElement.innerHTML = `${words.join(
-//     ' '
-//   )} <span class="title-category-span">${lastWord}</span>`;
-// }
-
-// async function fetchAndDisplayCategories() {
-//   const categoriesData = await fetchData('/top-books');
-//   const categoryList = document.getElementById('categoryList');
-//   categoryList.appendChild(createCategoryElement(defaultCategory));
-//   categoriesData.forEach(({ list_name }) =>
-//     categoryList.appendChild(createCategoryElement(list_name))
-//   );
-//   displayAllBlock();
-// }
-
-// document.addEventListener('DOMContentLoaded', fetchAndDisplayCategories);
-
-// export { fetchCategoryData };

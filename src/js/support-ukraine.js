@@ -1,3 +1,5 @@
+// Support Ukraine
+
 const refs = {
     slider: document.querySelector('.slider'),
     sliderList: document.querySelector('.slider-list'),

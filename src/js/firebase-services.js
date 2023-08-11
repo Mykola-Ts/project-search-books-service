@@ -160,7 +160,6 @@ export default class FirebaseService {
       return;
     }
     const theme = localStorageService.loadFromLocalStorage(LOCAL_THEME_KEY);
-    console.log(theme);
     const docRef = doc(this.db, `themes/${user.uid}`);
     try {
       await setDoc(docRef, theme);
@@ -223,7 +222,6 @@ export default class FirebaseService {
       return;
     }
     const theme = localStorage.getItem(LOCAL_THEME_KEY);
-    console.log(theme);
     const docRef = doc(this.db, `themes/${user.uid}`);
     try {
       await setDoc(docRef, theme);

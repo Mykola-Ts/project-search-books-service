@@ -1,6 +1,6 @@
 /* ---------------- VARIABLES ---------------- */
 :root {
-  --font-family: "DM Sans", sans-serif;
+  --font-family: 'DM Sans', sans-serif;
 
   --text-black-color: #111;
   --text-gray-color: rgba(17, 17, 17, 0.6);
@@ -10,7 +10,7 @@
   --yellow-color: #eac645;
   --white-color: #fff;
   --light-theme-color: #f6f6f6;
-  --modal-backdrop-color: rgba(17, 17, 17, 0.40);
+  --modal-backdrop-color: rgba(17, 17, 17, 0.4);
   --modal-background-color-dark-theme: #202024;
 
   --transition-duration: 250ms;
