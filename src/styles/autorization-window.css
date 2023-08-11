@@ -197,6 +197,13 @@ body.dark-theme .auth-form-link:active {
   color: var(--primary-color);
 }
 
+.loader-thumb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media screen and (min-width: 768px) {
   .auth-modal {
     max-width: 579px;
@@ -329,8 +336,6 @@ body.dark-theme .auth-form-link:active {
     letter-spacing: -0.18px;
     text-transform: uppercase;
   }
-
-
 
   body.dark-theme .auth-form-link {
     color: rgba(246, 246, 246, 0.5);

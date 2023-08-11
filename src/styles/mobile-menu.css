@@ -54,12 +54,12 @@
   }
 
   .logo-link {
-    position: relative;
+    /* position: relative; */
     z-index: 5;
   }
 
   .toolbar {
-    position: relative;
+    /* position: relative; */
     z-index: 6;
     display: flex;
     gap: 14px;
@@ -87,8 +87,9 @@
   }
 
   .header-nav-menu.is-open {
-    display: block;
-    position: fixed;
+    display: flex;
+    justify-content: center;
+    /* position: fixed; */
     top: 0;
   }
 
@@ -106,6 +107,10 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
+  }
+
+  .header-nav-container .sign-up {
+    display: none;
   }
 
   .header-nav-link {
@@ -135,7 +140,7 @@
     display: none;
   }
 
-  button.sign-up {
+  /* button.sign-up {
     display: flex;
     justify-content: space-between;
     width: 184px;
@@ -144,13 +149,13 @@
     top: 104px;
     left: 50%;
     transform: translate(-50%);
-  }
+  } */
 
-  button.log-out {
+  /* button.log-out {
     position: absolute;
     bottom: 70px;
     left: 20px;
-  }
+  } */
 }
 
 @media screen and (min-width: 768px) {
