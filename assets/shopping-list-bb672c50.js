@@ -93,7 +93,7 @@ ${a}
     <ul class="shopping-list-card-linkshop">
         <li class="shop-item" >
             <a class="shop-link" href="${e.buyLinks[0].url}" target="_blank" rel="noopener noreferrer nofollow">
-            <img class="shopping-list-amazon-img shop-icon" src="${Qf}" alt="logo-amazon " width="32" height="11"/>
+            <img class="shopping-list-amazon-img" src="${Qf}" alt="logo-amazon " width="32" height="11"/>
             </a>
         </li>
         <li class="shop-item">
