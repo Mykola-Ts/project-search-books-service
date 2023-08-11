@@ -181,9 +181,7 @@
   line-height: 1.29;
   letter-spacing: -0.14px;
   text-transform: uppercase;
-  transition: color var(--transition-duration) var(--transition-timing-function),
-    text-decoration-line var(--transition-duration)
-      var(--transition-timing-function);
+  transition: color var(--transition-duration) var(--transition-timing-function);
 }
 
 .auth-form-link:hover,
