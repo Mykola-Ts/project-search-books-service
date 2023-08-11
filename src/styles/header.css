@@ -386,6 +386,10 @@ body.dark-theme .mobile-menu-btn-icon:hover .menu-open {
     position: initial;
   }
 
+  .sign-up {
+    position: initial;
+  }
+
   @media screen and (min-width: 1440px) {
     .header-nav-container {
       margin-left: 76px;
