@@ -5,8 +5,8 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 Notiflix.Notify.init({
   width: '345px',
-  position: 'rigth-top',
-  cssAnimationStyle: 'from-top',
+  position: 'left-bottom',
+  cssAnimationStyle: 'from-bottom',
   borderRadius: '18px',
   fontFamily: 'DM Sans',
   fontSize: '18px',

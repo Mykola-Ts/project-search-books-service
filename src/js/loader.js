@@ -1,14 +1,10 @@
 // LOADER
-//додає книжку лоадер в центр контейнера, потрібно вказати селектор контейнера
+//додає книжку лоадер в стилі контейнеру
 export function showLoader(selectorContainer) {
-  selectorContainer.style.display = 'flex';
-  selectorContainer.style.justifyContent = 'center';
-  selectorContainer.style.alignItems = 'center';
-  selectorContainer.innerHTML = '<span class="loader"></span>';
+  selectorContainer.classList.add('loader');
 }
 
-//видаляє те що додала функція шоу, потрібно вказати той самий контейнер, після цього треба вставити відмалювання вмісту
+//видаляє стиль лоадеру з контейнеру
 export function hideLoader(selectorContainer) {
-  selectorContainer.removeAttribute('style');
-  selectorContainer.innerHTML = '';
+  selectorContainer.classList.remove('loader');
 }
