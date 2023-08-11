@@ -75,10 +75,6 @@ function createMarkup(data) {
     return;
   }
 
-  // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
-
-  // let data = getData();
-
   if (data === null || data.length === 0) {
     shoppinglistContainer.innerHTML += `
         <div class="empty-shopping-list">

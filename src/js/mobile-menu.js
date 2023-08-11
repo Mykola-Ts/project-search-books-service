@@ -1,4 +1,5 @@
 // MOBILE MENU
+
 const refs = {
     burger: document.querySelector(".js-open-menu"),
     containerMobMenu: document.querySelector('.header-nav-menu'),
@@ -24,6 +25,7 @@ function openAndCloseMenu (evt) {
 
     if(refs.containerMobMenu.classList.contains('is-open')){
         refs.body.style.overflow = 'hidden'
+        refs.body.classList.add('header-mobile-dark-theme')
     }else{
         refs.body.style.overflow = 'visible'
     }
@@ -43,7 +45,7 @@ function hiddenMobileMenu () {
 }
 
 function darkTheme () {
-refs.header.classList.toggle('dark-theme')
+// refs.header.classList.toggle('dark-theme')
 refs.closeMobMenu.classList.toggle('dark-theme')
 if(!refs.closeMobMenu.classList.contains('dark-theme')){
     refs.closeMobMenu.classList.add('light-theme')

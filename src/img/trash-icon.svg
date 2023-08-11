@@ -1,7 +1,0 @@
-<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<defs>
-<symbol id="icon-trash-icon" viewBox="0 0 32 32">
-<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M12 4h8M4 8h24M25.333 8l-0.935 14.027c-0.14 2.103-0.21 3.156-0.665 3.954-0.406 0.702-0.997 1.257-1.708 1.607l-0.023 0.010c-0.825 0.402-1.881 0.402-3.989 0.402h-4.025c-2.108 0-3.164 0-3.989-0.4-0.734-0.361-1.326-0.917-1.721-1.6l-0.010-0.019c-0.455-0.798-0.524-1.849-0.665-3.956l-0.935-14.025M13.333 14v6.667M18.667 14v6.667"></path>
-</symbol>
-</defs>
-</svg>

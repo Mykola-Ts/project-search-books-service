@@ -1,4 +1,5 @@
 // HEADER
+
 import { saveNewTheme } from './authorization-window';
 const Theme = {
   LIGHT: 'light-theme',
