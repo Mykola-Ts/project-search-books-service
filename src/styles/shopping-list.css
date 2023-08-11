@@ -127,7 +127,7 @@
   width: 80px;
 }
 
-body.dark-theme .shop-item:first-child .shop-link:first-child {
+body.dark-theme .shopping-list-amazon-img {
   filter: invert(1);
 }
 
