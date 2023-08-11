@@ -5,7 +5,6 @@ const Theme = {
   DARK: 'dark-theme',
 };
 const body = document.body;
-const header = document.querySelector('.header');
 const themeSwitch = document.querySelector('.theme-switch-toggle');
 
 themeSwitch.addEventListener('change', onChange);
@@ -16,7 +15,6 @@ function onChange(evt) {
   if (!evt.currentTarget.checked) {
     body.classList.add(Theme.LIGHT);
     body.classList.remove(Theme.DARK);
-    header.classList.remove(Theme.DARK);
     localStorage.setItem('currentTheme', Theme.LIGHT);
   } else {
     body.classList.add(Theme.DARK);

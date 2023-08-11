@@ -1,17 +1,16 @@
 // SHOPPING LIST
 
-// const shoppinglist = document.querySelector('.shopping-list');
-import shoppingListEmptyImg from '../../src/img/empty-shopping-list.png';
-import amazonIcon from '../../src/img/amazon-icon.png';
-import appleBookIcon from '../../src/img/apple-book-icon.png';
-import bookShopIcon from '../../src/img/book-shop-icon.png';
-import iconsSvg from '../../src/img/icons.svg';
+import shoppingListEmptyImg from "../../src/img/empty-shopping-list.png";
+import amazonIcon from "../../src/img/amazon-icon.png";
+import appleBookIcon from "../../src/img/apple-book-icon.png";
+import bookShopIcon from "../../src/img/book-shop-icon.png";
+import iconsSvg from "../../src/img/icons.svg";
 
-document.addEventListener('DOMContentLoaded', createShoppingList);
+document.addEventListener("DOMContentLoaded", createShoppingList);
 
-const headerNavLinkHome = document.querySelector('.header-nav-link-home');
+const headerNavLinkHome = document.querySelector(".header-nav-link-home");
 const headerNavLinkShoppingList = document.querySelector(
-  '.header-nav-link-shoppinglist'
+  ".header-nav-link-shoppinglist"
 );
 
 function dataChangeLocalstorage(key, value) {
@@ -19,31 +18,27 @@ function dataChangeLocalstorage(key, value) {
     const serializedState = JSON.stringify(value);
     localStorage.setItem(key, serializedState);
   } catch (error) {
-    console.error('Set state error: ', error.message);
+    console.error("Set state error: ", error.message);
   }
 }
 
-// -----------------
-
-// Рабочий код
-
 function createShoppingList(e) {
-  if (!e.target.location.pathname.includes('/shopping-list.html')) {
+  if (!e.target.location.pathname.includes("/shopping-list.html")) {
     return;
   }
 
-  headerNavLinkHome.classList.remove('current-page');
-  headerNavLinkShoppingList.classList.add('current-page');
+  headerNavLinkHome.classList.remove("current-page");
+  headerNavLinkShoppingList.classList.add("current-page");
 
   const shoppinglistContainer = document.querySelector(
-    '.shopping-list-container'
+    ".shopping-list-container"
   );
 
   let data = getDataLocalStorage();
-  // console.log(data);
+
   createMarkup(data);
 
-  const btnDeletebook = document.querySelector('.shopping-list');
+  const btnDeletebook = document.querySelector(".shopping-list");
 
   if (btnDeletebook) {
     btnDeletebook.addEventListener(`click`, onDeleteBook);
@@ -51,6 +46,10 @@ function createShoppingList(e) {
 }
 
 function getDataLocalStorage() {
+  if (!localStorage.getItem("shoppingList")) {
+    return;
+  }
+
   const savedData = localStorage.getItem(`shoppingList`);
   let parsedData = [];
   return (parsedData = JSON.parse(savedData));
@@ -58,18 +57,39 @@ function getDataLocalStorage() {
 
 function createMarkup(data) {
   const shoppinglistContainer = document.querySelector(
-    '.shopping-list-container'
+    ".shopping-list-container"
   );
-  shoppinglistContainer.innerHTML = `
-    <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
-    `;
-  // let data = getData();
-  // console.log(data);
 
-  if (data.length != 0) {
+  shoppinglistContainer.innerHTML = `
+  <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
+  `;
+
+  if (!data) {
+    shoppinglistContainer.innerHTML += `
+        <div class="empty-shopping-list">
+        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
+        <img class="shopping-list-empty-img" src="${shoppingListEmptyImg}" alt="empty list " width="265"/>
+        </div>
+        `;
+
+    return;
+  }
+
+  // blockSupportUkraine.innerHTML = '<div class="shopping-list-support-ukraine"> Support UKraine</div>'
+
+  // let data = getData();
+
+  if (data === null || data.length === 0) {
+    shoppinglistContainer.innerHTML += `
+        <div class="empty-shopping-list">
+        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
+        <img class="shopping-list-empty-img" src="${shoppingListEmptyImg}" alt="empty list " width="265"/>
+        </div>
+        `;
+  } else {
     shoppinglistContainer.innerHTML += data
       .map(
-        el => `
+        (el) => `
     <div class="shopping-list-card" data-title="${el.bookName}">
     
     <img class="shopping-list-card-img" src="${el.bookImage}" alt="book image" />
@@ -89,12 +109,12 @@ function createMarkup(data) {
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${el.buyLinks[1].url}" target="_blank" rel="noopener noreferrer nofollow">
-            <img class="shopping-list-applebook-img" src="${appleBookIcon}" alt="logo-aapplebook " width="16" height="16" />
+            <img class="shopping-list-applebook-img" src="${appleBookIcon}" alt="logo-applebook " width="16" height="16" />
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${el.buyLinks[2].url}" target="_blank" rel="noopener noreferrer nofollow">
-            <img class="shopping-list-applebook-img" src="${bookShopIcon}" alt="logo-aapplebook " width="16"
+            <img class="shopping-list-bookshop-img" src="${bookShopIcon}" alt="logo-bookshop " width="16"
   height="16" />
                 
             </a>
@@ -111,20 +131,13 @@ function createMarkup(data) {
     `
       )
       .join(``);
-  } else {
-    shoppinglistContainer.innerHTML += `
-        <div class="empty-shopping-list">
-        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
-        <img class="shopping-list-empty-img" src="${shoppingListEmptyImg}" alt="empty list " width="265"/>
-        </div>
-        `;
   }
 }
 
 function onDeleteBook(e) {
   if (
-    !e.target.classList.contains('icon-delete-button') &&
-    !e.target.closest('button.button-delete')
+    !e.target.classList.contains("icon-delete-button") &&
+    !e.target.closest("button.button-delete")
   ) {
     return;
   }
@@ -139,9 +152,9 @@ function onDeleteBook(e) {
     ({ bookName }) => bookName === deleteBookName
   );
 
-  const indexDeleteBook = data.findIndex(el => el.bookName === deleteBookName);
-
-  console.log(indexDeleteBook);
+  const indexDeleteBook = data.findIndex(
+    (el) => el.bookName === deleteBookName
+  );
 
   const newArray = data.splice(indexDeleteBook, 1);
 

@@ -89,7 +89,6 @@
   white-space: pre-wrap;
   -webkit-line-clamp: 3;
   overflow: hidden;
-  color: #111;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.29;/* 128.571% */
@@ -133,6 +132,14 @@
   align-items: flex-end;
   justify-content: flex-end;
   width: 80px;
+}
+
+body.dark-theme .shop-item:first-child .shop-link:first-child {
+  filter: invert(1);
+}
+
+.shop-link:is(:hover, :focus) .shopping-list-amazon-img, .shopping-list-applebook-img, .shopping-list-bookshop-img  {
+  filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15));
 }
 
 .shop-icon:hover {
@@ -294,6 +301,10 @@ body.dark-theme .shopping-list-text-empty {
     padding-left: 10px;
     padding-right: 10px;
   }
+
+
+
+
   .shopping-list-amazon-img {
     width: 48px;
     height: 15px;
@@ -304,7 +315,7 @@ body.dark-theme .shopping-list-text-empty {
     height: 27px;
   }
 
-  .shopping-list-applebook-img {
+  .shopping-list-bookshop-img {
     width: 28px;
     height: 27px;
   }
