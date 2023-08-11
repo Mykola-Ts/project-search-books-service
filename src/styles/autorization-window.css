@@ -191,6 +191,12 @@
   text-decoration-line: underline;
 }
 
+body.dark-theme .auth-form-link:hover,
+body.dark-theme .auth-form-link:focus,
+body.dark-theme .auth-form-link:active {
+  color: var(--primary-color);
+}
+
 @media screen and (min-width: 768px) {
   .auth-modal {
     max-width: 579px;
@@ -324,11 +330,7 @@
     text-transform: uppercase;
   }
 
-  body.dark-theme .auth-form-link:hover,
-  body.dark-theme .auth-form-link:focus,
-  body.dark-theme .auth-form-link:active {
-    color: var(--primary-color);
-  }
+
 
   body.dark-theme .auth-form-link {
     color: rgba(246, 246, 246, 0.5);
