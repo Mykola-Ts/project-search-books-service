@@ -100,17 +100,17 @@ function createMarkup(data) {
     <ul class="shopping-list-card-linkshop">
         <li class="shop-item" >
             <a class="shop-link" href="${el.buyLinks[0].url}" target="_blank" rel="noopener noreferrer nofollow">
-            <img class="shopping-list-amazon-img" src="${amazonIcon}" alt="logo-amazon " width="32" height="11"/>
+            <img class="shopping-list-amazon-img shop-icon" src="${amazonIcon}" alt="logo-amazon " width="32" height="11"/>
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${el.buyLinks[1].url}" target="_blank" rel="noopener noreferrer nofollow">
-            <img class="shopping-list-applebook-img" src="${appleBookIcon}" alt="logo-applebook " width="16" height="16" />
+            <img class="shopping-list-applebook-img shop-icon" src="${appleBookIcon}" alt="logo-applebook " width="16" height="16" />
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${el.buyLinks[2].url}" target="_blank" rel="noopener noreferrer nofollow">
-            <img class="shopping-list-bookshop-img" src="${bookShopIcon}" alt="logo-bookshop " width="16"
+            <img class="shopping-list-bookshop-img shop-icon" src="${bookShopIcon}" alt="logo-bookshop " width="16"
   height="16" />
                 
             </a>
