@@ -17,6 +17,8 @@ const selectors = {
   modalDiv: document.querySelector('.auth-form'),
   input: document.querySelector('#name'),
   authBtn: document.querySelector('button[data-modal-signup]'),
+  logInBtnMobMenu: document.querySelector('.mobile-menu-sign-up-btn'),
+  logOutBtnMobMenu: document.querySelector('.mobile-menu-log-out'),
 };
 
 const firebaseService = new FirebaseService();
@@ -29,6 +31,7 @@ selectors.modal.addEventListener('submit', onAuthFormSubmit);
 function onSignupClick() {
   if (isUserAuthorized()) {
     selectors.logOutBtn.classList.toggle('is-hidden');
+
     closeAuthModal();
   } else {
     showAuthModal();
@@ -51,10 +54,12 @@ function onAuthFormSubmit(evt) {
   switch (evt.submitter.innerText) {
     case 'SIGN UP':
       evt.target.reset();
+
       firebaseService.createUser(email, password, name);
       break;
     case 'SIGN IN':
       evt.target.reset();
+
       firebaseService.signInUser(email, password, name);
       break;
   }
@@ -94,20 +99,27 @@ function isUserAuthorized() {
 
 function userLoggedInBtnStyle(name) {
   selectors.logInBtn.classList.replace('sign-up', 'user-in');
+  selectors.logInBtnMobMenu.classList.replace('sign-up', 'user-in');
   selectors.logInBtn.children[1].textContent = name;
+  selectors.logInBtnMobMenu.children[1].textContent = name;
 }
 
 function userLoggedOutBtnStyle() {
   selectors.logOutBtn.classList.add('is-hidden');
   selectors.logInBtn.classList.replace('user-in', 'sign-up');
+  selectors.logInBtnMobMenu.classList.replace('user-in', 'sign-up');
   selectors.logInBtn.children[1].textContent = 'Sign up';
+  selectors.logInBtnMobMenu.children[1].textContent = 'Sign up';
+
   localStorageService.removeFromLocalStorage(LOCAL_DATA_KEY);
+
   window.location.reload();
 }
 
 function saveNewTheme() {
   const currentTheme = localStorage.getItem(LOCAL_THEME_KEY);
   const themeData = { currentTheme };
+
   firebaseService.addDataToDb('currentTheme', 'themes', themeData);
 }
 
@@ -116,4 +128,8 @@ export {
   userLoggedInBtnStyle,
   userLoggedOutBtnStyle,
   saveNewTheme,
+  onSignupClick,
+  isUserAuthorized,
+  showAuthModal,
+  firebaseService,
 };

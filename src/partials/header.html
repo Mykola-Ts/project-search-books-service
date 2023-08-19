@@ -1,72 +1,71 @@
 <header class="header">
   <div class="header-container container">
-    <a href="./index.html" class="logo-link link">
-      <svg class="header-logo-icon" width="24" height="24">
-        <use href="./img/icons.svg#icon-logo" class="icon-logo"></use>
-      </svg>
-      <svg class="header-logo-text" width="77" height="13">
-        <use href="./img/icons.svg#bookshelf" class="logo-text"></use>
-      </svg>
-    </a>
-    <div class="toolbar">
-      <div class="theme-switch-control">
-        <input
-          class="theme-switch-toggle"
-          type="checkbox"
-          name="theme"
-          id="theme-switch-toggle"
-          aria-label="Chenge theme"
-        />
-        <label
-          aria-hidden="true"
-          class="theme-switch-track"
-          for="theme-switch-toggle"
-        >
-        </label>
-        <div aria-hidden="true" class="theme-switch-marker"></div>
-      </div>
-      <button
-        class="mobile-menu-btn js-open-menu"
-        data-menu-button
-        aria-expanded="false"
-      >
-        <svg class="mobile-menu-btn-icon" width="28" height="28">
-          <use href="./img/icons.svg#menu-open" class="menu-open"></use>
-          <use href="./img/icons.svg#x-close" class="menu-close"></use>
+    <nav class="header-nav">
+      <a href="./index.html" class="logo-link link">
+        <svg class="header-logo-icon" width="24" height="24">
+          <use href="./img/icons.svg#icon-logo" class="icon-logo"></use>
         </svg>
-      </button>
-    </div>
+        <svg class="header-logo-text" width="77" height="13">
+          <use href="./img/icons.svg#bookshelf" class="logo-text"></use>
+        </svg>
+      </a>
 
-    <nav class="header-nav-menu">
-      <ul class="header-nav-container">
-        <li class="header-nav-list">
+      <ul class="header-nav-menu">
+        <li class="header-menu-item">
           <a
             href="./index.html"
-            class="header-nav-link header-nav-link-home current-page link"
-            >home</a
+            class="header-nav-link nav-link-home current-page link"
+            >Home</a
           >
         </li>
-        <li class="header-nav-list">
+        <li class="header-menu-item">
           <a
             href="./shopping-list.html"
-            class="header-nav-link link header-nav-link-shoppinglist"
+            class="header-nav-link link nav-link-shoppinglist"
             >Shopping list
             <svg class="shopping-list-bag" width="20" height="20">
-              <use href="./img/icons.svg#bag" class="bag"></use>
-              <use
-                href="./img/mobile-menu-icon.svg#icon-bag-white"
-                class="white-bag"
-              ></use>
+              <use href="./img/icons.svg#icon-bag" class="bag"></use>
             </svg>
           </a>
         </li>
       </ul>
+    </nav>
 
-      <div class="log-in-out-container">
+    <div class="header-wrap">
+      <div class="toolbar">
+        <div class="theme-switch-control">
+          <input
+            class="theme-switch-toggle"
+            type="checkbox"
+            name="theme"
+            id="theme-switch-toggle"
+            aria-label="Change theme"
+          />
+          <label
+            aria-hidden="true"
+            class="theme-switch-track"
+            for="theme-switch-toggle"
+          >
+          </label>
+          <div aria-hidden="true" class="theme-switch-marker"></div>
+        </div>
+
+        <button
+          class="mobile-menu-btn js-open-menu js-btn-menu"
+          data-menu-button
+        >
+          <svg class="mobile-menu-btn-icon" width="28" height="28">
+            <use href="./img/icons.svg#menu-open" class="menu-open"></use>
+            <use href="./img/icons.svg#x-close" class="menu-close visually-hidden"></use>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header-authorization">
         <button
           data-login-button
           type="button"
-          class="header-btn-style sign-up"
+          class="header-btn-style sign-up-btn sign-up"
         >
           <img
             class="btn-user-photo"
@@ -91,6 +90,6 @@
           </svg>
         </button>
       </div>
-    </nav>
+    </div>
   </div>
 </header>

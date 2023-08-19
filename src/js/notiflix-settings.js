@@ -14,6 +14,8 @@ export default Notiflix.Notify.init({
   useFontAwesome: true,
   fontAwesomeIconStyle: 'basic',
   fontAwesomeIconSize: '35px',
+  messageMaxLength: 150,
+  closeButton: true,
   success: {
     background: '#3baea0',
     fontAwesomeClassName: 'fa-solid fa-book-open',

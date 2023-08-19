@@ -1,54 +1,57 @@
 // MOBILE MENU
 
-const refs = {
-    burger: document.querySelector(".js-open-menu"),
-    containerMobMenu: document.querySelector('.header-nav-menu'),
-    body:document.querySelector('body'),
-    signUpBtn:document.querySelector('button[data-login-button]'),
-    authBackdrop:document.querySelector('div[data-modal]'),
-    themeSwitch: document.querySelector('.theme-switch-toggle'),
-    header: document.querySelector('.header'),
-    closeMobMenu:document.querySelector('.menu-close'),
+import { isUserAuthorized } from './authorization-window';
+import { showAuthModal } from './authorization-window';
+import { closeAuthModal } from './authorization-window';
+import { firebaseService } from './authorization-window';
+
+const selectors = {
+  mobileMenu: document.querySelector('.mobile-menu'),
+  mobileMenuBtn: document.querySelector('.js-btn-menu'),
+  openMobMenuBtn: document.querySelector('.menu-open'),
+  closeMobMenuBtn: document.querySelector('.menu-close'),
+  logInBtn: document.querySelector('.mobile-menu-sign-up-btn'),
+  logOutBtn: document.querySelector('.mobile-menu-log-out'),
+};
+
+selectors.mobileMenuBtn.addEventListener('click', openMobileMenu);
+
+function openMobileMenu(evt) {
+  selectors.mobileMenu.classList.remove('is-hidden-mobile-menu');
+  selectors.openMobMenuBtn.classList.add('visually-hidden');
+  selectors.closeMobMenuBtn.classList.remove('visually-hidden');
+
+  document.body.style.overflow = 'hidden';
+  selectors.mobileMenu.style.overflow = 'auto';
+
+  selectors.mobileMenuBtn.removeEventListener('click', openMobileMenu);
+
+  selectors.mobileMenuBtn.addEventListener('click', closeMobileMenu);
+  selectors.logInBtn.addEventListener('click', onSignupBtnClick);
+  selectors.logOutBtn.addEventListener('click', firebaseService.onSignOut);
 }
 
-refs.burger.addEventListener('click', openAndCloseMenu)
-refs.signUpBtn.addEventListener('click', hiddenMobileMenu)
-refs.themeSwitch.addEventListener('click', darkTheme)
+function closeMobileMenu(evt) {
+  selectors.mobileMenu.classList.add('is-hidden-mobile-menu');
+  selectors.openMobMenuBtn.classList.remove('visually-hidden');
+  selectors.closeMobMenuBtn.classList.add('visually-hidden');
 
-function openAndCloseMenu (evt) {
-    const expanded = refs.burger.getAttribute('aria-expanded') === 'true'|| false 
-    refs.burger.classList.toggle('is-open')
-    refs.burger.setAttribute('aria-expanded', !expanded)
+  document.body.style.overflow = '';
+  selectors.mobileMenu.style.overflow = '';
 
-    refs.containerMobMenu.classList.toggle('is-open')
-    refs.containerMobMenu.classList.remove('hidden')
+  selectors.logOutBtn.removeEventListener('click', firebaseService.onSignOut);
+  selectors.mobileMenuBtn.removeEventListener('click', closeMobileMenu);
+  selectors.logInBtn.removeEventListener('click', onSignupBtnClick);
 
-    if(refs.containerMobMenu.classList.contains('is-open')){
-        refs.body.style.overflow = 'hidden'
-        refs.body.classList.add('header-mobile-dark-theme')
-    }else{
-        refs.body.style.overflow = 'visible'
-    }
+  selectors.mobileMenuBtn.addEventListener('click', openMobileMenu);
 }
 
-function hiddenMobileMenu () {
-    
+function onSignupBtnClick() {
+  if (isUserAuthorized()) {
+    selectors.logOutBtn.classList.toggle('is-hidden');
 
-    refs.containerMobMenu.classList.remove('is-open')
-    const expanded = refs.burger.getAttribute('aria-expanded') === 'true'|| false 
-    refs.burger.classList.remove('is-open')
-    refs.burger.setAttribute('aria-expanded', !expanded)
-    refs.containerMobMenu.classList.add('hidden')
-    if(expanded){
-
-    }
-}
-
-function darkTheme () {
-// refs.header.classList.toggle('dark-theme')
-refs.closeMobMenu.classList.toggle('dark-theme')
-if(!refs.closeMobMenu.classList.contains('dark-theme')){
-    refs.closeMobMenu.classList.add('light-theme')
-}else{refs.closeMobMenu.classList.remove('light-theme')}
-
+    closeAuthModal();
+  } else {
+    showAuthModal();
+  }
 }

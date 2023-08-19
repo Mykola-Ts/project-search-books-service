@@ -1,61 +1,65 @@
 // Support Ukraine
 
-const refs = {
-    slider: document.querySelector('.slider'),
-    sliderList: document.querySelector('.slider-list'),
-    sliderItem: document.querySelectorAll('.slider-item'),
-    btnNext: document.querySelector('.slider-btn-next'),
-    btnPrev: document.querySelector('.slider-btn-prev'),
-}
+const selectors = {
+  slider: document.querySelector('.slider'),
+  sliderList: document.querySelector('.slider-list'),
+  sliderItem: document.querySelectorAll('.slider-item'),
+  btnNext: document.querySelector('.slider-btn-next'),
+  btnPrev: document.querySelector('.slider-btn-prev'),
+};
 
 let sliderCount = 0;
 let sliderHeigth = 52;
 
-refs.btnNext.addEventListener('click', onClickNext);
+selectors.btnNext.addEventListener('click', onClickNext);
 
 function onClickNext() {
-    sliderCount += 1;
-    rollSlider()
-    if (refs.slider.clientHeight === 188) {
-        if (sliderCount >= refs.sliderItem.length - 4) {
-            addDisplayNone(refs.btnNext);
-            addDisplayBlock(refs.btnPrev);
-            refs.btnNext.removeEventListener('click', onClickNext);
-            refs.btnPrev.addEventListener('click', onClickPrev);
-    }  
-    }
-    else if (refs.slider.clientHeight === 292) {
-        if (sliderCount >= refs.sliderItem.length - 6) {
-            addDisplayNone(refs.btnNext);
-            addDisplayBlock(refs.btnPrev);
-            refs.btnNext.removeEventListener('click', onClickNext);
-            refs.btnPrev.addEventListener('click', onClickPrev);
+  sliderCount += 1;
 
-    }  
+  rollSlider();
+
+  if (selectors.slider.clientHeight === 188) {
+    if (sliderCount >= selectors.sliderItem.length - 4) {
+      addDisplayNone(selectors.btnNext);
+      addDisplayBlock(selectors.btnPrev);
+      selectors.btnNext.removeEventListener('click', onClickNext);
+      selectors.btnPrev.addEventListener('click', onClickPrev);
     }
-} 
-    
+  } else if (selectors.slider.clientHeight === 292) {
+    if (sliderCount >= selectors.sliderItem.length - 6) {
+      addDisplayNone(selectors.btnNext);
+      addDisplayBlock(selectors.btnPrev);
+      selectors.btnNext.removeEventListener('click', onClickNext);
+      selectors.btnPrev.addEventListener('click', onClickPrev);
+    }
+  }
+}
 
 function onClickPrev() {
-    sliderCount -= 1;
-    rollSlider();
-    if (sliderCount === 0) {
-        addDisplayBlock(refs.btnNext);
-        addDisplayNone(refs.btnPrev);
-        refs.btnPrev.removeEventListener('click', onClickPrev);
-        refs.btnNext.addEventListener('click', onClickNext);
-    }
+  sliderCount -= 1;
+
+  rollSlider();
+
+  if (sliderCount === 0) {
+    addDisplayBlock(selectors.btnNext);
+    addDisplayNone(selectors.btnPrev);
+    selectors.btnPrev.removeEventListener('click', onClickPrev);
+    selectors.btnNext.addEventListener('click', onClickNext);
+  }
 }
 
 function rollSlider() {
-    refs.sliderList.style.transform = `translateY(${-sliderCount * sliderHeigth}px)`;
+  selectors.sliderList.style.transform = `translateY(${
+    -sliderCount * sliderHeigth
+  }px)`;
+  selectors.sliderList.style.transition =
+    'transform 500ms cubic-bezier(0.4, 0, 0.2, 1)';
 }
 
 function addDisplayBlock(el) {
-    el.style.display = 'block';
+  el.style.display = 'block';
 }
 
 function addDisplayNone(el) {
-    el.style.display = 'none';
+  el.style.display = 'none';
 }
-

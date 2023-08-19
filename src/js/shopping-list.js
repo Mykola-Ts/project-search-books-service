@@ -5,20 +5,30 @@ import amazonIcon from "../../src/img/amazon-icon.png";
 import appleBookIcon from "../../src/img/apple-book-icon.png";
 import bookShopIcon from "../../src/img/book-shop-icon.png";
 import iconsSvg from "../../src/img/icons.svg";
+import { doc } from "firebase/firestore";
+import { Notify } from 'notiflix';
+import notiflixSettings from './notiflix-settings';
 
 document.addEventListener("DOMContentLoaded", createShoppingList);
 
-const headerNavLinkHome = document.querySelector(".header-nav-link-home");
-const headerNavLinkShoppingList = document.querySelector(
-  ".header-nav-link-shoppinglist"
-);
+const selectors = {
+  headerNavLinkHome: document.querySelector(".nav-link-home"),
+  headerNavLinkShoppingList: document.querySelector(
+    ".nav-link-shoppinglist"
+  ),
+  mobileMenuNavLinkHome: document.querySelector('.mobile-menu-nav-link.nav-link-home'),
+  mobileMenuNavLinkShoppingList: document.querySelector('.mobile-menu-nav-link.nav-link-shoppinglist')
+}
 
 function dataChangeLocalstorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
+    
     localStorage.setItem(key, serializedState);
   } catch (error) {
-    console.error("Set state error: ", error.message);
+    Notify.failure(
+      `Set state error: ${error.message}`
+    );
   }
 }
 
@@ -27,8 +37,10 @@ function createShoppingList(e) {
     return;
   }
 
-  headerNavLinkHome.classList.remove("current-page");
-  headerNavLinkShoppingList.classList.add("current-page");
+  selectors.headerNavLinkHome.classList.remove("current-page");
+  selectors.headerNavLinkShoppingList.classList.add("current-page");
+  selectors.mobileMenuNavLinkHome.classList.remove("current-page");
+  selectors.mobileMenuNavLinkShoppingList.classList.add("current-page");
 
   const shoppinglistContainer = document.querySelector(
     ".shopping-list-container"
@@ -61,7 +73,7 @@ function createMarkup(data) {
   );
 
   shoppinglistContainer.innerHTML = `
-  <h2 class="shopping-list-title-part1 ">Shopping <span class="shopping-list-title-part2">List</span></h2>
+  <h2 class="shopping-list-title ">Shopping <span class="shopping-list-title shopping-list-title-item">List</span></h2>
   `;
 
   if (!data) {
@@ -88,9 +100,9 @@ function createMarkup(data) {
         (el) => `
     <div class="shopping-list-card" data-title="${el.bookName}">
     
-    <img class="shopping-list-card-img" src="${el.bookImage}" alt="book image" />
+    <div class="card-img-wrap"><img class="shopping-list-card-img" src="${el.bookImage}" alt="book image" /></div>
     
-    <div class="shopping-list-card-data">
+    <div class="shopping-list-card-descr">
 
     <h3 class="shopping-list-card-title">${el.bookName}</h3>
     <p class="shopping-list-card-category">${el.listName}</p>
@@ -118,7 +130,7 @@ function createMarkup(data) {
         </ul>
         </div>
     </div>
-    <button type="button" class="button-delete">
+    <button type="button" class="button-delete button">
         <svg class="icon-delete-button" width="16" height="16">
             <use href="${iconsSvg}#icon-trash-icon"></use>
         </svg>
@@ -139,19 +151,14 @@ function onDeleteBook(e) {
   }
 
   const deleteBook = e.target.closest(`.shopping-list-card`);
-
   const deleteBookName = deleteBook.dataset.title;
-
   let data = getDataLocalStorage();
-
   const deleteBookStorage = data.find(
     ({ bookName }) => bookName === deleteBookName
   );
-
   const indexDeleteBook = data.findIndex(
     (el) => el.bookName === deleteBookName
   );
-
   const newArray = data.splice(indexDeleteBook, 1);
 
   dataChangeLocalstorage(`shoppingList`, data);
