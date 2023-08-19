@@ -4,11 +4,9 @@ import axios from 'axios';
 import FirebaseService from './firebase-services';
 const firebaseService = new FirebaseService();
 import { Notify } from 'notiflix';
-import notiflixSettings from './notiflix-settings';
 import amazonIcon from '../../src/img/amazon-icon.png';
 import appleBookIcon from '../../src/img/apple-book-icon.png';
 import bookShopIcon from '../../src/img/book-shop-icon.png';
-
 
 const selectors = {
   closeModalBtn: document.querySelector('button[data-modal-window-close]'),
@@ -107,7 +105,11 @@ export const openBookModal = function openBookModal(evt) {
         document.addEventListener('keydown', closeModal);
       }
     )
-    .catch(err => Notify.failure(`Oops, something went wrong. Try reloading the page. Here's the error message: ${err.message}`));
+    .catch(err =>
+      Notify.failure(
+        `Oops, something went wrong. Try reloading the page. Here's the error message: ${err.message}`
+      )
+    );
 };
 
 document.addEventListener('DOMContentLoaded', addEventListenerModal);

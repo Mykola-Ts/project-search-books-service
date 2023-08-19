@@ -1,16 +1,20 @@
 /* ---------------- SCROLL UP ---------------- */
 .scroll-up-btn {
-  display: block;
   position: fixed;
   bottom: 67px;
   right: 20px;
   z-index: 1;
-  background: transparent;
-  border-radius: 50%;
+
+  display: block;
+
   border: none;
+  border-radius: 50%;
   padding: 0;
   margin: 0;
+
   line-height: 0;
+
+  background: transparent;
 }
 
 .scroll-up-btn:hover {

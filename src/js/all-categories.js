@@ -69,15 +69,14 @@ function createCategories() {
           );
         });
 
-      fetchBooksByCategory(categoriesBook)
-        .then(data => {
-          const markup = createCategoryMarkup(data);
+      fetchBooksByCategory(categoriesBook).then(data => {
+        const markup = createCategoryMarkup(data);
 
-          const booksList = document.querySelector('.books-list');
-          booksList.innerHTML = markup;
+        const booksList = document.querySelector('.books-list');
+        booksList.innerHTML = markup;
 
-          selectors.booksListWrap.addEventListener('click', onClickCategory);
-        })
+        selectors.booksListWrap.addEventListener('click', onClickCategory);
+      });
     })
     .catch(error => {
       Notify.failure(
@@ -138,6 +137,7 @@ async function onClickCategory(evt) {
 
     return;
   }
+  
   if (evt.target.classList.contains('all-category-link')) {
     showLoader(selectors.loader);
     selectors.loader.classList.add('common-loader');
@@ -282,7 +282,6 @@ function createBookMarkup(arr) {
           alt="${book.title}"
           width="335"
           height="485"
-          loading="lazy"
           class="book-item-img"
         />
         <p class="book-overley">quick view</p>

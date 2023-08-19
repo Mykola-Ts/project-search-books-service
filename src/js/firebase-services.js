@@ -22,31 +22,6 @@ import { hideLoader } from './loader';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import '@fortawesome/fontawesome-free/css/all.css';
 
-Notify.init({
-  width: '345px',
-  position: 'rigth-top',
-  cssAnimationStyle: 'from-top',
-  borderRadius: '18px',
-  fontFamily: 'DM Sans',
-  fontSize: '18px',
-  clickToClose: true,
-  useIcon: true,
-  pauseOnHover: true,
-  useFontAwesome: true,
-  fontAwesomeIconStyle: 'basic',
-  fontAwesomeIconSize: '35px',
-  success: {
-    background: '#3baea0',
-    fontAwesomeClassName: 'fa-solid fa-book-open',
-    fontAwesomeIconColor: '#93e4c1',
-  },
-  failure: {
-    background: '#e84a5f',
-    fontAwesomeClassName: 'fa-solid fa-book-skull',
-    fontAwesomeIconColor: '#ff847c',
-  },
-});
-
 const LOCAL_USER_KEY = 'currentUser';
 const LOCAL_THEME_KEY = 'currentTheme';
 const LOCAL_DATA_KEY = 'shoppingList';
@@ -68,6 +43,7 @@ export default class FirebaseService {
 
   createUser = async (email, password, name) => {
     showLoader(document.querySelector('.auth-form'));
+
     try {
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
@@ -98,6 +74,7 @@ export default class FirebaseService {
 
   signInUser = async (email, password) => {
     showLoader(document.querySelector('.loader-thumb'));
+
     try {
       const userCredential = await signInWithEmailAndPassword(
         this.auth,
@@ -118,6 +95,7 @@ export default class FirebaseService {
 
   onSignOut = async () => {
     showLoader(document.querySelector('.auth-form'));
+
     try {
       await signOut(this.auth);
       userLoggedOutBtnStyle();
@@ -156,6 +134,7 @@ export default class FirebaseService {
       return;
     }
     data = data || localStorageService.loadFromLocalStorage(key);
+
     const docRef = doc(this.db, `${collectionName}/${user.uid}`);
     try {
       await setDoc(docRef, data);
@@ -202,6 +181,7 @@ export default class FirebaseService {
       const snapshot = await getDoc(docRef);
       if (snapshot.exists()) {
         const data = snapshot.data();
+
         localStorageService.saveToLocalStorage(key, data);
       }
     } catch (error) {
@@ -219,6 +199,7 @@ export default class FirebaseService {
       if (snapshot.exists()) {
         const data = snapshot.data();
         let arrayOfBooks = data.shoppingList;
+
         localStorageService.saveToLocalStorage(LOCAL_DATA_KEY, arrayOfBooks);
       }
     } catch (error) {
@@ -251,6 +232,7 @@ export default class FirebaseService {
       const snapshot = await getDoc(docRef);
       if (snapshot.exists()) {
         const data = snapshot.data();
+
         localStorage.setItem(LOCAL_THEME_KEY, data.currentTheme);
       }
       currentTheme();
