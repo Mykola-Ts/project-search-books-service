@@ -2,12 +2,13 @@
 
 import axios from 'axios';
 import FirebaseService from './firebase-services';
-const firebaseService = new FirebaseService();
-import { Notify } from 'notiflix';
 import amazonIcon from '../../src/img/amazon-icon.png';
 import appleBookIcon from '../../src/img/apple-book-icon.png';
 import bookShopIcon from '../../src/img/book-shop-icon.png';
 import placeholderCoverBook from '../img/placeholder-cover-book.png';
+import { Notify } from 'notiflix';
+
+const firebaseService = new FirebaseService();
 
 const selectors = {
   closeModalBtn: document.querySelector('button[data-modal-window-close]'),
@@ -124,15 +125,19 @@ function addEventListenerModal(evt) {
 }
 
 async function fetchBookById(id) {
-  const resp = await axios.get(
-    `https://books-backend.p.goit.global/books/${id}`
-  );
+  try {
+    const resp = await axios.get(
+      `https://books-backend.p.goit.global/books/${id}`
+    );
 
-  if (resp.status !== 200) {
-    throw new Error(resp.statusText);
+    if (resp.status !== 200) {
+      throw new Error(resp.statusText);
+    }
+
+    return resp.data;
+  } catch (error) {
+    throw new Error(error.message);
   }
-
-  return resp.data;
 }
 
 function createMarkupModal(image, title, author, description, buyLinks) {

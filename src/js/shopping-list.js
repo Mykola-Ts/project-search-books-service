@@ -1,75 +1,71 @@
 // SHOPPING LIST
 
-import shoppingListEmptyImg from "../../src/img/empty-shopping-list.png";
-import amazonIcon from "../../src/img/amazon-icon.png";
-import appleBookIcon from "../../src/img/apple-book-icon.png";
-import bookShopIcon from "../../src/img/book-shop-icon.png";
-import iconsSvg from "../../src/img/icons.svg";
-import { doc } from "firebase/firestore";
+import shoppingListEmptyImg from '../../src/img/empty-shopping-list.png';
+import amazonIcon from '../../src/img/amazon-icon.png';
+import appleBookIcon from '../../src/img/apple-book-icon.png';
+import bookShopIcon from '../../src/img/book-shop-icon.png';
+import iconsSvg from '../../src/img/icons.svg';
+import placeholderCoverBook from '../img/placeholder-cover-book.png';
 import { Notify } from 'notiflix';
-import notiflixSettings from './notiflix-settings';
 
-document.addEventListener("DOMContentLoaded", createShoppingList);
+document.addEventListener('DOMContentLoaded', createShoppingList);
 
 const selectors = {
-  headerNavLinkHome: document.querySelector(".nav-link-home"),
-  headerNavLinkShoppingList: document.querySelector(
-    ".nav-link-shoppinglist"
+  headerNavLinkHome: document.querySelector('.nav-link-home'),
+  headerNavLinkShoppingList: document.querySelector('.nav-link-shoppinglist'),
+  mobileMenuNavLinkHome: document.querySelector(
+    '.mobile-menu-nav-link.nav-link-home'
   ),
-  mobileMenuNavLinkHome: document.querySelector('.mobile-menu-nav-link.nav-link-home'),
-  mobileMenuNavLinkShoppingList: document.querySelector('.mobile-menu-nav-link.nav-link-shoppinglist')
-}
+  mobileMenuNavLinkShoppingList: document.querySelector(
+    '.mobile-menu-nav-link.nav-link-shoppinglist'
+  ),
+};
 
 function dataChangeLocalstorage(key, value) {
   try {
     const serializedState = JSON.stringify(value);
-    
+
     localStorage.setItem(key, serializedState);
   } catch (error) {
-    Notify.failure(
-      `Set state error: ${error.message}`
-    );
+    Notify.failure(`Set state error: ${error.message}`);
   }
 }
 
 function createShoppingList(e) {
-  if (!e.target.location.pathname.includes("/shopping-list.html")) {
+  if (!e.target.location.pathname.includes('/shopping-list.html')) {
     return;
   }
 
-  selectors.headerNavLinkHome.classList.remove("current-page");
-  selectors.headerNavLinkShoppingList.classList.add("current-page");
-  selectors.mobileMenuNavLinkHome.classList.remove("current-page");
-  selectors.mobileMenuNavLinkShoppingList.classList.add("current-page");
+  selectors.headerNavLinkHome.classList.remove('current-page');
+  selectors.headerNavLinkShoppingList.classList.add('current-page');
+  selectors.mobileMenuNavLinkHome.classList.remove('current-page');
+  selectors.mobileMenuNavLinkShoppingList.classList.add('current-page');
 
-  const shoppinglistContainer = document.querySelector(
-    ".shopping-list-container"
-  );
-
-  let data = getDataLocalStorage();
+  const data = getDataLocalStorage();
 
   createMarkup(data);
 
-  const btnDeletebook = document.querySelector(".shopping-list");
+  const btnDeletebook = document.querySelector('.shopping-list');
 
   if (btnDeletebook) {
-    btnDeletebook.addEventListener(`click`, onDeleteBook);
+    btnDeletebook.addEventListener('click', onDeleteBook);
   }
 }
 
 function getDataLocalStorage() {
-  if (!localStorage.getItem("shoppingList")) {
+  if (!localStorage.getItem('shoppingList')) {
     return;
   }
 
-  const savedData = localStorage.getItem(`shoppingList`);
-  let parsedData = [];
-  return (parsedData = JSON.parse(savedData));
+  const savedData = localStorage.getItem('shoppingList');
+  const parsedData = JSON.parse(savedData);
+
+  return parsedData;
 }
 
 function createMarkup(data) {
   const shoppinglistContainer = document.querySelector(
-    ".shopping-list-container"
+    '.shopping-list-container'
   );
 
   shoppinglistContainer.innerHTML = `
@@ -97,10 +93,12 @@ function createMarkup(data) {
   } else {
     shoppinglistContainer.innerHTML += data
       .map(
-        (el) => `
+        el => `
     <div class="shopping-list-card" data-title="${el.bookName}">
     
-    <div class="card-img-wrap"><img class="shopping-list-card-img" src="${el.bookImage}" alt="book image" /></div>
+    <div class="card-img-wrap"><img class="shopping-list-card-img" src="${
+      el.bookImage || placeholderCoverBook
+    }" alt="book image" /></div>
     
     <div class="shopping-list-card-descr">
 
@@ -111,17 +109,23 @@ function createMarkup(data) {
     <p class="shopping-list-card-author">${el.bookAuthor}</p>
     <ul class="shopping-list-card-linkshop">
         <li class="shop-item" >
-            <a class="shop-link" href="${el.buyLinks[0].url}" target="_blank" rel="noopener noreferrer nofollow">
+            <a class="shop-link" href="${
+              el.buyLinks[0].url
+            }" target="_blank" rel="noopener noreferrer nofollow">
             <img class="shopping-list-amazon-img" src="${amazonIcon}" alt="logo-amazon " width="32" height="11"/>
             </a>
         </li>
         <li class="shop-item">
-            <a class="shop-link" href="${el.buyLinks[1].url}" target="_blank" rel="noopener noreferrer nofollow">
+            <a class="shop-link" href="${
+              el.buyLinks[1].url
+            }" target="_blank" rel="noopener noreferrer nofollow">
             <img class="shopping-list-applebook-img shop-icon" src="${appleBookIcon}" alt="logo-applebook " width="16" height="16" />
             </a>
         </li>
         <li class="shop-item">
-            <a class="shop-link" href="${el.buyLinks[2].url}" target="_blank" rel="noopener noreferrer nofollow">
+            <a class="shop-link" href="${
+              el.buyLinks[2].url
+            }" target="_blank" rel="noopener noreferrer nofollow">
             <img class="shopping-list-bookshop-img shop-icon" src="${bookShopIcon}" alt="logo-bookshop " width="16"
   height="16" />
                 
@@ -144,24 +148,19 @@ function createMarkup(data) {
 
 function onDeleteBook(e) {
   if (
-    !e.target.classList.contains("icon-delete-button") &&
-    !e.target.closest("button.button-delete")
+    !e.target.classList.contains('icon-delete-button') &&
+    !e.target.closest('button.button-delete')
   ) {
     return;
   }
 
-  const deleteBook = e.target.closest(`.shopping-list-card`);
+  const deleteBook = e.target.closest('.shopping-list-card');
   const deleteBookName = deleteBook.dataset.title;
-  let data = getDataLocalStorage();
-  const deleteBookStorage = data.find(
-    ({ bookName }) => bookName === deleteBookName
-  );
-  const indexDeleteBook = data.findIndex(
-    (el) => el.bookName === deleteBookName
-  );
-  const newArray = data.splice(indexDeleteBook, 1);
+  const data = getDataLocalStorage();
+  const indexDeleteBook = data.findIndex(el => el.bookName === deleteBookName);
+  data.splice(indexDeleteBook, 1);
 
-  dataChangeLocalstorage(`shoppingList`, data);
+  dataChangeLocalstorage('shoppingList', data);
 
   createMarkup(data);
 }
