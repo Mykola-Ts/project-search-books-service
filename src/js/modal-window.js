@@ -7,6 +7,7 @@ import { Notify } from 'notiflix';
 import amazonIcon from '../../src/img/amazon-icon.png';
 import appleBookIcon from '../../src/img/apple-book-icon.png';
 import bookShopIcon from '../../src/img/book-shop-icon.png';
+import placeholderCoverBook from '../img/placeholder-cover-book.png';
 
 const selectors = {
   closeModalBtn: document.querySelector('button[data-modal-window-close]'),
@@ -153,7 +154,7 @@ function createMarkupModal(image, title, author, description, buyLinks) {
     .join('');
 
   return `<div class="book-img-wrap"><img
-    src="${image}"
+    src="${image || placeholderCoverBook}"
     alt="${title}"
     width="192"
     height="281"

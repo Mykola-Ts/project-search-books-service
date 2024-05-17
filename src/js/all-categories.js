@@ -1,11 +1,10 @@
 // All categories
 
-import axios from 'axios';
 import { showLoader } from './loader';
 import { hideLoader } from './loader';
 import { openBookModal } from './modal-window';
 import { Notify } from 'notiflix';
-import notiflixSettings from './notiflix-settings';
+import placeholderCoverBook from '../img/placeholder-cover-book.png';
 
 const API_URL = 'https://books-backend.p.goit.global/books';
 
@@ -62,21 +61,19 @@ function createCategories() {
         <h2 class="best-sellers-title">Best Sellers <span class="best-sellers-title-item">Books</span></h2>
         <ul class="best-sellers-list books-list-by-category">${markupBestSellersList}</ul>
         <button type="button" class="see-more-btn see-more-btn-best-sellers">SEE MORE</button>`;
+
+          const categoryMarkup = createCategoryMarkup(data);
+
+          const booksList = document.querySelector('.books-list');
+          booksList.innerHTML = categoryMarkup;
+
+          selectors.booksListWrap.addEventListener('click', onClickCategory);
         })
         .catch(error => {
           Notify.failure(
             `Oops, something went wrong. Try reloading the page. Here's the error message: ${error.message}`
           );
         });
-
-      fetchBooksByCategory(categoriesBook).then(data => {
-        const markup = createCategoryMarkup(data);
-
-        const booksList = document.querySelector('.books-list');
-        booksList.innerHTML = markup;
-
-        selectors.booksListWrap.addEventListener('click', onClickCategory);
-      });
     })
     .catch(error => {
       Notify.failure(
@@ -137,7 +134,7 @@ async function onClickCategory(evt) {
 
     return;
   }
-  
+
   if (evt.target.classList.contains('all-category-link')) {
     showLoader(selectors.loader);
     selectors.loader.classList.add('common-loader');
@@ -244,23 +241,15 @@ function createCategoryListMarkup(arr) {
 }
 
 function createCategoryMarkup(arr) {
-  let idCategory = 0;
-
   return arr
-    .map(({ value }) => {
-      const markup = `<li class="books-list-category" data-id="${
-        categoriesBook[idCategory]
-      }">
-    <h3 class="books-category-title">${categoriesBook[idCategory]}</h3>
+    .map(({ books, list_name }) => {
+      const markup = `<li class="books-list-category" data-id="${list_name}">
+    <h3 class="books-category-title">${list_name}</h3>
     <ul class="books-list-by-category">
-    ${createBookMarkup(value.slice(0, 5))}
+    ${createBookMarkup(books)}
     </ul>
-    <button type="button" class="see-more-btn" data-name="${
-      categoriesBook[idCategory]
-    }">SEE MORE</button>
+    <button type="button" class="see-more-btn" data-name="${list_name}">SEE MORE</button>
     </li>`;
-
-      idCategory += 1;
 
       hideLoader(selectors.loader);
       selectors.loader.classList.remove('common-loader');
@@ -274,11 +263,13 @@ function createBookMarkup(arr) {
   return arr
     .map(
       book =>
-        `<li data-id="${book._id}" class="books-list-item books-list-item-category">
+        `<li data-id="${
+          book._id
+        }" class="books-list-item books-list-item-category">
         <a href="#" class="book-item-link link">
         <div class="book-img-wrap-item">
         <img
-          src="${book.book_image}"
+          src="${book.book_image || placeholderCoverBook}"
           alt="${book.title}"
           width="335"
           height="485"
@@ -292,30 +283,6 @@ function createBookMarkup(arr) {
       </li>`
     )
     .join('');
-}
-
-async function fetchBooksByCategory(categoriesBook) {
-  const arrOfPromises = categoriesBook.map(async category => {
-    const resp = await axios.get(`${API_URL}/category?category=${category}`);
-
-    if (resp.status !== 200) {
-      throw new Error(resp.statusText);
-    }
-
-    return resp.data;
-  });
-
-  const data = (await Promise.allSettled(arrOfPromises)).filter(
-    ({ status }) => status === 'fulfilled'
-  );
-
-  if (!data.length) {
-    throw new Error(
-      'Sorry, there are no books matching your search query. Please try again.'
-    );
-  }
-
-  return data;
 }
 
 async function fetchData(endpoint) {
