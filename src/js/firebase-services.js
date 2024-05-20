@@ -76,16 +76,12 @@ export default class FirebaseService {
     showLoader(document.querySelector('.loader-thumb'));
 
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
+      await signInWithEmailAndPassword(this.auth, email, password);
       this.readDataFromDb(LOCAL_USER_KEY, 'users');
       this.readThemeFromDb();
       this.readBooksFromDb();
 
-      const userData = userLoggedInBtnStyle(this.userName);
+      userLoggedInBtnStyle(this.userName);
     } catch (error) {
       hideLoader(document.querySelector('.loader-thumb'));
       this.onError(error);

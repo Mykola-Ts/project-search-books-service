@@ -1,9 +1,10 @@
 <div class="mobile-menu is-hidden-mobile-menu">
-    <div class="mobile-menu-container container">
-      <button
+  <div class="mobile-menu-container container">
+    <button
       data-login-button
       type="button"
       class="header-btn-style sign-up-btn mobile-menu-sign-up-btn sign-up"
+      aria-label="Open authorization window"
     >
       <img
         class="btn-user-photo"
@@ -20,8 +21,9 @@
     <ul class="mobile-menu-nav">
       <li class="header-menu-item">
         <a
-          href="./index.html"
+          href="/"
           class="header-nav-link nav-link-home current-page link mobile-menu-nav-link"
+          aria-label="Open Home page"
           >Home</a
         >
       </li>
@@ -29,6 +31,7 @@
         <a
           href="./shopping-list.html"
           class="header-nav-link link nav-link-shoppinglist mobile-menu-nav-link"
+          aria-label="Open Shopping list page"
           >Shopping list
           <svg class="shopping-list-bag" width="20" height="20">
             <use href="./img/icons.svg#icon-bag" class="bag"></use>
@@ -37,11 +40,16 @@
       </li>
     </ul>
 
-  <button type="button" class="log-out header-btn-style mobile-menu-log-out is-hidden" data-logout-button>
-    Log out
-    <svg class="arrow-right-icon" width="20" height="20">
-      <use href="./img/icons.svg#arrow-right" class=""></use>
-    </svg>
-  </button>
-    </div>
+    <button
+      type="button"
+      class="log-out header-btn-style mobile-menu-log-out is-hidden"
+      data-logout-button
+      aria-label="Log out"
+    >
+      Log out
+      <svg class="arrow-right-icon" width="20" height="20">
+        <use href="./img/icons.svg#arrow-right" class=""></use>
+      </svg>
+    </button>
+  </div>
 </div>

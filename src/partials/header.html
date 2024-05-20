@@ -1,7 +1,7 @@
 <header class="header">
   <div class="header-container container">
     <nav class="header-nav">
-      <a href="./index.html" class="logo-link link">
+      <a href="./index.html" class="logo-link link" aria-label="Website logo">
         <svg class="header-logo-icon" width="24" height="24">
           <use href="./img/icons.svg#icon-logo" class="icon-logo"></use>
         </svg>
@@ -13,8 +13,9 @@
       <ul class="header-nav-menu">
         <li class="header-menu-item">
           <a
-            href="./index.html"
+            href="/"
             class="header-nav-link nav-link-home current-page link"
+            aria-label="Open Home page"
             >Home</a
           >
         </li>
@@ -22,6 +23,7 @@
           <a
             href="./shopping-list.html"
             class="header-nav-link link nav-link-shoppinglist"
+            aria-label="Open Shopping list page"
             >Shopping list
             <svg class="shopping-list-bag" width="20" height="20">
               <use href="./img/icons.svg#icon-bag" class="bag"></use>
@@ -53,10 +55,14 @@
         <button
           class="mobile-menu-btn js-open-menu js-btn-menu"
           data-menu-button
+          aria-label="Mobile menu toggle"
         >
           <svg class="mobile-menu-btn-icon" width="28" height="28">
             <use href="./img/icons.svg#menu-open" class="menu-open"></use>
-            <use href="./img/icons.svg#x-close" class="menu-close visually-hidden"></use>
+            <use
+              href="./img/icons.svg#x-close"
+              class="menu-close visually-hidden"
+            ></use>
           </svg>
         </button>
       </div>
@@ -66,6 +72,7 @@
           data-login-button
           type="button"
           class="header-btn-style sign-up-btn sign-up"
+          aria-label="Open authorization window"
         >
           <img
             class="btn-user-photo"
@@ -83,6 +90,7 @@
           type="button"
           class="log-out header-btn-style is-hidden"
           data-logout-button
+          aria-label="Log out"
         >
           Log out
           <svg class="arrow-right-icon" width="20" height="20">

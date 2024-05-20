@@ -1,6 +1,10 @@
 <div class="auth-backdrop is-hidden" data-modal-overlay>
   <div class="auth-modal">
-    <button class="auth-close" data-modal-close>
+    <button
+      class="auth-close"
+      data-modal-close
+      aria-label="Close authorization window"
+    >
       <svg class="auth-svg">
         <use href="./img/icons.svg#icon-x-close"></use>
       </svg>
@@ -45,13 +49,30 @@
         </div>
       </div>
 
-      <button type="submit" class="auth-form-button" data-modal-signup>
+      <button
+        type="submit"
+        class="auth-form-button"
+        data-modal-signup
+        aria-label="Sign up"
+      >
         Sign Up
       </button>
     </form>
     <div class="auth-form-wrap">
-      <button class="auth-form-link" data-modal-signup-link>Sign Up</button>
-      <button class="auth-form-link" data-modal-signin-link>Sign In</button>
+      <button
+        class="auth-form-link"
+        data-modal-signup-link
+        aria-label="Open sign up window"
+      >
+        Sign Up
+      </button>
+      <button
+        class="auth-form-link"
+        data-modal-signin-link
+        aria-label="Open sign in window"
+      >
+        Sign In
+      </button>
     </div>
     <div class="loader-thumb"></div>
   </div>

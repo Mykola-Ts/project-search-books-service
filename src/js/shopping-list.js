@@ -111,21 +111,21 @@ function createMarkup(data) {
         <li class="shop-item" >
             <a class="shop-link" href="${
               el.buyLinks[0].url
-            }" target="_blank" rel="noopener noreferrer nofollow">
+            }" target="_blank" rel="noopener noreferrer nofollow" aria-label="Open book on Amazon">
             <img class="shopping-list-amazon-img" src="${amazonIcon}" alt="logo-amazon " width="32" height="11"/>
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${
               el.buyLinks[1].url
-            }" target="_blank" rel="noopener noreferrer nofollow">
+            }" target="_blank" rel="noopener noreferrer nofollow" aria-label="Open book on Apple Books">
             <img class="shopping-list-applebook-img shop-icon" src="${appleBookIcon}" alt="logo-applebook " width="16" height="16" />
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${
               el.buyLinks[2].url
-            }" target="_blank" rel="noopener noreferrer nofollow">
+            }" target="_blank" rel="noopener noreferrer nofollow" aria-label="Open book on Barnes and Noble">
             <img class="shopping-list-bookshop-img shop-icon" src="${bookShopIcon}" alt="logo-bookshop " width="16"
   height="16" />
                 
@@ -134,7 +134,7 @@ function createMarkup(data) {
         </ul>
         </div>
     </div>
-    <button type="button" class="button-delete button">
+    <button type="button" class="button-delete button" aria-label="Delete book from shopping list">
         <svg class="icon-delete-button" width="16" height="16">
             <use href="${iconsSvg}#icon-trash-icon"></use>
         </svg>

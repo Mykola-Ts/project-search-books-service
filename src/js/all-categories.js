@@ -34,7 +34,7 @@ function createBookList(evt) {
 async function createCategories() {
   try {
     const categoriesData = await fetchData('/category-list');
-    const markupCategoryList = `<li class="category-list-item all-categories-list-item current-category"><a href="#" class="category-list-link all-category-link link" data-name="top-books">All categories</a></li>${createCategoryListMarkup(
+    const markupCategoryList = `<li class="category-list-item all-categories-list-item current-category"><a href="#" class="category-list-link all-category-link link" data-name="top-books" aria-label="All categories books">All categories</a></li>${createCategoryListMarkup(
       categoriesData
     )}`;
 
@@ -46,15 +46,24 @@ async function createCategories() {
       categoriesBook.push(list_name);
     });
 
+    await fetchTopBooks();
+  } catch (error) {
+    Notify.failure(
+      `Oops, something went wrong. Try reloading the page. Here's the error message: ${error.message}`
+    );
+  }
+}
+
+async function fetchTopBooks() {
+  try {
     const topBooksData = await fetchData('/top-books');
     const markupBestSellersList = createBookMarkup(
       topBooksData.map(({ books }) => books[0]).slice(0, 5)
     );
 
-    selectors.bestSellers.innerHTML = `
-        <h2 class="best-sellers-title">Best Sellers <span class="best-sellers-title-item">Books</span></h2>
+    selectors.bestSellers.insertAdjacentHTML = `
         <ul class="best-sellers-list books-list-by-category">${markupBestSellersList}</ul>
-        <button type="button" class="see-more-btn see-more-btn-best-sellers">SEE MORE</button>`;
+        <button type="button" class="see-more-btn see-more-btn-best-sellers" aria-label="See more best sellers books">SEE MORE</button>`;
 
     const categoryMarkup = createCategoryMarkup(topBooksData);
     const booksList = document.querySelector('.books-list');
@@ -187,7 +196,7 @@ function createCategoryListMarkup(arr) {
   return arr
     .map(
       ({ list_name }) =>
-        `<li class="category-list-item"><a href="#" class="category-list-link link" data-name="${list_name}">${list_name}</a></li>`
+        `<li class="category-list-item"><a href="#" class="category-list-link link" data-name="${list_name}" aria-label="Category books">${list_name}</a></li>`
     )
     .join('');
 }
@@ -200,7 +209,7 @@ function createCategoryMarkup(arr) {
     <ul class="books-list-by-category">
     ${createBookMarkup(books)}
     </ul>
-    <button type="button" class="see-more-btn" data-name="${list_name}">SEE MORE</button>
+    <button type="button" class="see-more-btn" data-name="${list_name}" aria-label="See more books by category ${list_name}">SEE MORE</button>
     </li>`;
 
       hideLoader(selectors.loader);
@@ -218,7 +227,7 @@ function createBookMarkup(arr) {
         `<li data-id="${
           book._id
         }" class="books-list-item books-list-item-category">
-        <a href="#" class="book-item-link link">
+        <a href="#" class="book-item-link link" aria-label="Book ${book.title}">
         <div class="book-img-wrap-item">
         <img
           src="${book.book_image || placeholderCoverBook}"
