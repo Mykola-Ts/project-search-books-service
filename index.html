@@ -3,20 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A book search website. You can register, add books of interest to the shopping list, view detailed information and go to the shopping site to buy the book."
+    />
     <link rel="shortcut icon" href="/project-search-books-service/favicon.ico" type="image/x-icon" />
     <title>Bookshelf</title>
     
     
-    <script type="module" crossorigin src="/project-search-books-service/assets/shopping-list-5ce3c9f6.js"></script>
+    <script type="module" crossorigin src="/project-search-books-service/assets/shopping-list-dfeb3c29.js"></script>
     <link rel="stylesheet" href="/project-search-books-service/assets/shopping-list-4e16ed23.css">
   </head>
-  
+
   <body>
     <!-- HEADER -->
     <header class="header">
   <div class="header-container container">
     <nav class="header-nav">
-      <a href="./index.html" class="logo-link link">
+      <a href="./index.html" class="logo-link link" aria-label="Website logo">
         <svg class="header-logo-icon" width="24" height="24">
           <use href="/project-search-books-service/assets/icons-9431693d.svg#icon-logo" class="icon-logo"></use>
         </svg>
@@ -28,8 +32,9 @@
       <ul class="header-nav-menu">
         <li class="header-menu-item">
           <a
-            href="./index.html"
+            href="/"
             class="header-nav-link nav-link-home current-page link"
+            aria-label="Open Home page"
             >Home</a
           >
         </li>
@@ -37,6 +42,7 @@
           <a
             href="./shopping-list.html"
             class="header-nav-link link nav-link-shoppinglist"
+            aria-label="Open Shopping list page"
             >Shopping list
             <svg class="shopping-list-bag" width="20" height="20">
               <use href="/project-search-books-service/assets/icons-9431693d.svg#icon-bag" class="bag"></use>
@@ -68,10 +74,14 @@
         <button
           class="mobile-menu-btn js-open-menu js-btn-menu"
           data-menu-button
+          aria-label="Mobile menu toggle"
         >
           <svg class="mobile-menu-btn-icon" width="28" height="28">
             <use href="/project-search-books-service/assets/icons-9431693d.svg#menu-open" class="menu-open"></use>
-            <use href="/project-search-books-service/assets/icons-9431693d.svg#x-close" class="menu-close visually-hidden"></use>
+            <use
+              href="/project-search-books-service/assets/icons-9431693d.svg#x-close"
+              class="menu-close visually-hidden"
+            ></use>
           </svg>
         </button>
       </div>
@@ -81,6 +91,7 @@
           data-login-button
           type="button"
           class="header-btn-style sign-up-btn sign-up"
+          aria-label="Open authorization window"
         >
           <img
             class="btn-user-photo"
@@ -98,6 +109,7 @@
           type="button"
           class="log-out header-btn-style is-hidden"
           data-logout-button
+          aria-label="Log out"
         >
           Log out
           <svg class="arrow-right-icon" width="20" height="20">
@@ -112,11 +124,12 @@
 
     <!-- Mobile menu -->
     <div class="mobile-menu is-hidden-mobile-menu">
-    <div class="mobile-menu-container container">
-      <button
+  <div class="mobile-menu-container container">
+    <button
       data-login-button
       type="button"
       class="header-btn-style sign-up-btn mobile-menu-sign-up-btn sign-up"
+      aria-label="Open authorization window"
     >
       <img
         class="btn-user-photo"
@@ -133,8 +146,9 @@
     <ul class="mobile-menu-nav">
       <li class="header-menu-item">
         <a
-          href="./index.html"
+          href="/"
           class="header-nav-link nav-link-home current-page link mobile-menu-nav-link"
+          aria-label="Open Home page"
           >Home</a
         >
       </li>
@@ -142,6 +156,7 @@
         <a
           href="./shopping-list.html"
           class="header-nav-link link nav-link-shoppinglist mobile-menu-nav-link"
+          aria-label="Open Shopping list page"
           >Shopping list
           <svg class="shopping-list-bag" width="20" height="20">
             <use href="/project-search-books-service/assets/icons-9431693d.svg#icon-bag" class="bag"></use>
@@ -150,14 +165,20 @@
       </li>
     </ul>
 
-  <button type="button" class="log-out header-btn-style mobile-menu-log-out is-hidden" data-logout-button>
-    Log out
-    <svg class="arrow-right-icon" width="20" height="20">
-      <use href="/project-search-books-service/assets/icons-9431693d.svg#arrow-right" class=""></use>
-    </svg>
-  </button>
-    </div>
+    <button
+      type="button"
+      class="log-out header-btn-style mobile-menu-log-out is-hidden"
+      data-logout-button
+      aria-label="Log out"
+    >
+      Log out
+      <svg class="arrow-right-icon" width="20" height="20">
+        <use href="/project-search-books-service/assets/icons-9431693d.svg#arrow-right" class=""></use>
+      </svg>
+    </button>
+  </div>
 </div>
+
 
     <main>
       <!-- HOME -->
@@ -187,6 +208,7 @@
           class="link-support link"
           target="_blank"
           rel="noopener noreferrer nofollow"
+          aria-label="Support Save the Children organization"
         >
           <p class="title-item-support">01</p>
           <img
@@ -205,6 +227,7 @@
           class="link-support link"
           target="_blank"
           rel="noopener noreferrer nofollow"
+          aria-label="Support Project HOPE organization"
         >
           <p class="title-item-support">02</p>
           <img
@@ -223,6 +246,7 @@
           class="link-support link"
           target="_blank"
           rel="noopener noreferrer nofollow"
+          aria-label="Support International Medical Corps organization"
         >
           <p class="title-item-support">03</p>
           <img
@@ -241,6 +265,7 @@
           class="link-support link"
           target="_blank"
           rel="noopener noreferrer nofollow"
+          aria-label="Support RAZOM organization"
         >
           <p class="title-item-support">04</p>
           <img
@@ -259,6 +284,7 @@
           class="link-support link"
           target="_blank"
           rel="noopener noreferrer nofollow"
+          aria-label="Support Action against hunger organization"
         >
           <p class="title-item-support">05</p>
           <img
@@ -277,6 +303,7 @@
           class="link-support link"
           target="_blank"
           rel="noopener noreferrer nofollow"
+          aria-label="Support Serhiy Prytula Charity Foundation organization"
         >
           <p class="title-item-support">06</p>
           <img
@@ -295,6 +322,7 @@
           class="link-support link"
           target="_blank"
           rel="noopener noreferrer nofollow"
+          aria-label="Support Medicins Sans Frontieres organization"
         >
           <p class="title-item-support">07</p>
           <img
@@ -313,6 +341,7 @@
           class="link-support link"
           target="_blank"
           rel="noopener noreferrer nofollow"
+          aria-label="Support World vision organization"
         >
           <p class="title-item-support">08</p>
           <img
@@ -331,6 +360,7 @@
           class="link-support link"
           target="_blank"
           rel="noopener noreferrer nofollow"
+          aria-label="Support UNITED24 organization"
         >
           <p class="title-item-support">09</p>
           <img
@@ -346,13 +376,17 @@
     </ul>
   </div>
 
-  <button type="button" class="slider-btn-prev">
+  <button
+    type="button"
+    class="slider-btn-prev"
+    aria-label="Previous slider item"
+  >
     <svg width="38" height="38" class="btn-prev-icon">
       <use href="/project-search-books-service/assets/icons-9431693d.svg#icon-slider"></use>
     </svg>
   </button>
 
-  <button type="button" class="slider-btn-next">
+  <button type="button" class="slider-btn-next" aria-label="Next slider item">
     <svg width="38" height="38" class="btn-next-icon">
       <use href="/project-search-books-service/assets/icons-9431693d.svg#icon-slider"></use>
     </svg>
@@ -364,7 +398,11 @@
         <!-- List of books -->
         <div>
   <div class="books-list-wrap visually-hidden">
-    <div class="best-sellers"></div>
+    <div class="best-sellers">
+      <h2 class="best-sellers-title">
+        Best Sellers <span class="best-sellers-title-item">Books</span>
+      </h2>
+    </div>
 
     <ul class="books-list"></ul>
   </div>
@@ -377,7 +415,11 @@
     <!-- AUTHORIZATION WINDOW -->
     <div class="auth-backdrop is-hidden" data-modal-overlay>
   <div class="auth-modal">
-    <button class="auth-close" data-modal-close>
+    <button
+      class="auth-close"
+      data-modal-close
+      aria-label="Close authorization window"
+    >
       <svg class="auth-svg">
         <use href="/project-search-books-service/assets/icons-9431693d.svg#icon-x-close"></use>
       </svg>
@@ -422,13 +464,30 @@
         </div>
       </div>
 
-      <button type="submit" class="auth-form-button" data-modal-signup>
+      <button
+        type="submit"
+        class="auth-form-button"
+        data-modal-signup
+        aria-label="Sign up"
+      >
         Sign Up
       </button>
     </form>
     <div class="auth-form-wrap">
-      <button class="auth-form-link" data-modal-signup-link>Sign Up</button>
-      <button class="auth-form-link" data-modal-signin-link>Sign In</button>
+      <button
+        class="auth-form-link"
+        data-modal-signup-link
+        aria-label="Open sign up window"
+      >
+        Sign Up
+      </button>
+      <button
+        class="auth-form-link"
+        data-modal-signin-link
+        aria-label="Open sign in window"
+      >
+        Sign In
+      </button>
     </div>
     <div class="loader-thumb"></div>
   </div>
@@ -440,9 +499,20 @@
   <div class="modal-window">
     <div class="modal-wrap"></div>
 
-    <button type="button" class="modal-btn-add">Add to shopping list</button>
+    <button
+      type="button"
+      class="modal-btn-add"
+      aria-label="Add book to shopping list"
+    >
+      Add to shopping list
+    </button>
 
-    <button type="button" class="close-btn" data-modal-window-close>
+    <button
+      type="button"
+      class="close-btn"
+      data-modal-window-close
+      aria-label="Close modal window"
+    >
       <svg width="24" height="24" class="close-btn-icon">
         <use href="/project-search-books-service/assets/icons-9431693d.svg#icon-x-close"></use>
       </svg>
@@ -463,7 +533,11 @@
 
     <!-- SCROLL UP -->
     <div>
-  <button type="button" class="js-btn-up scroll-up-btn">
+  <button
+    type="button"
+    class="js-btn-up scroll-up-btn"
+    aria-label="Scroll to top"
+  >
     <svg class="scroll-up-icon">
       <use href="/project-search-books-service/assets/icons-9431693d.svg#scroll-up-btn"></use>
     </svg>
