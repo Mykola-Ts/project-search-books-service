@@ -1,9 +1,9 @@
-import * as header from './header';
-import * as authorizationWindow from './authorization-window';
-import * as mobileMenu from './mobile-menu';
-import * as allCategories from './all-categories';
-import * as supportUkraine from './support-ukraine';
-import * as modalWindow from './modal-window';
-import * as loader from './loader';
-import * as scrollUp from './scroll-up';
-import * as shoppingList from './shopping-list';
+import './header';
+import './authorization-window';
+import './mobile-menu';
+import './all-categories';
+import './support-ukraine';
+import './modal-window';
+import './loader';
+import './scroll-up';
+import './shopping-list';
