@@ -10,27 +10,6 @@ body.dark-theme .header {
   border-color: var(--white-color);
 }
 
-@media screen and (max-width: 767px) {
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3;
-
-    background-color: var(--light-theme-color);
-  }
-
-  body.dark-theme .header {
-    background-color: var(--dark-theme-color);
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .header {
-    padding: 14px 0;
-  }
-}
-
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -40,12 +19,6 @@ body.dark-theme .header {
   display: flex;
   align-items: center;
   gap: 40px;
-}
-
-@media screen and (min-width: 1440px) {
-  .header-nav {
-    gap: 76px;
-  }
 }
 
 .logo-link {
@@ -64,26 +37,14 @@ body.dark-theme .header {
   gap: 8px;
 }
 
-@media screen and (max-width: 767px) {
-  .header-nav-menu {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .header-nav-menu {
-    gap: 16px;
-  }
-}
-
 .header-nav-link {
   display: block;
-  text-align: center;
 
   min-width: 72px;
   border-radius: 36px;
   padding: 8px 16px;
 
+  text-align: center;
   font-family: inherit;
   font-size: 14px;
   line-height: 1.3;
@@ -112,32 +73,13 @@ body.dark-theme .header {
   gap: 4px;
 }
 
-@media screen and (min-width: 768px) {
-  .nav-link-shoppinglist {
-    gap: 8px;
-  }
-}
-
 .shopping-list-bag {
   fill: currentColor;
-}
-
-@media screen and (min-width: 768px) {
-  .header-wrap {
-    display: flex;
-    gap: 24px;
-  }
 }
 
 .toolbar {
   display: flex;
   align-items: center;
-}
-
-@media screen and (max-width: 767px) {
-  .toolbar {
-    gap: 14px;
-  }
 }
 
 .header-btn-style {
@@ -154,7 +96,6 @@ body.dark-theme .header {
 
   width: 40px;
   height: 20px;
-
   border-radius: 50em;
   padding: 3px 0;
 }
@@ -225,7 +166,7 @@ body.dark-theme .header {
   padding: 14px;
 
   color: var(--white-color);
-  background: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .btn-user-photo,
@@ -234,38 +175,11 @@ body.dark-theme .header {
 }
 
 .log-out {
-  border-radius: 18px;
   border: 1.5px solid var(--text-black-color);
+  border-radius: 18px;
   padding: 14px;
 
-  background: var(--white-color);
-}
-
-@media screen and (min-width: 768px) {
-  .log-out {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 4;
-    transform: translateY(100%);
-
-    justify-content: space-between;
-
-    width: 100%;
-
-    background-color: var(--white-color);
-  }
-
-  .log-out.is-hidden {
-    transform: translateY(0);
-
-    transition: transform var(--transition-duration)
-      var(--transition-timing-function);
-  }
-
-  .header-authorization {
-    position: relative;
-  }
+  background-color: var(--white-color);
 }
 
 .user-in {
@@ -277,17 +191,17 @@ body.dark-theme .header {
   height: 45px;
   border: none;
   border-radius: 36px;
+  overflow: hidden;
 
   font-size: 22px;
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.44px;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 
   color: var(--white-color);
-  background: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .btn-user-photo,
@@ -318,12 +232,31 @@ body.dark-theme .header {
 }
 
 @media screen and (max-width: 767px) {
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+
+    background-color: var(--light-theme-color);
+  }
+
+  body.dark-theme .header {
+    background-color: var(--dark-theme-color);
+  }
+
+  .header-nav-menu {
+    display: none;
+  }
+
+  .toolbar {
+    gap: 14px;
+  }
+
   .header-authorization {
     display: none;
   }
-}
 
-@media screen and (max-width: 767px) {
   .mobile-menu-btn {
     display: flex;
     align-items: center;
@@ -331,8 +264,8 @@ body.dark-theme .header {
 
     width: 28px;
     height: 28px;
-    padding: 0;
     border: none;
+    padding: 0;
 
     color: currentColor;
     background-color: transparent;
@@ -351,7 +284,55 @@ body.dark-theme .header {
 }
 
 @media screen and (min-width: 768px) {
+  .header {
+    padding: 14px 0;
+  }
+
+  .nav-link-shoppinglist {
+    gap: 8px;
+  }
+
+  .header-wrap {
+    display: flex;
+    gap: 24px;
+  }
+
+  .log-out {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+    transform: translateY(100%);
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    background-color: var(--white-color);
+  }
+
+  .log-out.is-hidden {
+    transform: translateY(0);
+
+    transition: transform var(--transition-duration)
+      var(--transition-timing-function);
+  }
+
+  .header-authorization {
+    position: relative;
+  }
+
   .mobile-menu-btn {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .header-nav {
+    gap: 76px;
+  }
+
+  .header-nav-menu {
+    gap: 16px;
   }
 }

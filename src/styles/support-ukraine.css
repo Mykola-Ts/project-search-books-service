@@ -3,6 +3,91 @@
   flex-shrink: 0;
 }
 
+.conteiner-support {
+  border-radius: 16px;
+
+  background: radial-gradient(
+    189.32% 190.93% at 59.76% -23.42%,
+    #4f2ee8 18.03%,
+    #fff 100%
+  );
+  box-shadow: 0px 10px 10px 0px rgba(245, 245, 247, 0.1);
+}
+
+.conteiner-title-support {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-support {
+  font-style: normal;
+  font-weight: 700;
+
+  color: #fff;
+}
+
+.title-item-support {
+  font-style: normal;
+
+  color: #fff;
+}
+
+.slider-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.slider-item {
+  width: 100%;
+  height: 32px;
+}
+
+.link-support {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.slider {
+  position: relative;
+
+  margin-top: 40px;
+  overflow: hidden;
+}
+
+.slider-btn-prev,
+.slider-btn-next {
+  display: block;
+
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slider-btn-prev {
+  display: none;
+}
+
+.btn-prev-icon {
+  transform: rotateX(180deg);
+
+  width: 100%;
+  height: 100%;
+}
+
+.btn-next-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.image-support {
+  filter: brightness(0) invert(1);
+}
+
 @media screen and (max-width: 767px) {
   .conteiner-support {
     max-width: 335px;
@@ -73,89 +158,4 @@
     width: 38px;
     height: 38px;
   }
-}
-
-.conteiner-support {
-  border-radius: 16px;
-
-  background: radial-gradient(
-    189.32% 190.93% at 59.76% -23.42%,
-    #4f2ee8 18.03%,
-    #fff 100%
-  );
-  box-shadow: 0px 10px 10px 0px rgba(245, 245, 247, 0.1);
-}
-
-.conteiner-title-support {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.title-support {
-  font-style: normal;
-  font-weight: 700;
-
-  color: #fff;
-}
-
-.title-item-support {
-  font-style: normal;
-
-  color: #fff;
-}
-
-.slider-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.slider-item {
-  width: 100%;
-  height: 32px;
-}
-
-.link-support {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.slider {
-  position: relative;
-
-  margin-top: 40px;
-
-  overflow: hidden;
-}
-
-.slider-btn-prev,
-.slider-btn-next {
-  display: block;
-  border: none;
-  border-radius: 50%;
-  padding: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.slider-btn-prev {
-  display: none;
-}
-
-.btn-prev-icon {
-  transform: rotateX(180deg);
-
-  width: 100%;
-  height: 100%;
-}
-
-.btn-next-icon {
-  width: 100%;
-  height: 100%;
-}
-
-.image-support {
-  filter: brightness(0) invert(1);
 }
