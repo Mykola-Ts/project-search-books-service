@@ -4,11 +4,14 @@
   z-index: 10;
   top: 0;
   left: 0;
+
   width: 100vw;
   height: 100vh;
+
   background: radial-gradient(190% 190% at -90% -90%, #fff 18%, #4f2ee8 100%);
   opacity: 1;
   visibility: visible;
+
   transition: opacity var(--transition-duration)
       var(--transition-timing-function),
     visibility var(--transition-duration) var(--transition-timing-function);
@@ -26,17 +29,21 @@
   left: 50%;
   transform: translate(-50%, -50%) scaleY(1);
   transform-origin: top;
-  max-width: 375px;
-  width: calc(100% - 40px);
+
   display: inline-flex;
-  padding: 40px 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 14px;
-  border-radius: 18px;
+
+  max-width: 375px;
+  width: calc(100% - 40px);
+  padding: 40px 20px;
   border: none;
-  background: var(--dark-theme-color);
+  border-radius: 18px;
+
+  background-color: var(--dark-theme-color);
+
   transition: transform var(--transition-duration)
     var(--transition-timing-function);
 }
@@ -54,13 +61,18 @@
 
 .auth-input {
   width: 295px;
-  padding: 16px 66px 16px 24px;
-  border-radius: 40px;
   border: 2px solid var(--light-theme-color);
-  color: var(--light-theme-color);
-  background-color: var(--dark-theme-color);
+  border-radius: 40px;
+  padding: 16px 66px 16px 24px;
+
   font-weight: 700;
   letter-spacing: -0.16px;
+
+  color: var(--light-theme-color);
+  background-color: var(--dark-theme-color);
+  caret-color: currentColor;
+  outline: none;
+
   transition: border-color var(--transition-duration)
     var(--transition-timing-function);
 }
@@ -93,7 +105,9 @@
   width: 10px;
   height: 10px;
   stroke-width: 2px;
+
   stroke: var(--light-theme-color);
+
   transition: stroke var(--transition-duration)
     var(--transition-timing-function);
 }
@@ -108,10 +122,13 @@
   position: absolute;
   right: 24px;
   top: 16px;
+
   width: 18px;
   height: 18px;
+
   fill: var(--dark-theme-color);
   stroke: var(--light-theme-color);
+
   transition: stroke var(--transition-duration)
     var(--transition-timing-function);
 }
@@ -123,6 +140,7 @@
 
 .auth-input-wrap {
   position: relative;
+
   display: flex;
   gap: 24px;
 }
@@ -137,13 +155,16 @@
   position: absolute;
   top: 14px;
   right: 14px;
+
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 0;
+  align-items: center;
+
   width: 20px;
   height: 20px;
   border: none;
+  padding: 0;
+
   background-color: transparent;
 }
 
@@ -155,12 +176,14 @@
 
 .auth-form-button {
   width: 295px;
-  padding: 16px;
+  border: none;
   border-radius: 40px;
+  padding: 16px;
+
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: -0.16px;
-  border: none;
+
   transition: background-color var(--transition-duration)
     var(--transition-timing-function);
 }
@@ -173,14 +196,17 @@
 
 .auth-form-link {
   border: none;
-  background-color: transparent;
-  color: rgba(246, 246, 246, 0.5);
-  font-size: 14px;
+
   font-style: normal;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.29;
   letter-spacing: -0.14px;
   text-transform: uppercase;
+
+  color: rgba(246, 246, 246, 0.5);
+  background-color: transparent;
+
   transition: color var(--transition-duration) var(--transition-timing-function);
 }
 
@@ -206,17 +232,20 @@ body.dark-theme .auth-form-link:active {
 
 @media screen and (min-width: 768px) {
   .auth-modal {
-    max-width: 579px;
     display: inline-flex;
-    padding: 80px 40px 40px 40px;
     gap: 20px;
+
+    max-width: 579px;
     border: 2px solid var(--text-black-color);
-    background: var(--light-theme-color);
+    padding: 80px 40px 40px 40px;
+
+    background-color: var(--light-theme-color);
   }
 
   body.dark-theme .auth-modal {
     border: 2px solid var(--light-theme-color);
-    background: var(--dark-theme-color);
+
+    background-color: var(--dark-theme-color);
   }
 
   .auth-form {
@@ -229,12 +258,15 @@ body.dark-theme .auth-form-link:active {
 
   .auth-input {
     width: 499px;
-    padding: 20px 108px 20px 40px;
-    background-color: var(--light-theme-color);
     border: 2px solid var(--text-black-color);
-    color: var(--text-black-color);
+    padding: 20px 108px 20px 40px;
+
     line-height: 1.33;
     letter-spacing: -0.18px;
+
+    color: var(--text-black-color);
+    background-color: var(--light-theme-color);
+    caret-color: var(--text-black-color);
   }
 
   body.dark-theme .auth-input:hover,
@@ -244,9 +276,11 @@ body.dark-theme .auth-form-link:active {
   }
 
   body.dark-theme .auth-input {
-    background-color: var(--dark-theme-color);
     border: 2px solid var(--light-theme-color);
+
     color: var(--light-theme-color);
+    background-color: var(--dark-theme-color);
+    caret-color: currentColor;
   }
 
   .auth-input::placeholder {
@@ -265,6 +299,7 @@ body.dark-theme .auth-form-link:active {
     width: 14px;
     height: 14px;
     stroke-width: 3px;
+
     stroke: var(--text-black-color);
   }
 
@@ -275,10 +310,12 @@ body.dark-theme .auth-form-link:active {
   .auth-form-svg {
     right: 32px;
     top: 18px;
+
     width: 28px;
     height: 28px;
-    stroke: var(--text-black-color);
+
     fill: var(--light-theme-color);
+    stroke: var(--text-black-color);
   }
 
   body.dark-theme .auth-input:hover + .auth-form-svg,
@@ -291,31 +328,36 @@ body.dark-theme .auth-form-link:active {
   }
 
   body.dark-theme .auth-form-svg {
-    stroke: var(--light-theme-color);
     fill: var(--dark-theme-color);
+    stroke: var(--light-theme-color);
   }
 
   .auth-close {
     position: absolute;
     top: 14px;
     right: 14px;
+
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 0;
+    align-items: center;
+
     width: 20px;
     height: 20px;
-    border-color: transparent;
+    padding: 0;
+
     background-color: transparent;
+    border-color: transparent;
   }
 
   .auth-form-button {
     width: 499px;
     padding: 20px;
-    color: #f3f3f3;
-    background-color: var(--text-black-color);
+
     line-height: 1.33;
     letter-spacing: -0.18px;
+
+    color: #f3f3f3;
+    background-color: var(--text-black-color);
   }
 
   body.dark-theme .auth-form-button {
@@ -330,11 +372,12 @@ body.dark-theme .auth-form-link:active {
   }
 
   .auth-form-link {
-    color: rgba(17, 17, 17, 0.5);
     font-size: 18px;
     line-height: 1.33;
     letter-spacing: -0.18px;
     text-transform: uppercase;
+
+    color: rgba(17, 17, 17, 0.5);
   }
 
   body.dark-theme .auth-form-link {

@@ -1,5 +1,5 @@
 /* ---------------- RESET ---------------- */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css');
+@import 'modern-normalize/modern-normalize.css';
 
 h1,
 h2,

@@ -56,8 +56,8 @@ body.dark-theme .shopping-list-text-empty {
 
   width: 100%;
   height: 170px;
-  border-radius: 16px;
   border: 2px solid rgba(79, 46, 232, 0.4);
+  border-radius: 16px;
   padding: 14px;
 }
 
@@ -67,10 +67,10 @@ body.dark-theme .shopping-list-text-empty {
 
 .card-img-wrap {
   flex-shrink: 0;
+
   width: 100px;
   height: 142px;
   border-radius: 8px;
-
   overflow: hidden;
 }
 
@@ -86,13 +86,13 @@ body.dark-theme .shopping-list-text-empty {
   flex-direction: column;
 
   width: 100%;
-
   overflow: hidden;
 }
 
 .shopping-list-card-title {
   max-width: 84%;
   margin-bottom: 4px;
+  overflow: hidden;
 
   font-size: 16px;
   font-weight: 700;
@@ -100,22 +100,20 @@ body.dark-theme .shopping-list-text-empty {
   letter-spacing: -0.64px;
   text-transform: uppercase;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .shopping-list-card-category {
   max-width: 84%;
+  margin-bottom: 4px;
+  overflow: hidden;
 
   font-size: 12px;
   font-weight: 400;
   line-height: 1.17;
   letter-spacing: 0.36px;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
-
-  margin-bottom: 4px;
 
   color: var(--text-sub-color);
 }
@@ -123,12 +121,11 @@ body.dark-theme .shopping-list-text-empty {
 .shopping-list-card-description {
   height: 68px;
   margin-bottom: auto;
+  overflow: auto;
 
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.56px;
-
-  overflow: auto;
 }
 
 .shopping-list-card-wrap {
@@ -139,13 +136,13 @@ body.dark-theme .shopping-list-text-empty {
 }
 
 .shopping-list-card-author {
+  overflow: hidden;
+
   font-size: 12px;
   font-style: italic;
   line-height: 1.17;
   letter-spacing: -0.48px;
-
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 
   color: var(--text-sub-color);
@@ -177,13 +174,13 @@ body.dark-theme .shopping-list-amazon-img {
   right: 14px;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   width: 28px;
   height: 28px;
-  border-radius: 50%;
   border: none;
+  border-radius: 50%;
 
   background-color: var(--primary-color);
 }
