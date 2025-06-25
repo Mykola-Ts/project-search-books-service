@@ -1,7 +1,8 @@
 // HEADER
 
 import { saveNewTheme } from './authorization-window';
-const Theme = {
+
+const THEME = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
@@ -14,36 +15,38 @@ currentTheme();
 
 function onChange(evt) {
   if (!evt.currentTarget.checked) {
-    body.classList.add(Theme.LIGHT);
-    body.classList.remove(Theme.DARK);
+    body.classList.add(THEME.LIGHT);
+    body.classList.remove(THEME.DARK);
 
-    localStorage.setItem('currentTheme', Theme.LIGHT);
+    localStorage.setItem('currentTheme', THEME.LIGHT);
   } else {
-    body.classList.add(Theme.DARK);
-    body.classList.remove(Theme.LIGHT);
+    body.classList.add(THEME.DARK);
+    body.classList.remove(THEME.LIGHT);
 
-    localStorage.setItem('currentTheme', Theme.DARK);
+    localStorage.setItem('currentTheme', THEME.DARK);
   }
+
   saveNewTheme();
 }
 
 function currentTheme() {
   switch (localStorage.getItem('currentTheme')) {
-    case Theme.LIGHT:
-      body.classList.add(Theme.LIGHT);
-      body.classList.remove(Theme.DARK);
+    case THEME.LIGHT:
+      body.classList.add(THEME.LIGHT);
+      body.classList.remove(THEME.DARK);
       themeSwitch.checked = false;
       break;
-    case Theme.DARK:
-      body.classList.remove(Theme.LIGHT);
-      body.classList.add(Theme.DARK);
+
+    case THEME.DARK:
+      body.classList.remove(THEME.LIGHT);
+      body.classList.add(THEME.DARK);
       themeSwitch.checked = true;
       break;
-    default:
-      body.classList.add(Theme.LIGHT);
 
-      localStorage.setItem('currentTheme', Theme.LIGHT);
-      break;
+    default:
+      body.classList.add(THEME.LIGHT);
+
+      localStorage.setItem('currentTheme', THEME.LIGHT);
   }
 }
 

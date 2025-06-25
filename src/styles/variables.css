@@ -13,6 +13,12 @@
   --modal-backdrop-color: rgba(17, 17, 17, 0.4);
   --modal-background-color-dark-theme: #202024;
 
+  --mob-menu-gradient: radial-gradient(
+    189.32% 190.93% at 59.76% -23.42%,
+    var(--primary-color) 18.03%,
+    var(--white-color) 100%
+  );
+
   --transition-duration: 250ms;
   --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

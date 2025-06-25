@@ -1,9 +1,15 @@
 // SHOPPING LIST
 
-import shoppingListEmptyImg from '../../src/img/empty-shopping-list.png';
-import amazonIcon from '../../src/img/amazon-icon.png';
-import appleBookIcon from '../../src/img/apple-book-icon.png';
-import bookShopIcon from '../../src/img/book-shop-icon.png';
+import shoppingListEmptyImgPng from '../../src/img/empty-shopping-list.png';
+import shoppingListEmptyImgPng2x from '../../src/img/empty-shopping-list@2x.png';
+import shoppingListEmptyImgWebp from '../../src/img/empty-shopping-list.webp';
+import shoppingListEmptyImgWebp2x from '../../src/img/empty-shopping-list@2x.webp';
+import amazonIconPng from '../../src/img/amazon-icon.png';
+import amazonIconWebp from '../../src/img/amazon-icon.webp';
+import appleBookIconPng from '../../src/img/apple-book-icon.png';
+import appleBookIconWebp from '../../src/img/apple-book-icon.webp';
+import bookShopIconPng from '../../src/img/book-shop-icon.png';
+import bookShopIconWebp from '../../src/img/book-shop-icon.webp';
 import iconsSvg from '../../src/img/icons.svg';
 import placeholderCoverBook from '../img/placeholder-cover-book.png';
 import { Notify } from 'notiflix';
@@ -74,22 +80,48 @@ function createMarkup(data) {
 
   if (!data) {
     shoppinglistContainer.innerHTML += `
-        <div class="empty-shopping-list">
-        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
-        <img class="shopping-list-empty-img" src="${shoppingListEmptyImg}" alt="empty list " width="265"/>
-        </div>
-        `;
+    <div class="empty-shopping-list">
+      <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
+      <picture>
+        <source
+          srcset="${shoppingListEmptyImgWebp} 1x, ${shoppingListEmptyImgWebp2x} 2x"
+          type="image/webp" />
+        <source
+          srcset="${shoppingListEmptyImgPng} 1x, ${shoppingListEmptyImgPng2x} 2x"
+          type="image/png" />
+        <img
+          src="${shoppingListEmptyImgPng}"
+          alt="empty list"
+          width="265"
+          loading="lazy"
+          class="shopping-list-empty-img"
+      /></picture>
+    </div>`;
 
     return;
   }
 
   if (data === null || data.length === 0) {
     shoppinglistContainer.innerHTML += `
-        <div class="empty-shopping-list">
-        <p class="shopping-list-text-empty">This page is empty, add some books and proceed to order.</p>
-        <img class="shopping-list-empty-img" src="${shoppingListEmptyImg}" alt="empty list " width="265"/>
-        </div>
-        `;
+    <div class="empty-shopping-list">
+      <p class="shopping-list-text-empty">
+        This page is empty, add some books and proceed to order.
+      </p>
+      <picture>
+        <source
+          srcset="${shoppingListEmptyImgWebp} 1x, ${shoppingListEmptyImgWebp2x} 2x"
+          type="image/webp" />
+        <source
+          srcset="${shoppingListEmptyImgPng} 1x, ${shoppingListEmptyImgPng2x} 2x"
+          type="image/png" />
+        <img
+          src="${shoppingListEmptyImgPng}"
+          alt="empty list"
+          width="265"
+          loading="lazy"
+          class="shopping-list-empty-img"
+      /></picture>
+    </div>`;
   } else {
     shoppinglistContainer.innerHTML += data
       .map(
@@ -98,7 +130,7 @@ function createMarkup(data) {
     
     <div class="card-img-wrap"><img class="shopping-list-card-img" src="${
       el.bookImage || placeholderCoverBook
-    }" alt="book image" /></div>
+    }" alt="book image" loading="lazy"/></div>
     
     <div class="shopping-list-card-descr">
 
@@ -112,22 +144,54 @@ function createMarkup(data) {
             <a class="shop-link" href="${
               el.buyLinks[0].url
             }" target="_blank" rel="noopener noreferrer nofollow" aria-label="Open book on Amazon">
-            <img class="shopping-list-amazon-img" src="${amazonIcon}" alt="logo-amazon " width="32" height="11"/>
+                <picture>
+                  <source srcset="${amazonIconWebp}" type="image/webp" />
+                  <source srcset="${amazonIconPng}" type="image/png" />
+                  <img
+                    class="shopping-list-amazon-img"
+                    src="${amazonIconPng}"
+                    alt="logo-amazon "
+                    width="32"
+                    height="11"
+                    loading="lazy"
+                  />
+                </picture>
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${
               el.buyLinks[1].url
             }" target="_blank" rel="noopener noreferrer nofollow" aria-label="Open book on Apple Books">
-            <img class="shopping-list-applebook-img shop-icon" src="${appleBookIcon}" alt="logo-applebook " width="16" height="16" />
+                <picture>
+                  <source srcset="${appleBookIconWebp}" type="image/webp" />
+                  <source srcset="${appleBookIconPng}" type="image/png" />
+                  <img
+                    class="shopping-list-applebook-img shop-icon"
+                    src="${appleBookIconPng}"
+                    alt="logo-applebook "
+                    width="16"
+                    height="16"
+                    loading="lazy"
+                  />
+                </picture>
             </a>
         </li>
         <li class="shop-item">
             <a class="shop-link" href="${
               el.buyLinks[2].url
             }" target="_blank" rel="noopener noreferrer nofollow" aria-label="Open book on Barnes and Noble">
-            <img class="shopping-list-bookshop-img shop-icon" src="${bookShopIcon}" alt="logo-bookshop " width="16"
-  height="16" />
+                <picture>
+                  <source srcset="${bookShopIconWebp}" type="image/webp" />
+                  <source srcset="${bookShopIconPng}" type="image/png" />
+                  <img
+                    class="shopping-list-bookshop-img shop-icon"
+                    src="${bookShopIconPng}"
+                    alt="logo-bookshop "
+                    width="16"
+                    height="16"
+                    loading="lazy"
+                  />
+                </picture>
                 
             </a>
         </li>

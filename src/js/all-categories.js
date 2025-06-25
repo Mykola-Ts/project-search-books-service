@@ -234,6 +234,7 @@ function createBookMarkup(arr) {
           alt="${book.title}"
           width="335"
           height="485"
+          loading="lazy"
           class="book-item-img"
         />
         <p class="book-overley">quick view</p>
