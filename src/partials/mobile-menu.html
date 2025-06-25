@@ -6,11 +6,28 @@
       class="header-btn-style sign-up-btn mobile-menu-sign-up-btn sign-up"
       aria-label="Open authorization window"
     >
-      <img
-        class="btn-user-photo"
-        src="./img/header-log-in-user-foto.png"
-        alt="user photo"
-      />
+      <picture>
+        <source
+          srcset="
+            ./img/header-log-in-user-foto.webp    1x,
+            ./img/header-log-in-user-foto@2x.webp 2x
+          "
+          type="image/webp"
+        />
+        <source
+          srcset="
+            ./img/header-log-in-user-foto.png,
+            ./img/header-log-in-user-foto@2x.png 2x
+          "
+          type="image/png"
+        />
+        <img
+          class="btn-user-photo"
+          src="./img/header-log-in-user-foto.png"
+          alt="user photo"
+        />
+      </picture>
+
       <span class="login-btn-text">Sign up</span>
       <svg class="signup-svg" width="20" height="20">
         <use href="./img/icons.svg#arrow-right" class="arrow-right"></use>
@@ -27,6 +44,7 @@
           >Home</a
         >
       </li>
+
       <li class="header-menu-item">
         <a
           href="./shopping-list.html"

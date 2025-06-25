@@ -2,14 +2,16 @@
 
 import axios from 'axios';
 import FirebaseService from './firebase-services';
-import amazonIcon from '../../src/img/amazon-icon.png';
-import appleBookIcon from '../../src/img/apple-book-icon.png';
-import bookShopIcon from '../../src/img/book-shop-icon.png';
+import amazonIconPng from '../../src/img/amazon-icon.png';
+import amazonIconWebp from '../../src/img/amazon-icon.webp';
+import appleBookIconPng from '../../src/img/apple-book-icon.png';
+import appleBookIconWebp from '../../src/img/apple-book-icon.webp';
+import bookShopIconPng from '../../src/img/book-shop-icon.png';
+import bookShopIconWebp from '../../src/img/book-shop-icon.webp';
 import placeholderCoverBook from '../img/placeholder-cover-book.png';
 import { Notify } from 'notiflix';
 
 const firebaseService = new FirebaseService();
-
 const selectors = {
   closeModalBtn: document.querySelector('button[data-modal-window-close]'),
   modal: document.querySelector('div[data-modal-window]'),
@@ -143,18 +145,40 @@ async function fetchBookById(id) {
 function createMarkupModal(image, title, author, description, buyLinks) {
   const arrBuyLinks = buyLinks.slice(0, 3);
   const arrIconsLink = [
-    { name: 'Amazon', img: amazonIcon },
-    { name: 'Apple Books', img: appleBookIcon },
-    { name: 'Barnes and Noble', img: bookShopIcon },
+    { name: 'Amazon', img: { png: amazonIconPng, webp: amazonIconWebp } },
+    {
+      name: 'Apple Books',
+      img: { png: appleBookIconPng, webp: appleBookIconWebp },
+    },
+    {
+      name: 'Barnes and Noble',
+      img: { png: bookShopIconPng, webp: bookShopIconWebp },
+    },
   ];
 
   const markupLinks = arrBuyLinks
     .map(({ url, name }) => {
       const icon = arrIconsLink.find(iconLink => iconLink.name === name);
 
-      return `<li class="buy-link-icon-item"><a href="${url}" target="_blank" rel="noopener noreferrer nofollow" class="buy-link" aria-label="Open book on ${name}">
-      <img src="${icon.img}" alt="${name}" class="buy-link-icon">
-</a></li>`;
+      return `<li class="buy-link-icon-item">
+  <a
+    href="${url}"
+    target="_blank"
+    rel="noopener noreferrer nofollow"
+    class="buy-link"
+    aria-label="Open book on ${name}"
+  >
+    <picture>
+      <source srcset="${icon.img.webp}" type="image/webp" />
+      <source srcset="${icon.img.png}" type="image/png" />
+      <img
+        src="${icon.img.png}"
+        alt="${name}"
+        loading="lazy"
+        class="buy-link-icon"
+    /></picture>
+  </a>
+</li>`;
     })
     .join('');
 
@@ -163,6 +187,7 @@ function createMarkupModal(image, title, author, description, buyLinks) {
     alt="${title}"
     width="192"
     height="281"
+    loading="lazy"
     class="book-img"
   /></div>
         <div class="book-descr">
