@@ -1,5 +1,3 @@
-// All categories
-
 import placeholderCoverBook from '../img/placeholder-cover-book.png';
 import { showLoader } from './loader';
 import { hideLoader } from './loader';
@@ -16,6 +14,7 @@ const selectors = {
   bestSellers: document.querySelector('.best-sellers'),
   loader: document.querySelector('.loader-wrap'),
   booksListWrap: document.querySelector('.books-list-wrap'),
+  booksList: document.querySelector('.books-list'),
   openCategoryBooksList: document.querySelector('.open-category-books-list'),
 };
 const categoriesBook = [];
@@ -66,15 +65,15 @@ async function fetchTopBooks() {
         <button type="button" class="see-more-btn see-more-btn-best-sellers" aria-label="See more best sellers books">SEE MORE</button>`;
 
     const categoryMarkup = createCategoryMarkup(topBooksData);
-    const booksList = document.querySelector('.books-list');
-    booksList.innerHTML = categoryMarkup;
+
+    selectors.booksList.innerHTML = categoryMarkup;
     selectors.booksListWrap.addEventListener('click', onChangeCategory);
   } catch (error) {
     Notify.failure(
       `Oops, something went wrong. Try reloading the page. Here's the error message: ${error.message}`
     );
   } finally {
-    selectors.booksListWrap.classList.remove('visually-hidden');
+    selectors.booksList.classList.remove('visually-hidden');
   }
 }
 
@@ -135,7 +134,7 @@ function onAllCategoriesClick() {
   showLoader(selectors.loader);
   selectors.loader.classList.add('common-loader');
 
-  selectors.booksListWrap.classList.remove('visually-hidden');
+  selectors.booksList.classList.remove('visually-hidden');
   selectors.openCategoryBooksList.classList.add('visually-hidden');
 
   changeCurrentCategory('top-books');
@@ -265,7 +264,7 @@ function updateBookListView() {
     .querySelectorAll('.books-list-item')
     .forEach(item => item.classList.remove('books-list-item-category'));
 
-  selectors.booksListWrap.classList.add('visually-hidden');
+  selectors.booksList.classList.add('visually-hidden');
   selectors.openCategoryBooksList.classList.remove('visually-hidden');
 
   selectors.openCategoryBooksList.scrollIntoView({

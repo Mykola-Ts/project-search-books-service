@@ -6,8 +6,10 @@ import FullReload from 'vite-plugin-full-reload';
 export default defineConfig({
   root: 'src',
   build: {
+    minify: 'esbuild',
     rollupOptions: {
       input: glob.sync('./src/*.html'),
+      treeshake: true,
     },
     outDir: '../dist',
   },

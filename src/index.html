@@ -7,44 +7,30 @@
       name="description"
       content="A book search website. You can register, add books of interest to the shopping list, view detailed information and go to the shopping site to buy the book."
     />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <title>Bookshelf</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./styles/styles.css" />
   </head>
 
   <body>
-    <!-- HEADER -->
     <load src="./partials/header.html" />
-
-    <!-- Mobile menu -->
     <load src="./partials/mobile-menu.html" />
 
     <main>
-      <!-- HOME -->
       <section class="home container">
         <div class="home-wrap">
-          <!-- All categories -->
-          <load src="./partials/all-categories.html" />
+          <ul class="category-list"></ul>
 
-          <!-- Support Ukraine -->
           <load src="./partials/support-ukraine.html" />
         </div>
 
-        <!-- List of books -->
         <load src="./partials/list-of-books.html" />
       </section>
     </main>
 
-    <!-- AUTHORIZATION WINDOW -->
     <load src="./partials/authorization-window.html" />
-
-    <!-- MODAL WINDOW -->
     <load src="./partials/modal-window.html" />
-
-    <!-- LOADER -->
     <load src="./partials/loader.html" />
-
-    <!-- SCROLL UP -->
     <load src="./partials/scroll-up.html" />
 
     <script type="module" src="./js/index.js"></script>

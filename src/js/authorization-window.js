@@ -1,5 +1,3 @@
-// AUTHORIZATION WINDOW
-
 import FirebaseService from './firebase-services';
 import LocalStorageService from './localstorage-services';
 

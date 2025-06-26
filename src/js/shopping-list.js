@@ -1,5 +1,3 @@
-// SHOPPING LIST
-
 import shoppingListEmptyImgPng from '../../src/img/empty-shopping-list.png';
 import shoppingListEmptyImgPng2x from '../../src/img/empty-shopping-list@2x.png';
 import shoppingListEmptyImgWebp from '../../src/img/empty-shopping-list.webp';
@@ -118,7 +116,6 @@ function createMarkup(data) {
           src="${shoppingListEmptyImgPng}"
           alt="empty list"
           width="265"
-          loading="lazy"
           class="shopping-list-empty-img"
       /></picture>
     </div>`;
@@ -222,6 +219,9 @@ function onDeleteBook(e) {
   const deleteBookName = deleteBook.dataset.title;
   const data = getDataLocalStorage();
   const indexDeleteBook = data.findIndex(el => el.bookName === deleteBookName);
+
+  if (!~indexDeleteBook) return;
+
   data.splice(indexDeleteBook, 1);
 
   dataChangeLocalstorage('shoppingList', data);

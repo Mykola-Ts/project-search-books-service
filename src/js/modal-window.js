@@ -1,5 +1,3 @@
-// MODAL WINDOW
-
 import axios from 'axios';
 import FirebaseService from './firebase-services';
 import amazonIconPng from '../../src/img/amazon-icon.png';
@@ -30,20 +28,19 @@ if (
   localStorage.getItem('shoppingList') &&
   localStorage.getItem('shoppingList').length > 0
 ) {
-  const savedBooks = JSON.parse(localStorage.getItem('shoppingList'));
-  savedBooks.map(book => {
-    shoppingList.push(book);
-  });
+  const savedBooks = JSON.parse(localStorage.getItem('shoppingList')) || [];
+
+  shoppingList.push(...savedBooks);
 }
 
 export const openBookModal = function openBookModal(evt) {
   evt.preventDefault();
 
-  if (!evt.target.closest('li.books-list-item')) {
-    return;
-  }
+  const bookItem = evt.target.closest('li.books-list-item');
 
-  const bookId = evt.target.closest('li').dataset.id;
+  if (!bookItem) return;
+
+  const bookId = bookItem.dataset.id;
 
   fetchBookById(bookId)
     .then(
@@ -257,7 +254,5 @@ function removeBook() {
 }
 
 function findBookInShoppingList(shoppingList, currentBook) {
-  return shoppingList.findIndex(shoppingList => {
-    return shoppingList.bookId === currentBook.bookId;
-  });
+  return shoppingList.findIndex(book => book.bookId === currentBook.bookId);
 }
