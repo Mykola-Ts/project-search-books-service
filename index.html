@@ -7,17 +7,16 @@
       name="description"
       content="A book search website. You can register, add books of interest to the shopping list, view detailed information and go to the shopping site to buy the book."
     />
-    <link rel="shortcut icon" href="/project-search-books-service/favicon.ico" type="image/x-icon" />
     <title>Bookshelf</title>
+    <link rel="shortcut icon" href="/project-search-books-service/favicon.ico" type="image/x-icon" />
     
-    <script type="module" crossorigin src="/project-search-books-service/assets/index-2b3e8b60.js"></script>
-    <link rel="modulepreload" crossorigin href="/project-search-books-service/assets/scroll-up-46e8ded1.js">
+    <script type="module" crossorigin src="/project-search-books-service/assets/index-62410488.js"></script>
+    <link rel="modulepreload" crossorigin href="/project-search-books-service/assets/scroll-up-dd4de62e.js">
     <link rel="stylesheet" href="/project-search-books-service/assets/scroll-up-8a5253f7.css">
     <link rel="stylesheet" href="/project-search-books-service/assets/index-19366285.css">
   </head>
 
   <body>
-    <!-- HEADER -->
     <header class="header">
   <div class="header-container container">
     <nav class="header-nav">
@@ -134,8 +133,6 @@
   </div>
 </header>
 
-
-    <!-- Mobile menu -->
     <div class="mobile-menu is-hidden-mobile-menu">
   <div class="mobile-menu-container container">
     <button
@@ -206,17 +203,10 @@
 
 
     <main>
-      <!-- HOME -->
       <section class="home container">
         <div class="home-wrap">
-          <!-- All categories -->
           <ul class="category-list"></ul>
 
-
-
-
-
-          <!-- Support Ukraine -->
           <div class="conteiner-support">
   <div class="conteiner-title-support">
     <h3 class="title-support title">Support Ukraine</h3>
@@ -506,16 +496,15 @@
 
         </div>
 
-        <!-- List of books -->
         <div>
-  <div class="books-list-wrap visually-hidden">
+  <div class="books-list-wrap">
     <div class="best-sellers">
       <h2 class="best-sellers-title">
         Best Sellers <span class="best-sellers-title-item">Books</span>
       </h2>
     </div>
 
-    <ul class="books-list"></ul>
+    <ul class="books-list visually-hidden"></ul>
   </div>
   <ul class="open-category-books-list"></ul>
 </div>
@@ -523,7 +512,6 @@
       </section>
     </main>
 
-    <!-- AUTHORIZATION WINDOW -->
     <div class="auth-backdrop is-hidden" data-modal-overlay>
   <div class="auth-modal">
     <button
@@ -604,8 +592,6 @@
   </div>
 </div>
 
-
-    <!-- MODAL WINDOW -->
     <div class="backdrop-modal is-hidden-modal" data-modal-window>
   <div class="modal-window">
     <div class="modal-wrap"></div>
@@ -636,17 +622,13 @@
   </div>
 </div>
 
-
-    <!-- LOADER -->
     <div class="loader-wrap"></div>
 
 
-
-    <!-- SCROLL UP -->
     <div>
   <button
     type="button"
-    class="js-btn-up scroll-up-btn"
+    class="js-btn-up scroll-up-btn is-hidden"
     aria-label="Scroll to top"
   >
     <svg class="scroll-up-icon">
