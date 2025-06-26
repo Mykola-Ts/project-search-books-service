@@ -1,5 +1,3 @@
-// LOADER
-
 export const showLoader = function showLoader(selectorContainer) {
   selectorContainer.classList.add('loader');
 };

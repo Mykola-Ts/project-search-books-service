@@ -7,28 +7,21 @@
       name="description"
       content="The shopping list where the added books are stored."
     />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <title>Shopping list</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./styles/styles-shopping-list.css" />
-    <script type="module" src="./js/main-shopping-list.js"></script>
   </head>
 
   <body class="light-theme">
-    <!-- HEADER -->
     <load src="./partials/header.html" />
-
-    <!-- Mobile menu -->
     <load src="./partials/mobile-menu.html" />
 
     <main>
-      <!-- SHOPPING LIST -->
       <section class="shopping-list container">
-        <!-- Support Ukraine -->
         <div class="shopping-list-support-ukraine">
           <load src="./partials/support-ukraine.html" />
         </div>
 
-        <!-- Shopping list -->
         <div class="shopping-list-container">
           <div
             id="pagination"
@@ -38,13 +31,10 @@
       </section>
     </main>
 
-    <!-- AUTHORIZATION WINDOW -->
     <load src="./partials/authorization-window.html" />
-
-    <!-- MODAL WINDOW -->
     <load src="./partials/modal-window.html" />
-
-    <!-- SCROLL UP -->
     <load src="./partials/scroll-up.html" />
+
+    <script type="module" src="./js/main-shopping-list.js"></script>
   </body>
 </html>

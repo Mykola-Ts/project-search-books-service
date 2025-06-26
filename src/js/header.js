@@ -1,5 +1,3 @@
-// HEADER
-
 import { saveNewTheme } from './authorization-window';
 
 const THEME = {

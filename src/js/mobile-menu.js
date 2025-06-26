@@ -1,5 +1,3 @@
-// MOBILE MENU
-
 import { isUserAuthorized } from './authorization-window';
 import { showAuthModal } from './authorization-window';
 import { closeAuthModal } from './authorization-window';
