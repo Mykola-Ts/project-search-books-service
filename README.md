@@ -1,113 +1,292 @@
-# Vanilla App Template
+# Bookshelf
 
-Цей проект було створено за допомогою Vite. Для знайомства та налаштування
-додаткових можливостей [звернись до документації](https://vitejs.dev/).
+Discover and explore thousands of books with ease. Create an account, build your
+personal reading list, and access detailed information with direct links to
+purchase your next favorite read.
 
-## Створення репозиторію за шаблоном
+![Brand logo](./assets/logo.jpg)
 
-Використовуй цей репозиторій організації GoIT як шаблон для створення
-репозиторію свого проекту. Для цього натисни на кнопку `«Use this template»` і
-обери опцію `«Create a new repository»`, як показано на зображенні.
+## About the Project
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+This project is a responsive two-page website developed for the book discovery
+service **Bookshelf**. It allows users to search for books, view detailed
+descriptions, register or log in, and manage a personal shopping list in a clean
+and intuitive interface. The website also features a “Support Ukraine” section
+with a list of verified charitable foundations.
 
-На наступному етапі відкриється сторінка створення нового репозиторію. Заповни
-поле його імені, переконайся, що репозиторій публічний, після чого натисни
-кнопку `«Create repository from template»`.
+![Website start page](./assets/bookshelf.jpg)
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+### Website Structure
 
-Після того, як репозиторій буде створено, необхідно перейти в налаштування
-створеного репозиторію на вкладку `Settings` > `Actions` > `General` як показано
-на зображенні.
+The site consists of the following main sections:
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+- **Header** — contains the site logo, a theme toggle (light/dark), navigation
+  links to the homepage and the shopping list, and user authentication controls
+  such as login/logout buttons or a user icon depending on the session state.
+- **All Categories** — a sidebar section displaying a scrollable list of book
+  categories. Allows users to filter books by genre or type. Selecting a
+  category updates the main book list accordingly. Includes an "All Categories"
+  option to reset the view.
+- **Support Ukraine** — а vertical slider section featuring a list of verified
+  charitable foundations supporting Ukraine. Encourages users to donate by
+  providing direct links to official organizations. Displayed on both the
+  homepage and the shopping list page.
+- **List of Books** — a dynamic section that displays a collection of book cards
+  based on the selected category. Each card includes the book cover, title,
+  author, and a “Learn More” button that opens a detailed modal view.
+- **Modal Window** — a pop-up window that appears when a user clicks on a book
+  card (Quick View). It displays detailed information about the selected book,
+  including its title, description, author, and purchase links. The modal also
+  features a button to add the book to the shopping list, or remove it if it's
+  already saved.
+- **Scroll-Up Button** — a floating button that appears when the user scrolls
+  down the page. When clicked, it smoothly scrolls the user back to the top,
+  enhancing site navigation and user experience.
+- **Loader** — a visually engaging loading animation designed as a book with
+  turning pages. It appears while content is being fetched or processed,
+  providing users with a clear and thematic indication that the system is
+  working, enhancing user experience with a creative and relevant graphic.
+- **Authorization Window** — a modal interface for user authentication,
+  including login and registration forms. Powered by Firebase Authentication, it
+  enables secure access and user session management across the site.
+- **Mobile Menu** — a responsive navigation panel designed for mobile devices
+  that slides in or toggles when the hamburger button is clicked. It contains
+  links to the main site sections and closes when a link is selected or the
+  close button is pressed, ensuring easy and intuitive navigation on small
+  screens.
+- **Shopping List Page** — a dedicated page where users can view and manage the
+  books they've added to their shopping list. Allows users to remove books from
+  the list. Shared elements like the header, support section, and modals are
+  included.
 
-Проскроливши сторінку до самого кінця, в секції `«Workflow permissions»` обери
-опцію `«Read and write permissions»` і постав галочку в чекбоксі. Це необхідно
-для автоматизації процесу деплою проекту.
+## Useful Links
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+- [Live Demo](https://mykola-ts.github.io/project-search-books-service/) —
+  deployed version of the website
 
-Тепер у тебе є особистий репозиторій проекту, зі структурою файлів та папок
-репозиторію-шаблону. Далі працюй з ним, як з будь-яким іншим особистим
-репозиторієм, клонуй його собі на комп'ютер, пиши код, роби коміти та відправляй
-їх на GitHub.
+- [GitHub Repository](https://github.com/Mykola-Ts/project-search-books-service)
+  — deployed version of the website
 
-## Підготовка до роботи
+- [Figma Design](https://www.figma.com/design/J31Kn9h6Fuxq2FKA1S2IzM/Bookshelf--Copy-?node-id=0-1&p=f&t=Rgu72hWRE8pSYoAY-0)
+  — the project’s UI/UX design mockup
 
-1. Переконайся, що на комп'ютері встановлено LTS-версію Node.js.
-   [Скачай та встанови](https://nodejs.org/en/) її якщо необхідно.
-2. Встанови базові залежності проекту в терміналі командою `npm install`.
-3. Запусти режим розробки, виконавши в терміналі команду `npm run dev`.
-4. Перейдіть у браузері за адресою
-   [http://localhost:5173](http://localhost:5173). Ця сторінка буде автоматично
-   перезавантажуватись після збереження змін у файли проекту.
+## Technologies Used
 
-## Файли і папки
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Git / GitHub
+- Vite — modern frontend build tool
+- Axios — promise-based HTTP client for fetching data from external APIs
+- Firebase — provides authentication, hosting, and potentially cloud storage via
+  Firestore
+- Notiflix — library for showing elegant notifications, loading indicators, and
+  alerts
 
-- Файли розмітки компонентів сторінки повинні лежати в папці `src/partials` та
-  імпортуватись до файлу `index.html`. Наприклад, файл з розміткою хедера
-  `header.html` створюємо у папці `partials` та імпортуємо в `index.html`.
-- Файли стилів повинні лежати в папці `src/css` та імпортуватись до HTML-файлів
-  сторінок. Наприклад, для `index.html` файл стилів називається `index.css`.
-- Зображення додавай до папки `src/img`. Збирач оптимізує їх, але тільки при
-  деплої продакшн версії проекту. Все це відбувається у хмарі, щоб не
-  навантажувати твій комп'ютер, тому що на слабких компʼютерах це може зайняти
-  багато часу.
+## Libraries Used
 
-## Деплой
+- [vite](https://vite.dev/) - next generation frontend tooling (dev server &
+  build tool)
+- [glob](https://www.npmjs.com/package/glob) - file path pattern matching (used
+  for dynamic input in builds)
+- [@fortawesome/fontawesome-free](https://www.npmjs.com/package/@fortawesome/fontawesome-free) -
+  free icon set and toolkit
+- [axios](https://axios-http.com/) - promise-based HTTP client for the browser
+- [firebase](https://firebase.google.com/docs/web/setup) - backend-as-a-service
+  (auth, Firestore, hosting, etc.)
+- [modern-normalize](https://github.com/sindresorhus/modern-normalize) — CSS
+  normalization to make built-in browser styling consistent
+- [notiflix](https://www.npmjs.com/package/notiflix) - simple and elegant
+  notifications and dialogs
+- [vite-plugin-full-reload](https://www.npmjs.com/package/vite-plugin-full-reload)
+  — hot reload for HTML and other non-JS files in Vite
+- [vite-plugin-html-inject](https://www.npmjs.com/package/vite-plugin-html-inject)
+  — inject variables or partials into HTML at build time
 
-Продакшн версія проекту буде автоматично збиратися та деплоїтись на GitHub
-Pages, у гілку `gh-pages`, щоразу, коли оновлюється гілка `main`. Наприклад,
-після прямого пуша або прийнятого пул-реквесту. Для цього необхідно у файлі
-`package.json` змінити значення прапора `--base=/<REPO>/`, для команди `build`,
-замінивши `<REPO>` на назву свого репозиторію, та відправити зміни на GitHub.
+## Folder and File Structure
 
-```json
-"build": "vite build --base=/<REPO>/",
-```
+- **.github/**: GitHub-specific configuration and workflows.
 
-Далі необхідно зайти в налаштування GitHub-репозиторію (`Settings` > `Pages`) та
-виставити роздачу продакшн версії файлів з папки `/root` гілки `gh-pages`, якщо
-це не було зроблено автоматично.
+- **assets/**: Folder stores images used in the README.md file to visually
+  document and represent the project.
 
-![GitHub Pages settings](./assets/repo-settings.png)
+- **src/**: Folder contains the source code of the application, including all
+  essential files such as HTML, CSS, JavaScript, and component logic used to
+  build and structure the project:
 
-### Статус деплою
+  - **fonts/**: Custom fonts used in the project.
 
-Статус деплою крайнього коміту відображається іконкою біля його ідентифікатора.
+  - **img/**: Folder for images and icons used throughout the site.
 
-- **Жовтий колір** - виконується збірка та деплой проекту.
-- **Зелений колір** - деплой завершився успішно.
-- **Червоний колір** - під час лінтингу, збірки чи деплою сталася помилка.
+  - **js/**: Contains JavaScript files for functionality.
 
-Більш детальну інформацію про статус можна переглянути натиснувши на іконку, і в
-вікні, що випадає, перейти за посиланням `Details`.
+  - **partials/**: HTML partials for each section of the site.
 
-![Deployment status](./assets/deploy-status.png)
+  - **public/**: Static assets for Vite (e.g., images, favicons, etc.).
 
-### Жива сторінка
+  - **styles/**: CSS files for each section of the site.
 
-Через якийсь час, зазвичай кілька хвилин, живу сторінку можна буде подивитися за
-адресою, вказаною на вкладці `Settings` > `Pages` в налаштуваннях репозиторію.
-Наприклад, ось посилання на живу версію для цього репозиторію
+  - **index.html**: The main HTML file for the site.
 
-[https://goitacademy.github.io/vanilla-app-template/](https://goitacademy.github.io/vanilla-app-template/).
+  - **shopping-list.html**: The second HTML file of the site. Displays the
+    user's saved books in a shopping list.
 
-Якщо відкриється порожня сторінка, переконайся, що у вкладці `Console` немає
-помилок пов'язаних з неправильними шляхами до CSS та JS файлів проекту
-(**404**). Швидше за все у тебе неправильне значення прапора `--base` для
-команди `build` у файлі `package.json`.
+- **.editorconfig**: Editor configuration file.
 
-## Як це працює
+- **.gitignore**: Specifies which files and directories to ignore in Git.
 
-![How it works](./assets/how-it-works.png)
+- **.prettierrc.json**: Prettier configuration for code formatting.
 
-1. Після кожного пуша у гілку `main` GitHub-репозиторію, запускається
-   спеціальний скрипт (GitHub Action) із файлу `.github/workflows/deploy.yml`.
-2. Усі файли репозиторію копіюються на сервер, де проект ініціалізується та
-   проходить лінтинг та збірку перед деплоєм.
-3. Якщо всі кроки пройшли успішно, зібрана продакшн версія файлів проекту
-   відправляється у гілку `gh-pages`. В іншому випадку, у лозі виконання скрипта
-   буде вказано в чому проблема.
+- **package.json**: Contains metadata about the project and dependencies.
+
+- **README.md**: Project documentation and setup instructions.
+
+- **vite.config.js**: Configuration file for Vite.
+
+## Features
+
+- **Responsive Design**  
+  Website adapts to different screen sizes: desktop, tablet, and mobile.
+
+- **Light and Dark Theme Toggle** Users can switch between light and dark modes
+  to suit their preference and improve readability.
+
+- **User Authentication** Users can register and log in via Firebase
+  authentication for a secure personalized experience.
+
+- **Support Ukraine Section** Dedicated block featuring a curated list of
+  charitable foundations supporting Ukraine.
+
+- **Category Filtering** Ability to filter the displayed books by categories for
+  easier navigation and discovery.
+
+- **Book Details Modal** Detailed modal window opens with book description and
+  an Add to Shopping List button for quick interaction.
+
+- **External Purchase Links** Book modal windows and shopping list items include
+  direct links to popular marketplaces like Amazon, Apple Books, and Barnes &
+  Noble.
+
+- **Persistent Shopping List** Authorized users can add books to their shopping
+  list, which is saved in the cloud and accessible from any device after login.
+
+- **Mobile Menu**  
+  Slide-in mobile navigation menu with backdrop and proper event handling. Menu
+  automatically closes when clicking on a nav-link or on the close button.
+
+- **Keyboard Accessibility**  
+  Modal window and navigation elements are accessible via keyboard (e.g. Esc to
+  close modals).
+
+- **Scroll Up Button**  
+  Enhances navigation and usability, especially on long or content-heavy pages.
+  Appears when scrolling down and allows users to quickly return to the top of
+  the page.
+
+- **Clean & Modular Code**  
+  Code is split into logical modules.
+
+- **Performance & Accessibility**  
+  The website achieves high performance, accessibility, best practices, and SEO
+  standards. Optimized code and structure ensure fast loading, smooth
+  interactions, and an inclusive, user-friendly experience across all devices.
+
+## PageSpeed Results
+
+Google's PageSpeed Insights was used to analyze the performance of the
+TheWatchSpot website on both mobile and desktop devices. The results highlight
+strong performance across various categories, ensuring a smooth user experience.
+
+**Mobile Performance:**
+
+![Mobile Page Performance](./assets/page-speed-mobile.jpg)
+
+**Desktop Performance:**
+
+![Desktop Page Performance](./assets/page-speed-desktop.jpg)
+
+These results demonstrate that the website is optimized for both performance and
+user experience, ensuring fast loading times and high usability on all devices.
+
+## Validation Result
+
+The website has been tested with the
+[W3C Markup Validation Service](https://validator.w3.org/) and contains no
+validation errors or warnings.
+
+![Validation](./assets/validation-result.jpg)
+
+## Installation & Setup
+
+To run the project locally, follow these steps:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Mykola-Ts/project-search-books-service.git
+   cd project-search-books-service
+   ```
+2. **Install dependencies**
+
+   ```bash
+    npm install
+   ```
+
+3. **Start the development server**
+
+   ```bash
+    npm run dev
+   ```
+
+4. **Open in browser**
+
+Visit http://localhost:5173/ to view the project.
+
+## Authors
+
+- **Mykola Tsybulskyi** (Team Lead + Modal Window)
+
+  - GitHub https://github.com/Mykola-Ts
+
+  - Email tsybulskiyk@gmail.com
+
+  - LinkedIn https://www.linkedin.com/in/mykola-tsybulskyi
+
+- **Oleksandr Grogul** (Scrum Master + Authorization)
+
+  - GitHub https://github.com/groguls
+
+  - Email groguls@gmail.com
+
+- **Serhii Korchma** (Header section)
+
+  - GitHub https://github.com/pro100ergeyko
+
+  - Email serg.korchma@gmail.com
+
+- **Maryna Udovychenko** (Shopping List page)
+
+  - GitHub https://github.com/Marini23
+
+  - Email marina.smile1m@gmail.com
+
+- **Igor Botvuna** (Support Ukraine section)
+
+  - GitHub https://github.com/Igorippon
+
+  - Email botvunaigor@gmail.com
+
+- **Evhenii Yahich** (Loader + Scroll Up)
+
+  - GitHub https://github.com/EvhYa
+
+  - Email nicetea.bro@gmail.com
+
+- **Oleksandr Filippov** (All Categories section)
+
+  - GitHub https://github.com/AlexFilippov777
+
+  - Email 7philipps7@gmail.com
+
+- **Irina Antonishina** (Mobile Menu)
+
+  - GitHub https://github.com/IrinaAntonishina
