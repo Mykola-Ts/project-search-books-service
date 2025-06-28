@@ -17,6 +17,7 @@
     var(--primary-color) 18.03%,
     var(--white-color) 100%
   );
+  --box-shadow-btn: 0px 3px 3px 0px rgba(0, 0, 0, 0.15);
 
   --transition-duration: 250ms;
   --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

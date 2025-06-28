@@ -5,7 +5,6 @@ const selectors = {
   btnNext: document.querySelector('.slider-btn-next'),
   btnPrev: document.querySelector('.slider-btn-prev'),
 };
-
 let sliderCount = 0;
 let sliderHeigth = 52;
 

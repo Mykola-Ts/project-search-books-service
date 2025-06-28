@@ -84,6 +84,13 @@ body.dark-theme .header {
 .header-btn-style {
   display: flex;
   align-items: center;
+
+  transition: box-shadow var(--transition-duration)
+    var(--transition-timing-function);
+}
+
+.header-btn-style:is(:hover, :focus) {
+  box-shadow: var(--box-shadow-btn);
 }
 
 .theme-switch-control {
@@ -185,6 +192,7 @@ body.dark-theme .header {
   display: flex;
   align-items: center;
   justify-content: start;
+  gap: 8px;
 
   width: 184px;
   height: 45px;
@@ -201,6 +209,13 @@ body.dark-theme .header {
 
   color: var(--white-color);
   background-color: var(--primary-color);
+
+  transition: box-shadow var(--transition-duration)
+    var(--transition-timing-function);
+}
+
+.user-in:is(:hover, :focus) {
+  box-shadow: var(--box-shadow-btn);
 }
 
 .btn-user-photo,

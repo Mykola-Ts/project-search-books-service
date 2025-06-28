@@ -1,3 +1,4 @@
+import '@fortawesome/fontawesome-free/css/all.css';
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -7,7 +8,7 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import LocalStorageService from './localstorage-services';
 import {
   closeAuthModal,
@@ -15,12 +16,8 @@ import {
   userLoggedOutBtnStyle,
 } from './authorization-window';
 import { currentTheme } from './header';
-
-import { showLoader } from './loader';
-import { hideLoader } from './loader';
-
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import '@fortawesome/fontawesome-free/css/all.css';
+import { hideLoader, showLoader } from './loader';
+import { errorMessageText } from './helpers';
 
 const LOCAL_USER_KEY = 'currentUser';
 const LOCAL_THEME_KEY = 'currentTheme';
@@ -69,6 +66,7 @@ export default class FirebaseService {
       hideLoader(document.querySelector('.auth-form'));
       this.onError(error);
     }
+
     hideLoader(document.querySelector('.auth-form'));
   };
 
@@ -77,6 +75,7 @@ export default class FirebaseService {
 
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
+
       this.readDataFromDb(LOCAL_USER_KEY, 'users');
       this.readThemeFromDb();
       this.readBooksFromDb();
@@ -86,6 +85,7 @@ export default class FirebaseService {
       hideLoader(document.querySelector('.loader-thumb'));
       this.onError(error);
     }
+
     hideLoader(document.querySelector('.loader-thumb'));
   };
 
@@ -94,12 +94,14 @@ export default class FirebaseService {
 
     try {
       await signOut(this.auth);
+
       userLoggedOutBtnStyle();
       closeAuthModal();
     } catch (error) {
       hideLoader(document.querySelector('.auth-form'));
       this.onError(error);
     }
+    
     hideLoader(document.querySelector('.auth-form'));
   };
 
@@ -114,24 +116,24 @@ export default class FirebaseService {
   });
 
   onError = error => {
-    Notify.failure(
-      `Oops, something went wrong. Try reloading the page. Here's the error message: ${error.message}`,
-      {
-        clickToClose: true,
-      }
-    );
+    Notify.failure(errorMessageText, {
+      clickToClose: true,
+    });
   };
 
   addDataToDb = async (key, collectionName, data) => {
     const user =
       this.auth.currentUser ||
       localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+
     if (!user) {
       return;
     }
+
     data = data || localStorageService.loadFromLocalStorage(key);
 
     const docRef = doc(this.db, `${collectionName}/${user.uid}`);
+
     try {
       await setDoc(docRef, data);
     } catch (error) {
@@ -143,11 +145,14 @@ export default class FirebaseService {
     const user =
       this.auth.currentUser ||
       localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+
     if (!user) {
       return;
     }
+
     const theme = localStorageService.loadFromLocalStorage(LOCAL_THEME_KEY);
     const docRef = doc(this.db, `themes/${user.uid}`);
+
     try {
       await setDoc(docRef, theme);
     } catch (error) {
@@ -157,8 +162,10 @@ export default class FirebaseService {
 
   readUserNameFromDb = async userInstance => {
     const docRef = doc(this.db, `users/${userInstance.uid}`);
+
     try {
       const snapshot = await getDoc(docRef);
+
       if (snapshot.exists()) {
         const data = snapshot.data();
         userLoggedInBtnStyle(data.name);
@@ -173,8 +180,10 @@ export default class FirebaseService {
       this.auth.currentUser ||
       localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
     const docRef = doc(this.db, `${collectionName}/${user.uid}`);
+
     try {
       const snapshot = await getDoc(docRef);
+
       if (snapshot.exists()) {
         const data = snapshot.data();
 
@@ -190,8 +199,10 @@ export default class FirebaseService {
       this.auth.currentUser ||
       localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
     const docRef = doc(this.db, `books/${user.uid}`);
+
     try {
       const snapshot = await getDoc(docRef);
+
       if (snapshot.exists()) {
         const data = snapshot.data();
         let arrayOfBooks = data.shoppingList;
@@ -207,11 +218,14 @@ export default class FirebaseService {
     const user =
       this.auth.currentUser ||
       localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
+
     if (!user) {
       return;
     }
+
     const theme = localStorage.getItem(LOCAL_THEME_KEY);
     const docRef = doc(this.db, `themes/${user.uid}`);
+
     try {
       await setDoc(docRef, theme);
     } catch (error) {
@@ -224,8 +238,10 @@ export default class FirebaseService {
       this.auth.currentUser ||
       localStorageService.loadFromLocalStorage(LOCAL_USER_KEY);
     const docRef = doc(this.db, `themes/${user.uid}`);
+
     try {
       const snapshot = await getDoc(docRef);
+
       if (snapshot.exists()) {
         const data = snapshot.data();
 

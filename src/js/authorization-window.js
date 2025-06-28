@@ -64,6 +64,7 @@ function onAuthFormSubmit(evt) {
 }
 
 function showAuthModal() {
+  window.addEventListener('keydown', closeAuthModalByEscape);
   selectors.signUpLink.addEventListener('click', onSignUpLink);
   selectors.signInLink.addEventListener('click', onSignInLink);
   selectors.closeBtn.addEventListener('click', closeAuthModal);
@@ -72,6 +73,7 @@ function showAuthModal() {
 }
 
 function closeAuthModal() {
+  window.removeEventListener('keydown', closeAuthModalByEscape);
   selectors.signUpLink.removeEventListener('click', onSignUpLink);
   selectors.signInLink.removeEventListener('click', onSignInLink);
   selectors.closeBtn.removeEventListener('click', closeAuthModal);
@@ -119,6 +121,12 @@ function saveNewTheme() {
   const themeData = { currentTheme };
 
   firebaseService.addDataToDb('currentTheme', 'themes', themeData);
+}
+
+function closeAuthModalByEscape(evt) {
+  if (evt.code === 'Escape') {
+    closeAuthModal();
+  }
 }
 
 export {
