@@ -14,10 +14,13 @@
   line-height: 0;
 
   background: transparent;
+
+  transition: box-shadow var(--transition-duration)
+    var(--transition-timing-function);
 }
 
-.scroll-up-btn:hover {
-  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.15);
+.scroll-up-btn:is(:hover, :focus) {
+  box-shadow: var(--box-shadow-btn);
 }
 
 .is-hidden {

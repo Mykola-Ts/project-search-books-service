@@ -49,6 +49,7 @@
 
 .auth-backdrop.is-hidden .auth-modal {
   transform: translate(-50%, -50%) scaleY(0.1);
+  transform-origin: bottom;
 }
 
 .auth-form {
@@ -85,18 +86,13 @@
   text-transform: uppercase;
 }
 
-.auth-input:hover,
-.auth-input:focus,
-.auth-input:active {
+.auth-input:is(:hover, :focus, :active),
+.auth-input:has(+ .auth-form-svg:is(:hover, :focus, :active)) {
   border-color: var(--primary-color);
 }
 
-.auth-input:hover + .auth-form-svg,
-.auth-input:focus + .auth-form-svg,
-.auth-input:active + .auth-form-svg,
-.auth-form-svg:hover,
-.auth-form-svg:focus,
-.auth-form-svg:active {
+.auth-input:is(:hover, :focus, :active) + .auth-form-svg,
+.auth-form-svg:is(:hover, :focus, :active) {
   stroke: var(--primary-color);
 }
 
@@ -111,9 +107,7 @@
     var(--transition-timing-function);
 }
 
-.auth-svg:hover,
-.auth-svg:focus,
-.auth-svg:active {
+.auth-svg:is(:hover, :focus, :active) {
   stroke: var(--primary-color);
 }
 
@@ -124,6 +118,8 @@
 
   width: 18px;
   height: 18px;
+
+  cursor: text;
 
   fill: var(--dark-theme-color);
   stroke: var(--light-theme-color);
@@ -187,9 +183,7 @@
     var(--transition-timing-function);
 }
 
-.auth-form-button:hover,
-.auth-form-butto:focus,
-.auth-form-butto:active {
+.auth-form-button:is(:hover, :focus, :active) {
   background-color: var(--primary-color);
 }
 
@@ -209,16 +203,12 @@
   transition: color var(--transition-duration) var(--transition-timing-function);
 }
 
-.auth-form-link:hover,
-.auth-form-link:focus,
-.auth-form-link:active {
+.auth-form-link:is(:hover, :focus, :active) {
   color: var(--primary-color);
   text-decoration-line: underline;
 }
 
-body.dark-theme .auth-form-link:hover,
-body.dark-theme .auth-form-link:focus,
-body.dark-theme .auth-form-link:active {
+body.dark-theme .auth-form-link:is(:hover, :focus, :active) {
   color: var(--primary-color);
 }
 
@@ -268,9 +258,7 @@ body.dark-theme .auth-form-link:active {
     caret-color: var(--text-black-color);
   }
 
-  body.dark-theme .auth-input:hover,
-  body.dark-theme .auth-input:focus,
-  body.dark-theme .auth-input:active {
+  body.dark-theme .auth-input:is(:hover, :focus, :active) {
     border-color: var(--primary-color);
   }
 
@@ -317,12 +305,8 @@ body.dark-theme .auth-form-link:active {
     stroke: var(--text-black-color);
   }
 
-  body.dark-theme .auth-input:hover + .auth-form-svg,
-  body.dark-theme .auth-input:focus + .auth-form-svg,
-  body.dark-theme .auth-input:active + .auth-form-svg,
-  body.dark-theme .auth-form-svg:hover,
-  body.dark-theme .auth-form-svg:focus,
-  body.dark-theme .auth-form-svg:active {
+  body.dark-theme .auth-input:is(:hover, :focus, :active) + .auth-form-svg,
+  body.dark-theme .auth-form-svg:is(:hover, :focus, :active) {
     stroke: var(--primary-color);
   }
 
@@ -364,9 +348,7 @@ body.dark-theme .auth-form-link:active {
     background-color: var(--light-theme-color);
   }
 
-  body.dark-theme .auth-form-button:hover,
-  body.dark-theme .auth-form-butto:focus,
-  body.dark-theme .auth-form-butto:active {
+  body.dark-theme .auth-form-button:is(:hover, :focus, :active) {
     background-color: var(--primary-color);
   }
 

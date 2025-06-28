@@ -1,15 +1,10 @@
 import axios from 'axios';
 import FirebaseService from './firebase-services';
-import amazonIconPng from '../../src/img/amazon-icon.png';
-import amazonIconWebp from '../../src/img/amazon-icon.webp';
-import appleBookIconPng from '../../src/img/apple-book-icon.png';
-import appleBookIconWebp from '../../src/img/apple-book-icon.webp';
-import bookShopIconPng from '../../src/img/book-shop-icon.png';
-import bookShopIconWebp from '../../src/img/book-shop-icon.webp';
 import placeholderCoverBook from '../img/placeholder-cover-book.png';
 import { Notify } from 'notiflix';
+import { createMarkupBuyLinks, errorMessageText } from './helpers';
 
-const firebaseService = new FirebaseService();
+const API_URL = 'https://books-backend.p.goit.global/books';
 const selectors = {
   closeModalBtn: document.querySelector('button[data-modal-window-close]'),
   modal: document.querySelector('div[data-modal-window]'),
@@ -21,6 +16,9 @@ const selectors = {
   modalWrap: document.querySelector('.modal-wrap'),
   booksListWrap: document.querySelector('.books-list-wrap'),
 };
+const removeBookFromShoppingListBtnText = 'Remove from the shopping list';
+const addBookToShoppingListBtnText = 'Add to shopping list';
+const firebaseService = new FirebaseService();
 const shoppingList = [];
 let openBook = {};
 
@@ -33,16 +31,16 @@ if (
   shoppingList.push(...savedBooks);
 }
 
-export const openBookModal = function openBookModal(evt) {
+document.addEventListener('DOMContentLoaded', addEventListenerModal);
+
+export function openBookModal(evt) {
   evt.preventDefault();
 
   const bookItem = evt.target.closest('li.books-list-item');
 
   if (!bookItem) return;
 
-  const bookId = bookItem.dataset.id;
-
-  fetchBookById(bookId)
+  fetchBookById(bookItem.dataset.id)
     .then(
       ({
         book_image,
@@ -58,7 +56,7 @@ export const openBookModal = function openBookModal(evt) {
           bookName: title,
           bookAuthor: author,
           bookImage: book_image,
-          description: description,
+          description,
           buyLinks: buy_links,
           listName: list_name,
         };
@@ -72,8 +70,7 @@ export const openBookModal = function openBookModal(evt) {
         );
 
         if (!!~findBookInShoppingList(shoppingList, openBook)) {
-          selectors.addBookBtn.textContent = 'remove from the shopping list';
-
+          selectors.addBookBtn.textContent = removeBookFromShoppingListBtnText;
           selectors.addBookBtn.addEventListener('click', removeBook);
 
           if (
@@ -86,17 +83,9 @@ export const openBookModal = function openBookModal(evt) {
             );
           }
         } else {
-          selectors.addBookBtn.textContent = 'Add to shopping list';
-
           selectors.addBookBtn.addEventListener('click', addBook);
-
-          if (
-            !selectors.textNotificationOfAdded.classList.contains(
-              'visually-hidden'
-            )
-          ) {
-            selectors.textNotificationOfAdded.classList.add('visually-hidden');
-          }
+          selectors.addBookBtn.textContent = addBookToShoppingListBtnText;
+          selectors.textNotificationOfAdded.classList.add('visually-hidden');
         }
 
         openModal();
@@ -106,101 +95,58 @@ export const openBookModal = function openBookModal(evt) {
         document.addEventListener('keydown', closeModal);
       }
     )
-    .catch(err =>
-      Notify.failure(
-        `Oops, something went wrong. Try reloading the page. Here's the error message: ${err.message}`
-      )
-    );
-};
-
-document.addEventListener('DOMContentLoaded', addEventListenerModal);
+    .catch(err => Notify.failure(errorMessageText));
+}
 
 function addEventListenerModal(evt) {
-  if (evt.target.location.pathname.includes('/shopping-list.html')) {
-    return;
-  }
+  if (evt.target.location.pathname.includes('/shopping-list.html')) return;
 
   selectors.booksListWrap.addEventListener('click', openBookModal);
 }
 
 async function fetchBookById(id) {
   try {
-    const resp = await axios.get(
-      `https://books-backend.p.goit.global/books/${id}`
-    );
+    const resp = await axios.get(`${API_URL}/${id}`);
 
     if (resp.status !== 200) {
-      throw new Error(resp.statusText);
+      throw new Error(errorMessageText);
     }
 
     return resp.data;
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error(errorMessageText);
   }
 }
 
 function createMarkupModal(image, title, author, description, buyLinks) {
   const arrBuyLinks = buyLinks.slice(0, 3);
-  const arrIconsLink = [
-    { name: 'Amazon', img: { png: amazonIconPng, webp: amazonIconWebp } },
-    {
-      name: 'Apple Books',
-      img: { png: appleBookIconPng, webp: appleBookIconWebp },
-    },
-    {
-      name: 'Barnes and Noble',
-      img: { png: bookShopIconPng, webp: bookShopIconWebp },
-    },
-  ];
 
-  const markupLinks = arrBuyLinks
-    .map(({ url, name }) => {
-      const icon = arrIconsLink.find(iconLink => iconLink.name === name);
-
-      return `<li class="buy-link-icon-item">
-  <a
-    href="${url}"
-    target="_blank"
-    rel="noopener noreferrer nofollow"
-    class="buy-link"
-    aria-label="Open book on ${name}"
-  >
-    <picture>
-      <source srcset="${icon.img.webp}" type="image/webp" />
-      <source srcset="${icon.img.png}" type="image/png" />
-      <img
-        src="${icon.img.png}"
-        alt="${name}"
-        loading="lazy"
-        class="buy-link-icon"
-    /></picture>
-  </a>
-</li>`;
-    })
-    .join('');
-
-  return `<div class="book-img-wrap"><img
-    src="${image || placeholderCoverBook}"
-    alt="${title}"
-    width="192"
-    height="281"
-    loading="lazy"
-    class="book-img"
-  /></div>
-        <div class="book-descr">
-          <h2 class="book-name">${title}</h2>
-          <h3 class="book-author">${author}</h3>
-          <p class="book-descr-text">${description}</p>
-          <ul class="buy-links-list">
-${markupLinks}
-          </ul>
-        </div>`;
+  return `
+      <div class="book-img-wrap">
+        <img
+          src="${image || placeholderCoverBook}"
+          alt="${title}"
+          width="192"
+          height="281"
+          loading="lazy"
+          class="book-img"
+        />
+      </div>
+      <div class="book-descr">
+        <h2 class="book-name">${title}</h2>
+        <h3 class="book-author">${author}</h3>
+        <p class="book-descr-text">${description}</p>
+        <ul class="buy-links-list">
+          ${createMarkupBuyLinks(arrBuyLinks)}
+        </ul>
+      </div>
+      `;
 }
 
 function openModal() {
   selectors.modal.classList.remove('is-hidden-modal');
-  document.body.style.overflow = 'hidden';
   selectors.modal.style.overflow = 'auto';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal(evt) {
@@ -215,8 +161,8 @@ function closeModal(evt) {
   openBook = {};
 
   selectors.modal.classList.add('is-hidden-modal');
-  document.body.style.overflow = '';
   selectors.modal.style.overflow = '';
+  document.body.style.overflow = '';
 
   selectors.addBookBtn.removeEventListener('click', addBook);
   selectors.addBookBtn.removeEventListener('click', removeBook);
@@ -225,15 +171,15 @@ function closeModal(evt) {
   document.removeEventListener('keydown', closeModal);
 }
 
-function addBook(evt) {
+function addBook() {
   shoppingList.push(openBook);
 
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+
   firebaseService.addDataToDb('shoppingList', 'books', { shoppingList });
 
-  selectors.addBookBtn.textContent = 'remove from the shopping list';
   selectors.textNotificationOfAdded.classList.remove('visually-hidden');
-
+  selectors.addBookBtn.textContent = removeBookFromShoppingListBtnText;
   selectors.addBookBtn.removeEventListener('click', addBook);
   selectors.addBookBtn.addEventListener('click', removeBook);
 }
@@ -244,11 +190,11 @@ function removeBook() {
   shoppingList.splice(idRemoveBook, 1);
 
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+
   firebaseService.addDataToDb('shoppingList', 'books', { shoppingList });
 
-  selectors.addBookBtn.textContent = 'Add to shopping list';
   selectors.textNotificationOfAdded.classList.add('visually-hidden');
-
+  selectors.addBookBtn.textContent = addBookToShoppingListBtnText;
   selectors.addBookBtn.removeEventListener('click', removeBook);
   selectors.addBookBtn.addEventListener('click', addBook);
 }
