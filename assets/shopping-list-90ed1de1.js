@@ -18,7 +18,6 @@ import{p as d,c as u,n as m,e as A}from"./scroll-up-9372a0cf.js";const n="/proje
               src="${n}"
               alt="empty list"
               width="265"
-              loading="lazy"
               class="shopping-list-empty-img"
           /></picture>
         </div>`;return}t===null||t.length===0?i.shoppinglistContainer.innerHTML+=`
