@@ -18,11 +18,26 @@ with a list of verified charitable foundations.
 
 ### Website Structure
 
-The site consists of the following main sections:
+The website consists of two pages:
+
+**Home Page** — the main search and discovery interface for books, where users
+can browse by categories and view book details in a modal window.
+
+**Shopping List Page** — a personalized space where users can save books of
+interest.
+
+Each page includes the following sections:
+
+**Home Page**:
 
 - **Header** — contains the site logo, a theme toggle (light/dark), navigation
   links to the homepage and the shopping list, and user authentication controls
   such as login/logout buttons or a user icon depending on the session state.
+- **Mobile Menu** — a responsive navigation panel designed for mobile devices
+  that slides in or toggles when the hamburger button is clicked. It contains
+  links to the main site sections and closes when a link is selected or the
+  close button is pressed, ensuring easy and intuitive navigation on small
+  screens.
 - **All Categories** — a sidebar section displaying a scrollable list of book
   categories. Allows users to filter books by genre or type. Selecting a
   category updates the main book list accordingly. Includes an "All Categories"
@@ -49,15 +64,34 @@ The site consists of the following main sections:
 - **Authorization Window** — a modal interface for user authentication,
   including login and registration forms. Powered by Firebase Authentication, it
   enables secure access and user session management across the site.
-- **Mobile Menu** — a responsive navigation panel designed for mobile devices
-  that slides in or toggles when the hamburger button is clicked. It contains
-  links to the main site sections and closes when a link is selected or the
-  close button is pressed, ensuring easy and intuitive navigation on small
-  screens.
-- **Shopping List Page** — a dedicated page where users can view and manage the
-  books they've added to their shopping list. Allows users to remove books from
-  the list. Shared elements like the header, support section, and modals are
-  included.
+
+**Shopping List Page**:
+
+- **Header** — remains consistent with the Home Page, containing the logo, theme
+  switcher (light/dark mode), navigation links (Home / Shopping List), and user
+  authentication controls (e.g., login/logout or user avatar if logged in).
+- **Mobile Menu** — a responsive mobile navigation panel that toggles open and
+  closed. Contains navigation links and closes automatically upon link selection
+  or clicking the close icon. Ensures smooth mobile experience.
+- **Support Ukraine** — same as on the Home Page, this vertical slider slider
+  section that features verified charitable foundations supporting Ukraine. It
+  includes direct links for donations to trusted organizations. This section is
+  visible only on the desktop version of the site (on smaller screens it is
+  hidden) to maintain layout clarity and avoid clutter on mobile and tablet
+  views.
+- **Shopping List** — the main section of this page, displaying a list of books
+  the user has added. Each book entry includes the title, author, cover image,
+  and purchase links. Users can remove books from this list directly. If no
+  books are added, an empty state message is shown, encouraging users to browse
+  and add books from the homepage.
+- **Scroll-Up Button** — enhances usability by allowing users to quickly return
+  to the top of the page when scrolling.
+- **Loader** — animated loader styled like a flipping book appears when the page
+  fetches data or performs actions (e.g., user authentication or list update),
+  providing feedback and reinforcing the book-themed design.
+- **Authorization Window** — same modal as on the Home Page, allowing users to
+  sign in or register. Ensures access control and persistent user-specific data
+  like the shopping list.
 
 ## Useful Links
 
@@ -197,13 +231,25 @@ Google's PageSpeed Insights was used to analyze the performance of the
 TheWatchSpot website on both mobile and desktop devices. The results highlight
 strong performance across various categories, ensuring a smooth user experience.
 
-**Mobile Performance:**
+**Home Page**
+
+- **Mobile Performance:**
 
 ![Mobile Page Performance](./assets/page-speed-mobile.jpg)
 
-**Desktop Performance:**
+- **Desktop Performance:**
 
 ![Desktop Page Performance](./assets/page-speed-desktop.jpg)
+
+**Shopping List Page**
+
+- **Mobile Performance:**
+
+![Mobile Page Performance](./assets/page-speed-mobile-shopping-list-page.jpg)
+
+- **Desktop Performance:**
+
+![Desktop Page Performance](./assets/page-speed-desktop-shopping-list-page.jpg)
 
 These results demonstrate that the website is optimized for both performance and
 user experience, ensuring fast loading times and high usability on all devices.
@@ -214,7 +260,13 @@ The website has been tested with the
 [W3C Markup Validation Service](https://validator.w3.org/) and contains no
 validation errors or warnings.
 
-![Validation](./assets/validation-result.jpg)
+**Home Page**
+
+![Validation result Home page](./assets/validation-result.jpg)
+
+**Shopping List Page**
+
+![Validation result Shopping List page](./assets/validation-result-shopping-list-page.jpg)
 
 ## Installation & Setup
 

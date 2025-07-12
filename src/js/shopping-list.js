@@ -82,7 +82,6 @@ function createMarkup(data) {
               src="${shoppingListEmptyImgPng}"
               alt="empty list"
               width="265"
-              loading="lazy"
               class="shopping-list-empty-img"
           /></picture>
         </div>`;
