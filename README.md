@@ -6,6 +6,20 @@ purchase your next favorite read.
 
 ![Brand logo](./assets/logo.jpg)
 
+## Table of Contents
+
+- [About the Project](#-about-the-project)
+- [Website Structure](#-website-structure)
+- [Useful Links](#-useful-links)
+- [Technologies Used](#-technologies-used)
+- [Libraries Used](#-libraries-used)
+- [Folder and File Structure](#-folder-and-file-structure)
+- [Features](#-features)
+- [PageSpeed Results](#-pagespeed-results)
+- [Validation Result](#-validation-result)
+- [Installation & Setup](#-installation--setup)
+- [Author](#-author)
+
 ## About the Project
 
 This project is a responsive two-page website developed for the book discovery
@@ -16,7 +30,7 @@ with a list of verified charitable foundations.
 
 ![Website start page](./assets/bookshelf.jpg)
 
-### Website Structure
+## Website Structure
 
 The website consists of two pages:
 
@@ -33,34 +47,42 @@ Each page includes the following sections:
 - **Header** — contains the site logo, a theme toggle (light/dark), navigation
   links to the homepage and the shopping list, and user authentication controls
   such as login/logout buttons or a user icon depending on the session state.
+
 - **Mobile Menu** — a responsive navigation panel designed for mobile devices
   that slides in or toggles when the hamburger button is clicked. It contains
   links to the main site sections and closes when a link is selected or the
   close button is pressed, ensuring easy and intuitive navigation on small
   screens.
+
 - **All Categories** — a sidebar section displaying a scrollable list of book
   categories. Allows users to filter books by genre or type. Selecting a
   category updates the main book list accordingly. Includes an "All Categories"
   option to reset the view.
+
 - **Support Ukraine** — а vertical slider section featuring a list of verified
   charitable foundations supporting Ukraine. Encourages users to donate by
   providing direct links to official organizations. Displayed on both the
   homepage and the shopping list page.
+
 - **List of Books** — a dynamic section that displays a collection of book cards
   based on the selected category. Each card includes the book cover, title,
   author, and a “Learn More” button that opens a detailed modal view.
+
 - **Modal Window** — a pop-up window that appears when a user clicks on a book
   card (Quick View). It displays detailed information about the selected book,
   including its title, description, author, and purchase links. The modal also
   features a button to add the book to the shopping list, or remove it if it's
   already saved.
+
 - **Scroll-Up Button** — a floating button that appears when the user scrolls
   down the page. When clicked, it smoothly scrolls the user back to the top,
   enhancing site navigation and user experience.
+
 - **Loader** — a visually engaging loading animation designed as a book with
   turning pages. It appears while content is being fetched or processed,
   providing users with a clear and thematic indication that the system is
   working, enhancing user experience with a creative and relevant graphic.
+
 - **Authorization Window** — a modal interface for user authentication,
   including login and registration forms. Powered by Firebase Authentication, it
   enables secure access and user session management across the site.
@@ -70,25 +92,31 @@ Each page includes the following sections:
 - **Header** — remains consistent with the Home Page, containing the logo, theme
   switcher (light/dark mode), navigation links (Home / Shopping List), and user
   authentication controls (e.g., login/logout or user avatar if logged in).
+
 - **Mobile Menu** — a responsive mobile navigation panel that toggles open and
   closed. Contains navigation links and closes automatically upon link selection
   or clicking the close icon. Ensures smooth mobile experience.
+
 - **Support Ukraine** — same as on the Home Page, this vertical slider slider
   section that features verified charitable foundations supporting Ukraine. It
   includes direct links for donations to trusted organizations. This section is
   visible only on the desktop version of the site (on smaller screens it is
   hidden) to maintain layout clarity and avoid clutter on mobile and tablet
   views.
+
 - **Shopping List** — the main section of this page, displaying a list of books
   the user has added. Each book entry includes the title, author, cover image,
   and purchase links. Users can remove books from this list directly. If no
   books are added, an empty state message is shown, encouraging users to browse
   and add books from the homepage.
+
 - **Scroll-Up Button** — enhances usability by allowing users to quickly return
   to the top of the page when scrolling.
+
 - **Loader** — animated loader styled like a flipping book appears when the page
   fetches data or performs actions (e.g., user authentication or list update),
   providing feedback and reinforcing the book-themed design.
+
 - **Authorization Window** — same modal as on the Home Page, allowing users to
   sign in or register. Ensures access control and persistent user-specific data
   like the shopping list.
@@ -99,7 +127,7 @@ Each page includes the following sections:
   deployed version of the website
 
 - [GitHub Repository](https://github.com/Mykola-Ts/project-search-books-service)
-  — deployed version of the website
+  — source code of the project
 
 - [Figma Design](https://www.figma.com/design/J31Kn9h6Fuxq2FKA1S2IzM/Bookshelf--Copy-?node-id=0-1&p=f&t=Rgu72hWRE8pSYoAY-0)
   — the project’s UI/UX design mockup
