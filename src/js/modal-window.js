@@ -118,7 +118,13 @@ async function fetchBookById(id) {
   }
 }
 
-function createMarkupModal(image, title, author, description, buyLinks) {
+function createMarkupModal(
+  image = '',
+  title = '',
+  author = '',
+  description = '',
+  buyLinks = []
+) {
   const arrBuyLinks = buyLinks.slice(0, 3);
 
   return `

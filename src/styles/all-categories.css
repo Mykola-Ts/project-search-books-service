@@ -262,7 +262,7 @@ body.dark-theme .current-category {
     margin-bottom: 40px;
   }
 
-  .books-list-item-category:not(:nth-child(1)) {
+  .books-list-preview .books-list-item-category:not(:nth-child(1)) {
     display: none;
   }
 }
@@ -315,7 +315,7 @@ body.dark-theme .current-category {
     margin-bottom: 98px;
   }
 
-  .books-list-item-category:not(:nth-child(-n + 3)) {
+  .books-list-preview .books-list-item-category:not(:nth-child(-n + 3)) {
     display: none;
   }
 }
@@ -335,7 +335,7 @@ body.dark-theme .current-category {
   }
 
   .books-list-wrap,
-  .open-category-books-list {
+  .open-category-books {
     width: 996px;
   }
 
@@ -347,7 +347,7 @@ body.dark-theme .current-category {
     height: 256px;
   }
 
-  .books-list-item-category:not(:nth-child(-n + 5)) {
+  .books-list-preview .books-list-item-category:not(:nth-child(-n + 5)) {
     display: none;
   }
 }
