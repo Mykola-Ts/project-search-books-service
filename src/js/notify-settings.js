@@ -1,15 +1,14 @@
-import Notiflix from 'notiflix';
 import '@fortawesome/fontawesome-free/css/all.css';
+import { Notify } from 'notiflix';
 
-export default Notiflix.Notify.init({
-  cssAnimationStyle: 'from-bottom',
-  position: 'left-bottom',
+Notify.init({
+  cssAnimationStyle: 'from-right',
+  position: 'right-top',
   width: '345px',
   borderRadius: '18px',
   fontFamily: 'DM Sans',
-  fontSize: '18px',
+  fontSize: '16px',
 
-  clickToClose: true,
   closeButton: true,
   pauseOnHover: true,
   useIcon: true,
@@ -17,17 +16,21 @@ export default Notiflix.Notify.init({
   fontAwesomeIconStyle: 'basic',
   fontAwesomeIconSize: '35px',
   messageMaxLength: 150,
+  showOnlyTheLastOne: true,
 
   success: {
-    background: '#3baea0',
+    background: 'rgba(0, 128, 0, 0.8)',
     fontAwesomeClassName: 'fa-solid fa-book-open',
     fontAwesomeIconColor: '#93e4c1',
   },
 
   failure: {
     background: '#e84a5f',
-    fontAwesomeClassName: 'fa-solid fa-book-skull',
+    fontAwesomeClassName: 'fa-solid fa-triangle-exclamation',
     fontAwesomeIconColor: '#ff847c',
     timeout: 5000,
+    clickToClose: true,
   },
 });
+
+export default Notify;

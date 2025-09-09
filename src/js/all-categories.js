@@ -1,4 +1,4 @@
-import { Notify } from 'notiflix';
+import Notify from './notify-settings';
 import { hideLoader, showLoader } from './loader';
 import { openBookModal } from './modal-window';
 import { errorMessageText } from './helpers';
@@ -91,7 +91,7 @@ async function onChangeCategory(evt) {
   const target = evt.target;
 
   try {
-    if (target.classList.contains('see-more-btn-best-sellers')) {
+    if (target.classList.contains('see-more-best-sellers')) {
       return await onBestSellersClick();
     } else if (target.classList.contains('all-category-link')) {
       return onAllCategoriesClick();
@@ -99,7 +99,7 @@ async function onChangeCategory(evt) {
       (!target.classList.contains('category-list-link') &&
         !target.classList.contains('see-more-btn')) ||
       target.classList.contains('all-category-link') ||
-      target.classList.contains('see-more-btn-best-sellers')
+      target.classList.contains('see-more-best-sellers')
     ) {
       return;
     }
@@ -120,6 +120,7 @@ async function onBestSellersClick() {
 
     createBestSellers(bestSellers);
     updateBookListView();
+    changeCurrentCategoryListLink('best-sellers-books');
   } catch (error) {
     Notify.failure(
       'Sorry, there are no books matching your search query. Please try again.'
@@ -170,13 +171,13 @@ async function onCategoryClick(categoryName) {
   updateBookListView();
 }
 
-function changeCurrentCategoryListLink(category) {
+function changeCurrentCategoryListLink(categoryName) {
   document
     .querySelector('.current-category')
     ?.classList.remove('current-category');
 
   const changeCurrentCategory = document.querySelector(
-    `[data-name="${category}"]`
+    `[data-name="${categoryName}"]`
   );
   changeCurrentCategory.classList.add('current-category');
 }
