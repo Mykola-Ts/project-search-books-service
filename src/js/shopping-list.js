@@ -4,7 +4,7 @@ import shoppingListEmptyImgWebp from '../../src/img/empty-shopping-list.webp';
 import shoppingListEmptyImgWebp2x from '../../src/img/empty-shopping-list@2x.webp';
 import iconsSvg from '../../src/img/icons.svg';
 import placeholderCoverBook from '../img/placeholder-cover-book.png';
-import { Notify } from 'notiflix';
+import Notify from './notify-settings';
 import { createMarkupBuyLinks, errorMessageText } from './helpers';
 
 const selectors = {

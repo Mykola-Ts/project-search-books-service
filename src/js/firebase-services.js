@@ -8,7 +8,7 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Notify from './notify-settings';
 import LocalStorageService from './localstorage-services';
 import {
   closeAuthModal,
@@ -101,7 +101,7 @@ export default class FirebaseService {
       hideLoader(document.querySelector('.auth-form'));
       this.onError(error);
     }
-    
+
     hideLoader(document.querySelector('.auth-form'));
   };
 

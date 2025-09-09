@@ -1,7 +1,7 @@
 import axios from 'axios';
 import FirebaseService from './firebase-services';
 import placeholderCoverBook from '../img/placeholder-cover-book.png';
-import { Notify } from 'notiflix';
+import Notify from './notify-settings';
 import { createMarkupBuyLinks, errorMessageText } from './helpers';
 
 const API_URL = 'https://books-backend.p.goit.global/books';

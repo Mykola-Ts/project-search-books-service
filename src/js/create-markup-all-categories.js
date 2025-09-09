@@ -12,6 +12,16 @@ export function createCategoriesListMarkup(categories = []) {
       >
     </li>
 
+    <li class="category-list-item">
+      <a
+        href="#"
+        class="category-list-link see-more-best-sellers link"
+        data-name="best-sellers-books"
+        aria-label="Best Sellers Books"
+        >Best Sellers Books</a
+      >
+    </li>
+
     ${categories
       .map(({ list_name }) =>
         list_name
@@ -79,9 +89,9 @@ export function createBookMarkup(books = []) {
     .join('');
 }
 
-export function createBestSellerListMarkup(bestSellers = []) {
+export function createBestSellerListMarkup(bestSellersBooks = []) {
   const markupBestSellersList = createBookMarkup(
-    bestSellers.map(({ books }) => books[0]).slice(0, 5)
+    bestSellersBooks.map(({ books }) => books[0]).slice(0, 5)
   );
 
   return `
@@ -90,7 +100,7 @@ export function createBestSellerListMarkup(bestSellers = []) {
         </ul>
        <button
          type="button"
-         class="see-more-btn see-more-btn-best-sellers"
+         class="see-more-btn see-more-btn-best-sellers see-more-best-sellers"
          aria-label="See more best sellers books"
        >
          SEE MORE
