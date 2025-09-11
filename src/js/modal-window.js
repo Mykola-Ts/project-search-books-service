@@ -3,6 +3,7 @@ import FirebaseService from './firebase-services';
 import placeholderCoverBook from '../img/placeholder-cover-book.png';
 import Notify from './notify-settings';
 import { createMarkupBuyLinks, errorMessageText } from './helpers';
+import { hideLoader, showLoader } from './loader';
 
 const API_URL = 'https://books-backend.p.goit.global/books';
 const selectors = {
@@ -15,6 +16,7 @@ const selectors = {
   ),
   modalWrap: document.querySelector('.modal-wrap'),
   booksListWrap: document.querySelector('.books-list-wrap'),
+  loader: document.querySelector('.loader-wrap'),
 };
 const removeBookFromShoppingListBtnText = 'Remove from the shopping list';
 const addBookToShoppingListBtnText = 'Add to shopping list';
@@ -105,6 +107,8 @@ function addEventListenerModal(evt) {
 }
 
 async function fetchBookById(id) {
+  showLoader(selectors.loader);
+
   try {
     const resp = await axios.get(`${API_URL}/${id}`);
 
@@ -115,6 +119,8 @@ async function fetchBookById(id) {
     return resp.data;
   } catch (error) {
     throw new Error(errorMessageText);
+  } finally {
+    hideLoader(selectors.loader);
   }
 }
 
