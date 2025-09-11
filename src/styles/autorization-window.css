@@ -212,13 +212,6 @@ body.dark-theme .auth-form-link:is(:hover, :focus, :active) {
   color: var(--primary-color);
 }
 
-.loader-thumb {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 @media screen and (min-width: 768px) {
   .auth-modal {
     display: inline-flex;

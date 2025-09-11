@@ -23,6 +23,7 @@ const LOCAL_USER_KEY = 'currentUser';
 const LOCAL_THEME_KEY = 'currentTheme';
 const LOCAL_DATA_KEY = 'shoppingList';
 const localStorageService = new LocalStorageService();
+const loader = document.querySelector('.loader-wrap');
 
 export default class FirebaseService {
   firebaseConfig = {
@@ -39,7 +40,7 @@ export default class FirebaseService {
   db = getFirestore();
 
   createUser = async (email, password, name) => {
-    showLoader(document.querySelector('.auth-form'));
+    showLoader(loader);
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -63,15 +64,14 @@ export default class FirebaseService {
 
       userLoggedInBtnStyle(name);
     } catch (error) {
-      hideLoader(document.querySelector('.auth-form'));
       this.onError(error);
+    } finally {
+      hideLoader(loader);
     }
-
-    hideLoader(document.querySelector('.auth-form'));
   };
 
   signInUser = async (email, password) => {
-    showLoader(document.querySelector('.loader-thumb'));
+    showLoader(loader);
 
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
@@ -82,15 +82,14 @@ export default class FirebaseService {
 
       userLoggedInBtnStyle(this.userName);
     } catch (error) {
-      hideLoader(document.querySelector('.loader-thumb'));
       this.onError(error);
+    } finally {
+      hideLoader(loader);
     }
-
-    hideLoader(document.querySelector('.loader-thumb'));
   };
 
   onSignOut = async () => {
-    showLoader(document.querySelector('.auth-form'));
+    showLoader(loader);
 
     try {
       await signOut(this.auth);
@@ -98,11 +97,10 @@ export default class FirebaseService {
       userLoggedOutBtnStyle();
       closeAuthModal();
     } catch (error) {
-      hideLoader(document.querySelector('.auth-form'));
       this.onError(error);
+    } finally {
+      hideLoader(loader);
     }
-
-    hideLoader(document.querySelector('.auth-form'));
   };
 
   disableAuthListener = onAuthStateChanged(this.auth, async user => {

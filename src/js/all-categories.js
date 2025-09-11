@@ -70,6 +70,8 @@ function createBestSellers(bestSellers = []) {
 }
 
 async function createTopBookList() {
+  showLoader(selectors.loader);
+
   try {
     const topBooks = (await fetchBestSellers()) || [];
     const uniqueBooks = filterUniqueBooksBycategories(topBooks);
@@ -84,11 +86,15 @@ async function createTopBookList() {
     selectors.booksListWrap.addEventListener('click', onChangeCategory);
   } catch (error) {
     Notify.failure(errorMessageText);
+  } finally {
+    hideLoader(selectors.loader);
   }
 }
 
 async function onChangeCategory(evt) {
   const target = evt.target;
+
+  showLoader(selectors.loader);
 
   try {
     if (target.classList.contains('see-more-best-sellers')) {
