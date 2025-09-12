@@ -1,11 +1,14 @@
+import axios from 'axios';
+import { errorMessageText } from './helpers';
+
 const API_URL = 'https://books-backend.p.goit.global/books';
 
 export async function fetchData(endpoint = '') {
-  const response = await fetch(`${API_URL}${endpoint}`);
+  const response = await axios.get(`${API_URL}${endpoint}`);
 
-  if (!response.ok) throw new Error(errorMessageText);
+  if (response.status !== 200) throw new Error(errorMessageText);
 
-  return response.json();
+  return response.data;
 }
 
 export async function fetchCategories() {
@@ -18,4 +21,8 @@ export async function fetchBestSellers() {
 
 export async function fetchBooksByCategory(categoryName) {
   return await fetchData(`/category?category=${categoryName}`);
+}
+
+export async function fetchBookById(id) {
+  return await fetchData(`/${id}`);
 }

@@ -1,6 +1,6 @@
 import Notify from './notify-settings';
 import { hideLoader, showLoader } from './loader';
-import { openBookModal } from './modal-window';
+import { handlerOpenBookModal } from './modal-window';
 import { errorMessageText } from './helpers';
 import {
   fetchBestSellers,
@@ -128,9 +128,7 @@ async function onBestSellersClick() {
     updateBookListView();
     changeCurrentCategoryListLink('best-sellers-books');
   } catch (error) {
-    Notify.failure(
-      'Sorry, there are no books matching your search query. Please try again.'
-    );
+    Notify.failure(errorMessageText);
   } finally {
     hideLoader(selectors.loader);
   }
@@ -197,7 +195,7 @@ function updateBookListView() {
     block: 'start',
   });
 
-  selectors.openCategoryBooks.addEventListener('click', openBookModal);
+  selectors.openCategoryBooks.addEventListener('click', handlerOpenBookModal);
 }
 
 function filterUniqueBooksBycategories(allBooks = []) {

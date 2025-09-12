@@ -114,9 +114,21 @@ export default class FirebaseService {
   });
 
   onError = error => {
-    Notify.failure(errorMessageText, {
-      clickToClose: true,
-    });
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        Notify.failure(
+          'This email is already in use. Please try signing in or use a different email address.'
+        );
+        break;
+
+      case 'auth/user-not-found':
+      case 'auth/wrong-password':
+        Notify.failure('Invalid email or password. Please try again.');
+        break;
+
+      default:
+        Notify.failure(errorMessageText);
+    }
   };
 
   addDataToDb = async (key, collectionName, data) => {

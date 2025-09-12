@@ -1,11 +1,10 @@
-import axios from 'axios';
 import FirebaseService from './firebase-services';
-import placeholderCoverBook from '../img/placeholder-cover-book.png';
 import Notify from './notify-settings';
+import placeholderCoverBook from '../img/placeholder-cover-book.png';
 import { createMarkupBuyLinks, errorMessageText } from './helpers';
+import { fetchBookById } from './fetch-data';
 import { hideLoader, showLoader } from './loader';
 
-const API_URL = 'https://books-backend.p.goit.global/books';
 const selectors = {
   closeModalBtn: document.querySelector('button[data-modal-window-close]'),
   modal: document.querySelector('div[data-modal-window]'),
@@ -21,104 +20,77 @@ const selectors = {
 const removeBookFromShoppingListBtnText = 'Remove from the shopping list';
 const addBookToShoppingListBtnText = 'Add to shopping list';
 const firebaseService = new FirebaseService();
+const savedShoppingList = localStorage.getItem('shoppingList');
 const shoppingList = [];
 let openBook = {};
 
-if (
-  localStorage.getItem('shoppingList') &&
-  localStorage.getItem('shoppingList').length > 0
-) {
-  const savedBooks = JSON.parse(localStorage.getItem('shoppingList')) || [];
+if (savedShoppingList && savedShoppingList.length > 0) {
+  try {
+    const savedBooks = JSON.parse(savedShoppingList) || [];
 
-  shoppingList.push(...savedBooks);
+    shoppingList.push(...savedBooks);
+  } catch (error) {
+    Notify.failure(errorMessageText);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', addEventListenerModal);
 
-export function openBookModal(evt) {
+function addEventListenerModal(evt) {
+  if (evt.target.location.pathname.includes('/shopping-list')) return;
+
+  selectors.booksListWrap.addEventListener('click', handlerOpenBookModal);
+}
+
+export function handlerOpenBookModal(evt) {
   evt.preventDefault();
 
   const bookItem = evt.target.closest('li.books-list-item');
 
   if (!bookItem) return;
 
-  fetchBookById(bookItem.dataset.id)
-    .then(
-      ({
-        book_image,
-        title,
-        author,
-        description,
-        _id,
-        buy_links,
-        list_name,
-      }) => {
-        openBook = {
-          bookId: _id,
-          bookName: title,
-          bookAuthor: author,
-          bookImage: book_image,
-          description,
-          buyLinks: buy_links,
-          listName: list_name,
-        };
-
-        selectors.modalWrap.innerHTML = createMarkupModal(
-          book_image,
-          title,
-          author,
-          description,
-          buy_links
-        );
-
-        if (!!~findBookInShoppingList(shoppingList, openBook)) {
-          selectors.addBookBtn.textContent = removeBookFromShoppingListBtnText;
-          selectors.addBookBtn.addEventListener('click', removeBook);
-
-          if (
-            selectors.textNotificationOfAdded.classList.contains(
-              'visually-hidden'
-            )
-          ) {
-            selectors.textNotificationOfAdded.classList.remove(
-              'visually-hidden'
-            );
-          }
-        } else {
-          selectors.addBookBtn.addEventListener('click', addBook);
-          selectors.addBookBtn.textContent = addBookToShoppingListBtnText;
-          selectors.textNotificationOfAdded.classList.add('visually-hidden');
-        }
-
-        openModal();
-
-        selectors.closeModalBtn.addEventListener('click', closeModal);
-        selectors.backdrop.addEventListener('click', closeModal);
-        document.addEventListener('keydown', closeModal);
-      }
-    )
-    .catch(err => Notify.failure(errorMessageText));
+  createBookModal(bookItem.dataset.id);
 }
 
-function addEventListenerModal(evt) {
-  if (evt.target.location.pathname.includes('/shopping-list.html')) return;
-
-  selectors.booksListWrap.addEventListener('click', openBookModal);
-}
-
-async function fetchBookById(id) {
+async function createBookModal(bookId) {
   showLoader(selectors.loader);
 
   try {
-    const resp = await axios.get(`${API_URL}/${id}`);
+    const book = await fetchBookById(bookId);
 
-    if (resp.status !== 200) {
-      throw new Error(errorMessageText);
-    }
+    if (!book) throw new Error();
 
-    return resp.data;
+    const {
+      book_image,
+      title,
+      author,
+      description,
+      _id,
+      buy_links,
+      list_name,
+    } = book;
+
+    openBook = {
+      bookId: _id,
+      bookName: title,
+      bookAuthor: author,
+      bookImage: book_image,
+      description,
+      buyLinks: buy_links,
+      listName: list_name,
+    };
+
+    selectors.modalWrap.innerHTML = createMarkupModal(
+      book_image,
+      title,
+      author,
+      description,
+      buy_links
+    );
+
+    openModal();
   } catch (error) {
-    throw new Error(errorMessageText);
+    Notify.failure(errorMessageText);
   } finally {
     hideLoader(selectors.loader);
   }
@@ -144,6 +116,7 @@ function createMarkupModal(
           class="book-img"
         />
       </div>
+      
       <div class="book-descr">
         <h2 class="book-name">${title}</h2>
         <h3 class="book-author">${author}</h3>
@@ -159,6 +132,24 @@ function openModal() {
   selectors.modal.classList.remove('is-hidden-modal');
   selectors.modal.style.overflow = 'auto';
   document.body.style.overflow = 'hidden';
+
+  selectors.closeModalBtn.addEventListener('click', closeModal);
+  selectors.backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', closeModal);
+
+  if (isBookInShoppingList()) {
+    selectors.addBookBtn.textContent = removeBookFromShoppingListBtnText;
+    selectors.textNotificationOfAdded.classList.remove('visually-hidden');
+    selectors.addBookBtn.addEventListener('click', removeBook);
+  } else {
+    selectors.addBookBtn.textContent = addBookToShoppingListBtnText;
+    selectors.textNotificationOfAdded.classList.add('visually-hidden');
+    selectors.addBookBtn.addEventListener('click', addBook);
+  }
+}
+
+function isBookInShoppingList() {
+  return !!~findBookInShoppingList(shoppingList, openBook.bookId);
 }
 
 function closeModal(evt) {
@@ -184,6 +175,8 @@ function closeModal(evt) {
 }
 
 function addBook() {
+  if (shoppingList.find(({ bookId }) => bookId === openBook.bookId)) return;
+
   shoppingList.push(openBook);
 
   localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
@@ -197,7 +190,9 @@ function addBook() {
 }
 
 function removeBook() {
-  const idRemoveBook = findBookInShoppingList(shoppingList, openBook);
+  const idRemoveBook = findBookInShoppingList(shoppingList, openBook.bookId);
+
+  if (!~idRemoveBook) return;
 
   shoppingList.splice(idRemoveBook, 1);
 
@@ -211,6 +206,6 @@ function removeBook() {
   selectors.addBookBtn.addEventListener('click', addBook);
 }
 
-function findBookInShoppingList(shoppingList, currentBook) {
-  return shoppingList.findIndex(book => book.bookId === currentBook.bookId);
+function findBookInShoppingList(shoppingList = [], currentBookId) {
+  return shoppingList.findIndex(({ bookId }) => bookId === currentBookId);
 }

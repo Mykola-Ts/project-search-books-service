@@ -30,8 +30,6 @@ export default class LocalStorageService {
   }
 
   onError(error) {
-    Notify.failure(errorMessageText, {
-      clickToClose: true,
-    });
+    Notify.failure(errorMessageText);
   }
 }
